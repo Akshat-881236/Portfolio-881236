@@ -1,11 +1,1413 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+  <meta charset="UTF-8">
+  <title>Smart File Manager - Local Demo Version</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Required metadata -->
+  <meta name="author" content="Akshat Prasad"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="robots" content="index, follow"> 
+  <meta name="language" content="English"> 
+  <meta name="revisit-after" content="7 days"> 
+  <meta name="distribution" content="global"> 
+  <meta name="rating" content="general"> 
+  <meta course="BCA"> 
+  <meta college="DPG Degree College"> 
+  <meta university="Maharshi Dayanand University, Rohtak"> 
+  <meta student ID="881238">
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #020617;
+      color: #e5e7eb;
+    }
+    body.theme-light {
+      background-color: #f3f4f6;
+      color: #111827;
+    }
+    .navbar-dark .navbar-nav .nav-link.active {
+      font-weight: 600;
+      text-decoration: underline;
+    }
+    .card-dark {
+      background-color: #020617;
+      border-color: #1f2937;
+      color: #e5e7eb;
+    }
+    .card-light {
+      background-color: #ffffff;
+      border-color: #e5e7eb;
+      color: #111827;
+    }
+    .section-page { display:none; }
+    .section-page.active { display:block; }
+    .pill {
+      display:inline-flex;
+      padding:2px 8px;
+      border-radius:999px;
+      font-size:0.75rem;
+    }
+    .pill-basic { background:#1f2937;color:#e5e7eb; }
+    .pill-premium{ background:#7c2d12;color:#ffedd5; }
+
+    .quiz-option-btn {
+      width:100%;
+      border-radius:999px;
+      border:1px solid #1f2937;
+      background:#020617;
+      color:#e5e7eb;
+      padding:6px 8px;
+      font-size:0.9rem;
+    }
+    .quiz-option-btn:hover { background:#111827; }
+    body.theme-light .quiz-option-btn {
+      background:#ffffff;
+      color:#111827;
+      border-color:#d1d5db;
+    }
+    body.theme-light .quiz-option-btn:hover { background:#f3f4f6; }
+
+    .toggle {
+      position:relative;
+      width:40px;
+      height:20px;
+      border-radius:999px;
+      background:#1f2937;
+      cursor:pointer;
+    }
+    .toggle-circle {
+      position:absolute;
+      width:16px;
+      height:16px;
+      border-radius:999px;
+      background:#f9fafb;
+      top:2px;
+      left:2px;
+      transition:transform .2s;
+    }
+    .toggle.on { background:#22c55e; }
+    .toggle.on .toggle-circle { transform:translateX(18px); }
+
+    .file-row:hover { background:rgba(15,23,42,0.6); }
+    body.theme-light .file-row:hover { background:#f3f6ff; }
+
+    .preview-content pre {
+      white-space:pre-wrap;
+      word-wrap:break-word;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      font-size:0.8rem;
+    }
+  </style>
 </head>
-<body>
-    <p>Hello World</p>
+<body class="theme-dark">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">💾 Smart Manager</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="mainNav" class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navLinks">
+        <li class="nav-item">
+          <a class="nav-link active spa-link" data-target="homeSection" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link spa-link" data-target="quizSection" href="#">Quizzes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link spa-link" data-target="filesSection" href="#">File Mgmt</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link spa-link" data-target="activitySection" href="#">Activity Log</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link spa-link" data-target="subscriptionSection" href="#">Subscription</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link spa-link" data-target="settingsSection" href="#">Settings</a>
+        </li>
+      </ul>
+      <div class="d-flex align-items-center gap-2">
+        <span id="currentUserLabel" class="text-light small me-2">Not logged in</span>
+        <button class="btn btn-sm btn-outline-light" id="btnShowAuth">Login / Sign Up</button>
+        <button class="btn btn-sm btn-danger d-none" id="btnLogout">Logout</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container my-3">
+
+  <!-- AUTH SECTION -->
+  <div id="authSection" class="section-page active">
+    <div class="row g-3">
+      <div class="col-lg-5">
+        <div class="card card-dark">
+          <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs" id="authTabs">
+              <li class="nav-item">
+                <button class="nav-link active" data-auth-tab="loginTab">Login</button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link" data-auth-tab="signupTab">Sign Up</button>
+              </li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <!-- LOGIN -->
+            <div id="loginTab" class="auth-tab active">
+              <h5>Login</h5>
+              <div class="mb-2 small text-secondary">
+                Login using <strong>Email or Username</strong> and password.
+              </div>
+              <div class="mb-2">
+                <label class="form-label form-label-sm">Email or Username</label>
+                <input type="text" class="form-control form-control-sm" id="loginUser">
+              </div>
+              <div class="mb-2">
+                <label class="form-label form-label-sm">Password</label>
+                <input type="password" class="form-control form-control-sm" id="loginPassword">
+              </div>
+              <button class="btn btn-primary btn-sm" id="btnLogin">Login</button>
+              <div id="loginMsg" class="small mt-2 text-warning"></div>
+            </div>
+
+            <!-- SIGN UP -->
+            <div id="signupTab" class="auth-tab">
+              <h5>Sign Up (Local Demo)</h5>
+              <div class="mb-2 small text-secondary">
+                This is an offline demo. Password is stored in <strong>plain text</strong> in LocalStorage (for programmers only).
+              </div>
+              <div class="mb-2">
+                <label class="form-label form-label-sm">Username</label>
+                <input type="text" class="form-control form-control-sm" id="signupUsername">
+              </div>
+              <div class="mb-2">
+                <label class="form-label form-label-sm">Email</label>
+                <input type="email" class="form-control form-control-sm" id="signupEmail">
+              </div>
+              <div class="mb-2">
+                <label class="form-label form-label-sm">Password</label>
+                <input type="password" class="form-control form-control-sm" id="signupPassword">
+              </div>
+              <button class="btn btn-success btn-sm" id="btnSignup">Create Account</button>
+              <div id="signupMsg" class="small mt-2 text-warning"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- INFO PANEL -->
+      <div class="col-lg-7">
+        <div class="card card-dark">
+          <div class="card-body">
+            <h5>Smart File Manager – Local Developer Version</h5>
+            <ul class="small">
+              <li>Accounts stored in browser LocalStorage (offline demo, no server).</li>
+              <li>No OTP, no EmailJS, no verification. Pure front-end only.</li>
+              <li>Password is stored in <strong>plain text</strong> for demonstration.</li>
+              <li>Arithmetic quiz (+, −, ×, ÷) → Gold → Platinum → Diamonds → Premium (500MB).</li>
+              <li>File manager with folders, storage usage, preview, and ~80% image compression.</li>
+              <li>Coupons:
+                <ul>
+                  <li><code>A-314003</code>: 200 MB for 10 days + 2-day grace.</li>
+                  <li><code>B-238005</code>: 300 MB for 7 days + 2-day grace.</li>
+                </ul>
+              </li>
+              <li>After coupon grace, if not Premium and above base (100MB), latest files are auto-deleted.</li>
+              <li>Coupon request via <code>mailto: akshatpsd2005@gmail.com</code> with UID, username, email, reason (150 chars).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- HOME -->
+  <div id="homeSection" class="section-page">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="card card-dark">
+          <div class="card-body">
+            <h5>Account Overview</h5>
+            <div id="accountTypePill" class="pill pill-basic">Not logged in</div>
+            <div class="mt-2 small" id="accountInfoText">
+              Please login to see account details.
+            </div>
+
+            <div class="mt-3">
+              <div class="d-flex justify-content-between small">
+                <span>Storage</span>
+                <span id="storageText">0 MB / 0 MB (0%)</span>
+              </div>
+              <div class="progress" style="height:6px;">
+                <div class="progress-bar" role="progressbar" id="storageBar" style="width:0%;"></div>
+              </div>
+            </div>
+
+            <div class="mt-2 small" id="couponInfoText">
+              No active coupon upgrade.
+            </div>
+          </div>
+        </div>
+        <div class="card card-dark mt-3">
+          <div class="card-body">
+            <h6>In-App Currency</h6>
+            <div class="d-flex justify-content-between small">
+              <span>🥇 Gold</span><span id="goldValue">0</span>
+            </div>
+            <div class="d-flex justify-content-between small">
+              <span>🏆 Platinum</span><span id="platinumValue">0</span>
+            </div>
+            <div class="d-flex justify-content-between small">
+              <span>💎 Diamond</span><span id="diamondValue">0</span>
+            </div>
+            <div class="small text-secondary mt-2">
+              Quiz: Correct +5 Gold, Wrong −3 Gold.  
+              30 Gold → 1 Platinum (keep 5 Gold).  
+              30 Platinum → 1 Diamond (keep 5 Platinum).  
+              30 Diamonds → Premium (500 MB).
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Quick links -->
+      <div class="col-md-6">
+        <div class="card card-dark">
+          <div class="card-body">
+            <h5>Quick Navigation</h5>
+            <div class="d-grid gap-2">
+              <button class="btn btn-outline-light btn-sm nav-go" data-target="quizSection">🎯 Go to Quizzes</button>
+              <button class="btn btn-outline-light btn-sm nav-go" data-target="filesSection">📂 Go to File Manager</button>
+              <button class="btn btn-outline-light btn-sm nav-go" data-target="subscriptionSection">💳 Subscription & Coupons</button>
+              <button class="btn btn-outline-light btn-sm nav-go" data-target="settingsSection">⚙️ Settings</button>
+              <button class="btn btn-outline-light btn-sm nav-go" data-target="activitySection">📜 Activity Log</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quizSection" class="section-page">
+    <div class="row g-3">
+      <div class="col-lg-7">
+        <div class="card card-dark">
+          <div class="card-body">
+            <h5>Arithmetic Quiz</h5>
+            <p class="small text-secondary">
+              Operations: +, −, ×, ÷ only.  
+              Correct = +5 Gold, Wrong = −3 Gold.
+            </p>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="small">Current Question</span>
+              <button class="btn btn-sm btn-outline-info" id="newQuestionBtn">New Question</button>
+            </div>
+            <div id="quizQuestionText" class="fw-bold mb-2">Click "New Question" to start.</div>
+            <div id="quizOptions" class="row g-2 mb-2"></div>
+            <div id="quizResultText" class="small mt-1"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="card card-dark">
+          <div class="card-body">
+            <h6>Upgrade Rules</h6>
+            <ul class="small mb-2">
+              <li>Base: Non-Premium → 100 MB</li>
+              <li>Premium: 500 MB (unlocked at 30 Diamonds)</li>
+              <li>Coupons:
+                <ul>
+                  <li>A-314003 → 200 MB for 10 days + 2-day grace</li>
+                  <li>B-238005 → 300 MB for 7 days + 2-day grace</li>
+                </ul>
+              </li>
+            </ul>
+            <p class="small text-secondary mb-0">
+              After coupon grace, if not Premium and used storage exceeds 100 MB, latest uploaded files are removed until within base limit.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILE MANAGER -->
+  <div id="filesSection" class="section-page">
+    <div class="card card-dark">
+      <div class="card-body">
+        <h5>File Manager</h5>
+        <p class="small text-secondary">
+          Folders are local-only. Files are stored in LocalStorage as base64 (demo).  
+          Image compression reduces size using canvas (~80% quality).
+        </p>
+        <div class="mb-2">
+          <label class="form-label form-label-sm">New Folder</label>
+          <div class="input-group input-group-sm">
+            <input id="folderNameInput" class="form-control" placeholder="Enter folder name">
+            <button class="btn btn-success" id="createFolderBtn">Create</button>
+          </div>
+        </div>
+        <div class="mb-2">
+          <div class="small mb-1">Folders</div>
+          <div id="folderButtons" class="mb-2"></div>
+        </div>
+        <hr>
+        <div id="fileUploadArea" class="mb-3"></div>
+        <div id="storageInfoBar" class="mb-3"></div>
+        <div class="table-responsive">
+          <table class="table table-dark table-sm align-middle">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Size</th>
+              <th>Type</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="filesTableBody"></tbody>
+          </table>
+        </div>
+        <div class="small text-secondary">
+          Note: large files + many images will bloat LocalStorage quickly. This demo is for concept only.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVITY LOG -->
+  <div id="activitySection" class="section-page">
+    <div class="card card-dark">
+      <div class="card-body">
+        <h5>Activity Log</h5>
+        <p class="small text-secondary">
+          Logs login/logout, file operations, quizzes, coupons, and settings changes.
+        </p>
+        <ul id="activityList" class="list-group small"></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBSCRIPTION -->
+  <div id="subscriptionSection" class="section-page">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="card card-dark">
+          <div class="card-body">
+            <h5>Subscription & Storage</h5>
+            <p class="small" id="subscriptionText">
+              Login to view your subscription details.
+            </p>
+            <hr>
+            <h6 class="small">Apply Coupon Code</h6>
+            <p class="small">
+              Available codes:
+              <br><code>A-314003</code> → 200 MB for 10 days + 2-day grace<br>
+              <code>B-238005</code> → 300 MB for 7 days + 2-day grace
+            </p>
+            <div class="input-group input-group-sm mb-2">
+              <input type="text" id="couponInput" class="form-control" placeholder="Enter coupon (case-sensitive)">
+              <button class="btn btn-outline-success" id="applyCouponBtn">Apply</button>
+            </div>
+            <p class="small text-secondary mb-0">
+              After coupon grace, if you are not Premium and storage exceeds base (100 MB), newest files are removed automatically.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card card-dark">
+          <div class="card-body">
+            <h5>Request Coupon (Manual Email)</h5>
+            <p class="small text-secondary">
+              This opens your email app with a pre-filled message to
+              <code>akshatpsd2005@gmail.com</code>.
+            </p>
+            <div class="mb-2">
+              <label class="form-label form-label-sm">Reason (max 150 characters)</label>
+              <textarea id="couponRequestText" class="form-control form-control-sm" rows="3" maxlength="150"></textarea>
+            </div>
+            <button class="btn btn-primary btn-sm" id="openCouponMailBtn">Open Email</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SETTINGS -->
+  <div id="settingsSection" class="section-page">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="card card-dark">
+          <div class="card-body">
+            <h5>Theme & Auto Conversion</h5>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="small">Light Theme</span>
+              <div class="toggle" id="themeToggle">
+                <div class="toggle-circle"></div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="small">Auto Currency Conversion</span>
+              <div class="toggle" id="autoConvertToggle">
+                <div class="toggle-circle"></div>
+              </div>
+            </div>
+            <p class="small text-secondary mb-0">
+              Auto conversion: Gold & Platinum automatically convert when thresholds are reached.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card card-dark">
+          <div class="card-body">
+            <h5>Manual Conversion</h5>
+            <div class="d-flex justify-content-between align-items-center mb-2 small">
+              <div>
+                Gold → Platinum
+                <div class="text-secondary">30 Gold → 1 Platinum (keep 5 Gold)</div>
+              </div>
+              <button class="btn btn-outline-light btn-sm" id="goldToPlatinumBtn">Convert</button>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-2 small">
+              <div>
+                Platinum → Diamond
+                <div class="text-secondary">30 Platinum → 1 Diamond (keep 5 Platinum)</div>
+              </div>
+              <button class="btn btn-outline-light btn-sm" id="platinumToDiamondBtn">Convert</button>
+            </div>
+            <p class="small text-secondary mb-0">
+              Use manual conversion when auto conversion is off or you want more control.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Hidden canvas for image compression -->
+<canvas id="hiddenCanvas" style="display:none;"></canvas>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/*****************************************
+ * LocalStorage Keys
+ *****************************************/
+const LS_USERS_KEY    = "sm_users_v4";
+const LS_SESSION_KEY  = "sm_session_uid_v4";
+const LS_ACTIVITY_KEY = "sm_activity_v4";
+const LS_SETTINGS_KEY = "sm_settings_v4";
+const LS_FOLDERS_KEY  = "sm_folders_v4";
+const LS_FILES_KEY    = "sm_files_v4";
+
+/*****************************************
+ * Global State
+ *****************************************/
+let users     = loadJSON(LS_USERS_KEY, []);
+let currentUser = loadCurrentUser();
+let activity  = loadJSON(LS_ACTIVITY_KEY, []);
+let settings  = loadJSON(LS_SETTINGS_KEY, { theme:"dark" });
+let folders   = loadJSON(LS_FOLDERS_KEY, []);
+let files     = loadJSON(LS_FILES_KEY, []);
+let currentFolderId = folders.length ? folders[0].id : null;
+let currentQuiz = null;
+
+/*****************************************
+ * Helpers
+ *****************************************/
+function loadJSON(key, fallback){
+  try {
+    const raw = localStorage.getItem(key);
+    if(!raw) return fallback;
+    return JSON.parse(raw);
+  } catch(e){ return fallback; }
+}
+function saveJSON(key, value){
+  localStorage.setItem(key, JSON.stringify(value));
+}
+
+function generateUid(){
+  return "ID-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2,8);
+}
+function randomInt(min,max){
+  return Math.floor(Math.random()*(max-min+1))+min;
+}
+function formatBytes(bytes){
+  const units=["B","KB","MB","GB"];
+  let i=0;
+  while(bytes>=1024 && i<units.length-1){
+    bytes/=1024;
+    i++;
+  }
+  return bytes.toFixed(2)+" "+units[i];
+}
+
+/*****************************************
+ * Activity
+ *****************************************/
+function logActivity(message){
+  activity.unshift({
+    time: new Date().toLocaleString(),
+    message
+  });
+  if(activity.length>300) activity.pop();
+  saveJSON(LS_ACTIVITY_KEY,activity);
+  renderActivity();
+}
+function renderActivity(){
+  const list=document.getElementById("activityList");
+  list.innerHTML="";
+  if(activity.length===0){
+    list.innerHTML='<li class="list-group-item small">No activity yet.</li>';
+    return;
+  }
+  activity.forEach(e=>{
+    const li=document.createElement("li");
+    li.className="list-group-item small";
+    li.textContent=`[${e.time}] ${e.message}`;
+    list.appendChild(li);
+  });
+}
+
+/*****************************************
+ * Users / Session
+ *****************************************/
+function loadCurrentUser(){
+  const uid = localStorage.getItem(LS_SESSION_KEY);
+  if(!uid) return null;
+  return users.find(u=>u.uid===uid) || null;
+}
+function saveUsers(){
+  saveJSON(LS_USERS_KEY,users);
+}
+function setCurrentUser(user){
+  currentUser = user;
+  if(user){
+    localStorage.setItem(LS_SESSION_KEY,user.uid);
+    logActivity(`Logged in as ${user.username}`);
+  } else {
+    localStorage.removeItem(LS_SESSION_KEY);
+    logActivity("Logged out");
+  }
+  updateUI();
+}
+
+/*****************************************
+ * SPA Navigation
+ *****************************************/
+const spaLinks = document.querySelectorAll(".spa-link");
+const sectionPages = document.querySelectorAll(".section-page");
+const btnShowAuth = document.getElementById("btnShowAuth");
+const btnLogout   = document.getElementById("btnLogout");
+const currentUserLabel = document.getElementById("currentUserLabel");
+const navGoButtons = document.querySelectorAll(".nav-go");
+
+function showSection(id){
+  sectionPages.forEach(sec=>sec.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  spaLinks.forEach(a=>a.classList.toggle("active",a.dataset.target===id));
+}
+spaLinks.forEach(a=>{
+  a.addEventListener("click",e=>{
+    e.preventDefault();
+    const target=a.dataset.target;
+    if(!currentUser && target!=="authSection"){
+      alert("Please login first.");
+      return;
+    }
+    showSection(target);
+  });
+});
+navGoButtons.forEach(b=>{
+  b.addEventListener("click",()=>{
+    const target=b.dataset.target;
+    if(!currentUser){
+      alert("Please login first.");
+      return;
+    }
+    showSection(target);
+  });
+});
+btnShowAuth.addEventListener("click",()=>showSection("authSection"));
+btnLogout.addEventListener("click",()=>setCurrentUser(null));
+
+/*****************************************
+ * Auth Tabs
+ *****************************************/
+const authTabButtons=document.querySelectorAll("[data-auth-tab]");
+const authTabs      =document.querySelectorAll(".auth-tab");
+
+authTabButtons.forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const target=btn.dataset.authTab;
+    authTabButtons.forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    authTabs.forEach(t=>t.classList.toggle("active",t.id===target));
+  });
+});
+
+/*****************************************
+ * Sign Up / Login (no OTP)
+ *****************************************/
+const signupUsername=document.getElementById("signupUsername");
+const signupEmail   =document.getElementById("signupEmail");
+const signupPassword=document.getElementById("signupPassword");
+const signupMsg     =document.getElementById("signupMsg");
+const btnSignup     =document.getElementById("btnSignup");
+
+const loginUser      =document.getElementById("loginUser");
+const loginPassword  =document.getElementById("loginPassword");
+const loginMsg       =document.getElementById("loginMsg");
+const btnLogin       =document.getElementById("btnLogin");
+
+btnSignup.addEventListener("click",()=>{
+  signupMsg.textContent="";
+  const u=signupUsername.value.trim();
+  const e=signupEmail.value.trim();
+  const p=signupPassword.value;
+  if(!u || !e || !p){
+    signupMsg.textContent="All fields are required.";
+    return;
+  }
+  if(users.some(x=>x.username===u || x.email===e)){
+    signupMsg.textContent="User with this username/email already exists.";
+    return;
+  }
+  const user={
+    uid: generateUid(),
+    username: u,
+    email: e,
+    password: p, // plain text for demo
+    gold: 0,
+    platinum: 0,
+    diamonds: 0,
+    autoConversion: true,
+    accountType: "non-premium", // base 100MB
+    couponUpgrade: null // { code, type, startedAt }
+  };
+  users.push(user);
+  saveUsers();
+  signupMsg.textContent="Account created. Logging in...";
+  setTimeout(()=>{
+    setCurrentUser(user);
+    showSection("homeSection");
+  },500);
+});
+
+btnLogin.addEventListener("click",()=>{
+  loginMsg.textContent="";
+  const ident=loginUser.value.trim();
+  const p=loginPassword.value;
+  if(!ident || !p){
+    loginMsg.textContent="Enter email/username and password.";
+    return;
+  }
+  const user=users.find(u=>(u.email===ident || u.username===ident) && u.password===p);
+  if(!user){
+    loginMsg.textContent="Invalid credentials.";
+    return;
+  }
+  setCurrentUser(user);
+  showSection("homeSection");
+});
+
+/*****************************************
+ * Theme / Settings
+ *****************************************/
+const themeToggle       =document.getElementById("themeToggle");
+const autoConvertToggle=document.getElementById("autoConvertToggle");
+const goldToPlatinumBtn=document.getElementById("goldToPlatinumBtn");
+const platinumToDiamondBtn=document.getElementById("platinumToDiamondBtn");
+
+function applyTheme(){
+  if(settings.theme==="light"){
+    document.body.classList.add("theme-light");
+    themeToggle.classList.add("on");
+  } else {
+    document.body.classList.remove("theme-light");
+    themeToggle.classList.remove("on");
+  }
+}
+themeToggle.addEventListener("click",()=>{
+  settings.theme = settings.theme==="light" ? "dark" : "light";
+  saveJSON(LS_SETTINGS_KEY,settings);
+  applyTheme();
+});
+autoConvertToggle.addEventListener("click",()=>{
+  if(!currentUser){ alert("Login first."); return; }
+  currentUser.autoConversion = !currentUser.autoConversion;
+  saveUsers();
+  renderSettings();
+});
+
+goldToPlatinumBtn.addEventListener("click",()=>{
+  if(!currentUser){ alert("Login first."); return; }
+  if(currentUser.gold<30){ alert("Need at least 30 Gold."); return; }
+  currentUser.gold-=25;
+  currentUser.platinum+=1;
+  checkPremiumUpgrade();
+  saveUsers();
+  updateCurrencyUI();
+  logActivity("Manual conversion: Gold → Platinum");
+});
+platinumToDiamondBtn.addEventListener("click",()=>{
+  if(!currentUser){ alert("Login first."); return; }
+  if(currentUser.platinum<30){ alert("Need at least 30 Platinum."); return; }
+  currentUser.platinum-=25;
+  currentUser.diamonds+=1;
+  checkPremiumUpgrade();
+  saveUsers();
+  updateCurrencyUI();
+  logActivity("Manual conversion: Platinum → Diamond");
+});
+
+function renderSettings(){
+  if(currentUser && currentUser.autoConversion){
+    autoConvertToggle.classList.add("on");
+  } else {
+    autoConvertToggle.classList.remove("on");
+  }
+}
+
+/*****************************************
+ * Currency / Premium
+ *****************************************/
+const goldValueEl     =document.getElementById("goldValue");
+const platinumValueEl =document.getElementById("platinumValue");
+const diamondValueEl  =document.getElementById("diamondValue");
+
+function updateCurrencyUI(){
+  if(!currentUser){
+    goldValueEl.textContent="0";
+    platinumValueEl.textContent="0";
+    diamondValueEl.textContent="0";
+    return;
+  }
+  goldValueEl.textContent=currentUser.gold;
+  platinumValueEl.textContent=currentUser.platinum;
+  diamondValueEl.textContent=currentUser.diamonds;
+}
+function autoConvertIfEnabled(){
+  if(!currentUser || !currentUser.autoConversion) return;
+  while(currentUser.gold>=30){
+    currentUser.gold-=25;
+    currentUser.platinum+=1;
+  }
+  while(currentUser.platinum>=30){
+    currentUser.platinum-=25;
+    currentUser.diamonds+=1;
+  }
+  checkPremiumUpgrade();
+  saveUsers();
+  updateCurrencyUI();
+}
+function checkPremiumUpgrade(){
+  if(currentUser && currentUser.accountType!=="premium" && currentUser.diamonds>=30){
+    currentUser.accountType="premium";
+    saveUsers();
+    logActivity("Upgraded to Premium (500 MB)");
+    alert("🎉 You have been upgraded to Premium (500 MB)!");
+    updateAccountUI();
+    updateStorageUI();
+  }
+}
+
+/*****************************************
+ * Storage Limits & Coupon Logic
+ *****************************************/
+const MAX_NON_PREMIUM_MB = 100;
+const MAX_PREMIUM_MB     = 500;
+
+function getBaseLimitBytes(){
+  if(!currentUser) return 0;
+  return (currentUser.accountType==="premium" ? MAX_PREMIUM_MB : MAX_NON_PREMIUM_MB)*1024*1024;
+}
+function getCurrentLimitBytes(){
+  if(!currentUser) return 0;
+  const base = getBaseLimitBytes();
+  const upg = currentUser.couponUpgrade;
+  if(!upg) return base;
+  const now = Date.now();
+  const start = new Date(upg.startedAt).getTime();
+  const diffDays = (now-start)/(1000*3600*24);
+  let activeDays, graceDays, limitMB;
+  if(upg.type==="A"){
+    activeDays=10; graceDays=2; limitMB=200;
+  } else if(upg.type==="B"){
+    activeDays=7; graceDays=2; limitMB=300;
+  } else return base;
+
+  if(diffDays<=activeDays+graceDays){
+    return limitMB*1024*1024;
+  }
+  return base;
+}
+function couponInGraceOrActive(){
+  if(!currentUser || !currentUser.couponUpgrade) return false;
+  const upg=currentUser.couponUpgrade;
+  const now=Date.now();
+  const start=new Date(upg.startedAt).getTime();
+  const diffDays=(now-start)/(1000*3600*24);
+  let activeDays, graceDays;
+  if(upg.type==="A"){ activeDays=10; graceDays=2; }
+  else if(upg.type==="B"){ activeDays=7; graceDays=2; }
+  else return false;
+  return diffDays <= (activeDays+graceDays);
+}
+function couponFullyExpired(){
+  if(!currentUser || !currentUser.couponUpgrade) return false;
+  const upg=currentUser.couponUpgrade;
+  const now=Date.now();
+  const start=new Date(upg.startedAt).getTime();
+  const diffDays=(now-start)/(1000*3600*24);
+  let activeDays, graceDays;
+  if(upg.type==="A"){ activeDays=10; graceDays=2; }
+  else if(upg.type==="B"){ activeDays=7; graceDays=2; }
+  else return false;
+  return diffDays > (activeDays+graceDays);
+}
+
+/*****************************************
+ * Files / Folders (base64 storage)
+ *****************************************/
+function saveFoldersFiles(){
+  saveJSON(LS_FOLDERS_KEY,folders);
+  saveJSON(LS_FILES_KEY,files);
+}
+function totalStorageUsedBytes(){
+  return files.reduce((s,f)=>s+f.size,0);
+}
+function enforceStorageLimit(){
+  if(!currentUser) return;
+  const limitBaseBytes = getBaseLimitBytes();
+  const limitBytes     = getCurrentLimitBytes();
+  let used=totalStorageUsedBytes();
+  if(used<=limitBytes) return;
+
+  // Only auto-delete after coupon grace is truly finished AND not premium
+  if(couponFullyExpired() && currentUser.accountType!=="premium"){
+    // delete newest files until under base (100MB) – not coupon limit
+    const baseLimit = limitBaseBytes;
+    let sorted=[...files].sort((a,b)=> new Date(b.addedAt)-new Date(a.addedAt));
+    let removedCount=0;
+    while(used>baseLimit && sorted.length>0){
+      const rem=sorted.shift();
+      files=files.filter(f=>f.id!==rem.id);
+      removedCount++;
+      used=totalStorageUsedBytes();
+    }
+    saveFoldersFiles();
+    if(removedCount>0){
+      alert(`⚠️ Coupon grace ended. ${removedCount} latest file(s) were removed to fit base limit (${MAX_NON_PREMIUM_MB} MB).`);
+      logActivity(`Auto-deleted ${removedCount} file(s) after coupon grace.`);
+    }
+    // clear coupon
+    currentUser.couponUpgrade=null;
+    saveUsers();
+  }
+}
+
+/*****************************************
+ * Render File Manager
+ *****************************************/
+const folderButtonsEl = document.getElementById("folderButtons");
+const fileUploadArea  = document.getElementById("fileUploadArea");
+const storageInfoBar  = document.getElementById("storageInfoBar");
+const filesTableBody  = document.getElementById("filesTableBody");
+const createFolderBtn = document.getElementById("createFolderBtn");
+const folderNameInput = document.getElementById("folderNameInput");
+const hiddenCanvas    = document.getElementById("hiddenCanvas");
+
+createFolderBtn.addEventListener("click",()=>{
+  if(!currentUser){ alert("Login first."); return; }
+  const name=folderNameInput.value.trim() || "New Folder";
+  const folder={ id: generateUid(), name, ownerUid: currentUser.uid };
+  folders.push(folder);
+  saveFoldersFiles();
+  folderNameInput.value="";
+  if(!currentFolderId) currentFolderId=folder.id;
+  logActivity(`Created folder: ${name}`);
+  renderFileManager();
+});
+
+function renderFileManager(){
+  if(!currentUser){
+    fileUploadArea.innerHTML='<div class="alert alert-warning">Please login.</div>';
+    folderButtonsEl.innerHTML="";
+    filesTableBody.innerHTML="";
+    storageInfoBar.innerHTML="";
+    return;
+  }
+
+  // Ensure we have at least one folder for this user
+  const userFolders=folders.filter(f=>f.ownerUid===currentUser.uid);
+  if(userFolders.length===0){
+    const defaultFolder={ id: generateUid(), name:"My Folder", ownerUid: currentUser.uid };
+    folders.push(defaultFolder);
+    currentFolderId=defaultFolder.id;
+    saveFoldersFiles();
+  } else {
+    if(!currentFolderId || !userFolders.some(f=>f.id===currentFolderId)){
+      currentFolderId=userFolders[0].id;
+    }
+  }
+
+  // Folder buttons
+  folderButtonsEl.innerHTML="";
+  userFolders.forEach(f=>{
+    const btn=document.createElement("button");
+    btn.className="btn btn-sm " + (f.id===currentFolderId ? "btn-primary" : "btn-secondary") + " me-2 mb-2";
+    btn.textContent=f.name;
+    btn.addEventListener("click",()=>{ currentFolderId=f.id; renderFileManager(); });
+    folderButtonsEl.appendChild(btn);
+  });
+
+  // Upload area
+  fileUploadArea.innerHTML=`
+    <div class="small mb-1">Current folder: <strong>${userFolders.find(f=>f.id===currentFolderId).name}</strong></div>
+    <div class="input-group input-group-sm">
+      <input type="file" id="fileInput" multiple class="form-control">
+      <button class="btn btn-outline-light" id="uploadBtn">Upload</button>
+    </div>
+  `;
+  document.getElementById("uploadBtn").addEventListener("click",()=>{
+    const input=document.getElementById("fileInput");
+    const fls=input.files;
+    if(!fls || fls.length===0) return;
+    Array.from(fls).forEach(file=>{
+      const reader=new FileReader();
+      reader.onload=()=>{
+        const base64=reader.result.split(",")[1];
+        const size=file.size;
+        const newFile={
+          id: generateUid(),
+          ownerUid: currentUser.uid,
+          folderId: currentFolderId,
+          name: file.name,
+          type: file.type,
+          size,
+          data: base64,
+          addedAt: new Date().toISOString()
+        };
+        files.push(newFile);
+        saveFoldersFiles();
+        enforceStorageLimit();
+        renderFileManager();
+        logActivity(`Uploaded file: ${file.name}`);
+      };
+      reader.readAsDataURL(file);
+    });
+    input.value="";
+  });
+
+  // Storage bar
+  const used=totalStorageUsedBytes();
+  const limit=getCurrentLimitBytes();
+  const percent=limit?Math.min(100,(used/limit)*100):0;
+  storageInfoBar.innerHTML=`
+    <div class="d-flex justify-content-between small">
+      <span>Storage Used</span>
+      <span>${formatBytes(used)} / ${formatBytes(limit||0)} (${percent.toFixed(1)}%)</span>
+    </div>
+    <div class="progress mb-2" style="height:6px;">
+      <div class="progress-bar" style="width:${percent}%;"></div>
+    </div>
+  `;
+
+  // Files table
+  filesTableBody.innerHTML="";
+  const folderFiles=files.filter(f=>f.ownerUid===currentUser.uid && f.folderId===currentFolderId);
+  if(folderFiles.length===0){
+    filesTableBody.innerHTML='<tr><td colspan="4" class="small text-secondary">No files in this folder.</td></tr>';
+  } else {
+    folderFiles.forEach(f=>{
+      const tr=document.createElement("tr");
+      tr.className="file-row";
+      tr.innerHTML=`
+        <td>${f.name}</td>
+        <td>${formatBytes(f.size)}</td>
+        <td>${f.type || "Unknown"}</td>
+        <td>
+          <button class="btn btn-sm btn-info me-1">View</button>
+          <button class="btn btn-sm btn-primary me-1">Download</button>
+          <button class="btn btn-sm btn-warning me-1">Compress</button>
+          <button class="btn btn-sm btn-danger">Delete</button>
+        </td>
+      `;
+      const [btnView,btnDown,btnComp,btnDel]=tr.querySelectorAll("button");
+      btnView.addEventListener("click",()=>previewFile(f.id));
+      btnDown.addEventListener("click",()=>downloadFile(f.id));
+      btnComp.addEventListener("click",()=>compressImage(f.id));
+      btnDel.addEventListener("click",()=>deleteFile(f.id));
+      filesTableBody.appendChild(tr);
+    });
+  }
+
+  updateStorageUI();
+}
+
+/*****************************************
+ * File Operations
+ *****************************************/
+function getFileById(id){
+  return files.find(f=>f.id===id);
+}
+function getFileUrl(file){
+  return `data:${file.type};base64,${file.data}`;
+}
+function previewFile(id){
+  const file=getFileById(id);
+  if(!file) return;
+  const url=getFileUrl(file);
+  let content="";
+  if(file.type.startsWith("image/")){
+    content=`<img src="${url}" class="img-fluid">`;
+  } else if(file.type==="application/pdf"){
+    content=`<embed src="${url}" type="application/pdf" width="100%" height="400px">`;
+  } else if(file.type.startsWith("audio/")){
+    content=`<audio controls class="w-100" src="${url}"></audio>`;
+  } else if(file.type.startsWith("video/")){
+    content=`<video controls class="w-100" src="${url}"></video>`;
+  } else {
+    try{
+      const text=atob(file.data);
+      content=`<pre class="small" style="white-space:pre-wrap">${text}</pre>`;
+    }catch(e){
+      content=`<div class="small">Preview not available. Download file to view.</div>`;
+    }
+  }
+  const wrapper=document.createElement("div");
+  wrapper.className="modal fade";
+  wrapper.innerHTML=`
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content bg-dark text-light">
+        <div class="modal-header">
+          <h5 class="modal-title">${file.name}</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          ${content}
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(wrapper);
+  const modal=new bootstrap.Modal(wrapper);
+  modal.show();
+  wrapper.addEventListener("hidden.bs.modal",()=>wrapper.remove());
+}
+function downloadFile(id){
+  const file=getFileById(id);
+  if(!file) return;
+  const url=getFileUrl(file);
+  const a=document.createElement("a");
+  a.href=url;
+  a.download=file.name;
+  a.click();
+}
+function deleteFile(id){
+  const file=getFileById(id);
+  if(!file) return;
+  if(!confirm(`Delete file: ${file.name}?`)) return;
+  files=files.filter(f=>f.id!==id);
+  saveFoldersFiles();
+  logActivity(`Deleted file: ${file.name}`);
+  renderFileManager();
+}
+
+/*****************************************
+ * Image Compression (~80% quality)
+ *****************************************/
+function compressImage(id){
+  const file=getFileById(id);
+  if(!file || !file.type.startsWith("image/")){
+    alert("Compression works only for images.");
+    return;
+  }
+  const url=getFileUrl(file);
+  const img=new Image();
+  img.onload=()=>{
+    const canvas=hiddenCanvas;
+    const ctx=canvas.getContext("2d");
+    canvas.width=img.width;
+    canvas.height=img.height;
+    ctx.drawImage(img,0,0);
+    const compressedDataURL = canvas.toDataURL("image/jpeg",0.2); // approx 80% reduction
+    const base64 = compressedDataURL.split(",")[1];
+    const newSize = Math.floor(base64.length*0.75); // approx bytes
+    file.data = base64;
+    file.type = "image/jpeg";
+    file.size = newSize;
+    saveFoldersFiles();
+    enforceStorageLimit();
+    renderFileManager();
+    logActivity(`Compressed image: ${file.name}`);
+    alert(`✅ Image compressed.\nNew size: ${formatBytes(newSize)}`);
+  };
+  img.src=url;
+}
+
+/*****************************************
+ * Quiz
+ *****************************************/
+const quizQuestionText=document.getElementById("quizQuestionText");
+const quizOptionsEl   =document.getElementById("quizOptions");
+const quizResultText  =document.getElementById("quizResultText");
+const newQuestionBtn  =document.getElementById("newQuestionBtn");
+
+function generateQuizQuestion(){
+  const types=["add","sub","mul","div"];
+  const type=types[randomInt(0,types.length-1)];
+  let a,b,correct,question;
+  if(type==="add"){
+    a=randomInt(10,200); b=randomInt(10,200);
+    correct=a+b; question=`${a} + ${b} = ?`;
+  } else if(type==="sub"){
+    a=randomInt(10,200); b=randomInt(10,200);
+    if(b>a)[a,b]=[b,a];
+    correct=a-b; question=`${a} − ${b} = ?`;
+  } else if(type==="mul"){
+    a=randomInt(2,20); b=randomInt(2,20);
+    correct=a*b; question=`${a} × ${b} = ?`;
+  } else {
+    b=randomInt(2,20); a=b*randomInt(2,20);
+    correct=a/b; question=`${a} ÷ ${b} = ?`;
+  }
+  const correctText=String(correct);
+  const opts=new Set([correctText]);
+  while(opts.size<4){
+    let delta=randomInt(-10,10);
+    if(delta===0) delta=1;
+    opts.add(String(correct+delta));
+  }
+  const options=[...opts];
+  for(let i=options.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [options[i],options[j]]=[options[j],options[i]];
+  }
+  return {question,correctText,options};
+}
+function renderQuiz(){
+  if(!currentUser){
+    alert("Login first.");
+    return;
+  }
+  currentQuiz=generateQuizQuestion();
+  quizQuestionText.textContent=currentQuiz.question;
+  quizOptionsEl.innerHTML="";
+  quizResultText.textContent="";
+  currentQuiz.options.forEach(opt=>{
+    const col=document.createElement("div");
+    col.className="col-6";
+    const btn=document.createElement("button");
+    btn.className="quiz-option-btn";
+    btn.textContent=opt;
+    btn.addEventListener("click",()=>answerQuiz(opt));
+    col.appendChild(btn);
+    quizOptionsEl.appendChild(col);
+  });
+}
+function answerQuiz(selected){
+  if(!currentQuiz || !currentUser) return;
+  if(selected===currentQuiz.correctText){
+    currentUser.gold+=5;
+    quizResultText.textContent="✅ Correct! +5 Gold";
+    quizResultText.className="small text-success";
+    logActivity("Quiz: Correct (+5 Gold)");
+  } else {
+    currentUser.gold=Math.max(0,currentUser.gold-3);
+    quizResultText.textContent=`❌ Wrong (-3 Gold). Correct: ${currentQuiz.correctText}`;
+    quizResultText.className="small text-danger";
+    logActivity("Quiz: Wrong (-3 Gold)");
+  }
+  autoConvertIfEnabled();
+  saveUsers();
+  updateCurrencyUI();
+}
+newQuestionBtn.addEventListener("click",renderQuiz);
+
+/*****************************************
+ * Subscription / Coupons
+ *****************************************/
+const subscriptionText = document.getElementById("subscriptionText");
+const couponInput      = document.getElementById("couponInput");
+const applyCouponBtn   = document.getElementById("applyCouponBtn");
+const couponRequestText= document.getElementById("couponRequestText");
+const openCouponMailBtn= document.getElementById("openCouponMailBtn");
+
+applyCouponBtn.addEventListener("click",()=>{
+  if(!currentUser){ alert("Login first."); return; }
+  const code=couponInput.value.trim();
+  if(code==="A-314003"){
+    currentUser.couponUpgrade={
+      code,
+      type:"A",
+      startedAt:new Date().toISOString()
+    };
+    saveUsers();
+    logActivity("Applied coupon A-314003 (200MB, 10 days + 2-day grace)");
+    alert("✅ Coupon A-314003 applied: 200 MB for 10 days + 2-day grace.");
+    updateAccountUI();
+    renderFileManager();
+  } else if(code==="B-238005"){
+    currentUser.couponUpgrade={
+      code,
+      type:"B",
+      startedAt:new Date().toISOString()
+    };
+    saveUsers();
+    logActivity("Applied coupon B-238005 (300MB, 7 days + 2-day grace)");
+    alert("✅ Coupon B-238005 applied: 300 MB for 7 days + 2-day grace.");
+    updateAccountUI();
+    renderFileManager();
+  } else {
+    alert("❌ Invalid coupon code.");
+  }
+});
+
+openCouponMailBtn.addEventListener("click",()=>{
+  if(!currentUser){
+    alert("Login first.");
+    return;
+  }
+  const reason=couponRequestText.value.trim();
+  if(!reason){
+    alert("Please enter a short reason (max 150 characters).");
+    return;
+  }
+  const body =
+`UID: ${currentUser.uid}
+Username: ${currentUser.username}
+Email: ${currentUser.email}
+
+Request:
+${reason}`;
+  const mailLink = `mailto:akshatpsd2005@gmail.com?subject=${encodeURIComponent("Coupon Request - Smart File Manager")}&body=${encodeURIComponent(body)}`;
+  window.location.href=mailLink;
+  logActivity("Opened mailto for coupon request");
+});
+
+/*****************************************
+ * Account / Home UI
+ *****************************************/
+const accountTypePill=document.getElementById("accountTypePill");
+const accountInfoText=document.getElementById("accountInfoText");
+const storageBar     =document.getElementById("storageBar");
+const storageText    =document.getElementById("storageText");
+const couponInfoText =document.getElementById("couponInfoText");
+
+function updateAccountUI(){
+  if(!currentUser){
+    accountTypePill.textContent="Not logged in";
+    accountTypePill.className="pill pill-basic";
+    accountInfoText.textContent="Please login to see account details.";
+    subscriptionText.textContent="Login to view subscription details.";
+    currentUserLabel.textContent="Not logged in";
+    btnLogout.classList.add("d-none");
+    btnShowAuth.classList.remove("d-none");
+    couponInfoText.textContent="No active coupon upgrade.";
+    return;
+  }
+  btnLogout.classList.remove("d-none");
+  btnShowAuth.classList.add("d-none");
+  currentUserLabel.textContent=currentUser.username;
+
+  let label="Non-Premium (100 MB)";
+  let pillClass="pill pill-basic";
+  if(currentUser.accountType==="premium"){
+    label="Premium (500 MB)";
+    pillClass="pill pill-premium";
+  } else if(currentUser.couponUpgrade){
+    const upg=currentUser.couponUpgrade;
+    if(upg.type==="A") label="Coupon A-314003 Active";
+    if(upg.type==="B") label="Coupon B-238005 Active";
+  }
+
+  accountTypePill.textContent=label;
+  accountTypePill.className=pillClass;
+  accountInfoText.textContent=`User: ${currentUser.username} (${currentUser.email})`;
+  subscriptionText.textContent=`Account Type: ${label}`;
+
+  const upg=currentUser.couponUpgrade;
+  if(upg){
+    const start=new Date(upg.startedAt);
+    const now = new Date();
+    const diffDays=(now-start)/(1000*3600*24);
+    let activeDays, graceDays, limitMB;
+    if(upg.type==="A"){ activeDays=10; graceDays=2; limitMB=200; }
+    else if(upg.type==="B"){ activeDays=7; graceDays=2; limitMB=300; }
+    else { activeDays=0; graceDays=0; limitMB=0; }
+
+    if(diffDays<=activeDays){
+      couponInfoText.textContent=`Coupon ${upg.code} active (${limitMB} MB). Day ${diffDays.toFixed(1)} of ${activeDays}.`;
+    } else if(diffDays<=activeDays+graceDays){
+      couponInfoText.textContent=`Coupon ${upg.code} in grace period. Extra storage still visible but auto-delete may trigger if above base after grace.`;
+    } else {
+      couponInfoText.textContent=`Coupon ${upg.code} finished. Base storage applies.`;
+    }
+  } else {
+    couponInfoText.textContent="No active coupon upgrade.";
+  }
+}
+
+function updateStorageUI(){
+  if(!currentUser){
+    storageBar.style.width="0%";
+    storageText.textContent="0 MB / 0 MB (0%)";
+    return;
+  }
+  const used=totalStorageUsedBytes();
+  const limit=getCurrentLimitBytes();
+  const percent=limit?Math.min(100,(used/limit)*100):0;
+  const usedMB=(used/(1024*1024)).toFixed(1);
+  const limitMB=(limit/(1024*1024)).toFixed(0);
+  storageBar.style.width=`${percent}%`;
+  storageText.textContent=`${usedMB} MB / ${limitMB} MB (${percent.toFixed(1)}%)`;
+}
+
+/*****************************************
+ * Master UI Update
+ *****************************************/
+function updateUI(){
+  applyTheme();
+  renderSettings();
+  renderActivity();
+  updateCurrencyUI();
+  updateAccountUI();
+  renderFileManager();
+  updateStorageUI();
+}
+
+/*****************************************
+ * INIT
+ *****************************************/
+updateUI();
+showSection(currentUser ? "homeSection" : "authSection");
+// If logged in, start with a quiz question
+if(currentUser){
+  renderQuiz();
+}
+// Auto-convert currency if needed
+autoConvertIfEnabled();
+// Enforce storage limit on load
+enforceStorageLimit();
+</script>
 </body>
 </html>
