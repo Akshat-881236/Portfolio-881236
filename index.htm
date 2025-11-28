@@ -71,14 +71,14 @@ body.sidebar-open .sidebar{ left:0; }
     border:3px solid rgba(0,0,0,0.2);
 }
 
-/* ======================= MAIN AREA ======================= */
+/* ======================= MAIN AREA Cover full area if sidebar is hidden ======================= */
 .main{
-    flex:1;
-    margin-left:260px;
+    margin-left:300px;
     padding:20px;
-    transition:.3s;
+    flex-grow:1;
+    transition:.3s; 
 }
-@media(max-width:900px){
+@media(max-width:1000px){
     .main{margin-left:0;}
 }
 
