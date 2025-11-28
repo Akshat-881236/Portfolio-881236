@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LocalStorage Admin</title>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<!-- Prism -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+<style>
+body {
+    margin:0;
+    font-family:Arial;
+    background:#1e1e1e;
+    color:white;
+}
+.appbar {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#111;
+    padding:10px 20px;
+}
+.content {
+    padding:20px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+}
+.panel {
+    background:#252525;
+    padding:20px;
+    border-radius:10px;
+    flex:1 1 400px;
+    min-width:350px;
+}
+textarea, input, select {
+    width:100%;
+    padding:7px;
+    margin-top:10px;
+    margin-bottom:15px;
+    background:#333;
+    border:1px solid #444;
+    color:white;
+}
+button {
+    background:#61dafb;
+    padding:7px 15px;
+    border:none;
+    cursor:pointer;
+    margin-right:10px;
+}
+.codeblock {
+    background:#111;
+    padding:10px;
+    border-radius:6px;
+    min-height:150px;
+    color:white;
+    white-space:pre-wrap;
+}
+#loginModal {
+    position:fixed;
+    left:0;top:0;
+    width:100%;height:100%;
+    background:#000d;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+#loginBox {
+    background:#222;
+    padding:30px;
+    border-radius:10px;
+    width:350px;
+}
+</style>
+</head>
+<body>
+
+<div id="loginModal">
+  <div id="loginBox">
+      <h2>Admin Login</h2>
+      <input type="password" id="adminPass" placeholder="Password">
+      <button onclick="checkAdmin()">Login</button>
+      <p id="loginMsg" style="color:red;"></p>
+  </div>
+</div>
+
+<div id="mainUI" style="display:none;">
+  <div class="appbar">
+     <h2><i class="fa fa-database"></i> LocalStorage Admin</h2>
+     <button onclick="refreshLS()">Refresh</button>
+  </div>
+
+  <div class="content">
+    <!-- EDITOR PANEL -->
+    <div class="panel">
+      <h3>Editor</h3>
+      <select id="format">
+        <option value="json">JSON</option>
+        <option value="yaml">YAML</option>
+        <option value="xml">XML</option>
+        <option value="csv">CSV</option>
+      </select>
+
+      <pre class="codeblock" id="editor" contenteditable="true"></pre>
+
+      <button onclick="updateLS()">Update</button>
+      <button onclick="exportLS()">Export</button>
+      <p id="editMsg"></p>
+    </div>
+
+    <!-- KEY MANAGER -->
+    <div class="panel">
+      <h3>Key Manager</h3>
+      <input id="key" placeholder="Key">
+      <textarea id="value" rows="3" placeholder="Value"></textarea>
+
+      <button onclick="writeLS()">Save</button>
+      <button onclick="deleteLS()">Delete</button>
+
+      <h4>Keys:</h4>
+      <ul id="keyList"></ul>
+    </div>
+  </div>
+</div>
+
+<!-- YAML / XML / CSV libraries -->
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xml-js@1.6.11/dist/xml-js.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+<script>
+// ------------------------------
+// ADMIN LOGIN
+// ------------------------------
+const ADMIN_PASSWORD = "admin123";
+
+function checkAdmin() {
+    let pw = document.getElementById("adminPass").value;
+    if (pw === ADMIN_PASSWORD) {
+        document.getElementById("loginModal").style.display = "none";
+        document.getElementById("mainUI").style.display = "block";
+        refreshLS();
+    } else {
+        document.getElementById("loginMsg").innerText = "Wrong password";
+    }
+}
+
+// ------------------------------
+// LOCALSTORAGE HELPERS
+// ------------------------------
+function getLSObject() {
+    let obj = {};
+    for (let i = 0; i < localStorage.length; i++) {
+        let k = localStorage.key(i);
+        if (k.startsWith("__lsm")) continue;
+        let v = localStorage.getItem(k);
+        try { v = JSON.parse(v); } catch {}
+        obj[k] = v;
+    }
+    return obj;
+}
+
+function setLSObject(obj) {
+    localStorage.clear();
+    for (let k in obj) {
+        let v = obj[k];
+        localStorage.setItem(k, typeof v === "string" ? v : JSON.stringify(v));
+    }
+}
+
+// ------------------------------
+// FORMAT CONVERSION
+// ------------------------------
+function objectToFormat(obj, fmt) {
+    switch (fmt) {
+        case "json": return JSON.stringify(obj, null, 2);
+        case "yaml": return jsyaml.dump(obj);
+        case "xml": return xmljs.js2xml(obj, {compact:true, spaces:2});
+        case "csv":
+            return Papa.unparse(Object.entries(obj).map(([k,v]) => ({
+                key:k,
+                value:typeof v==="object"?JSON.stringify(v):v
+            })));
+    }
+}
+
+function formatToObject(text, fmt) {
+    switch (fmt) {
+        case "json": return JSON.parse(text);
+        case "yaml": return jsyaml.load(text);
+        case "xml": 
+             return xmljs.xml2js(text, {compact:true})._declaration || xmljs.xml2js(text, {compact:true});
+        case "csv":
+            let parsed = Papa.parse(text, {header:true}).data;
+            let obj = {};
+            parsed.forEach(r => obj[r.key] = r.value);
+            return obj;
+    }
+}
+
+// ------------------------------
+// EDITOR OPERATIONS
+// ------------------------------
+function refreshLS() {
+    let obj = getLSObject();
+    let fmt = document.getElementById("format").value;
+
+    document.getElementById("editor").innerText = objectToFormat(obj, fmt);
+
+    updateKeyList();
+}
+
+function updateLS() {
+    let fmt = document.getElementById("format").value;
+    let txt = document.getElementById("editor").innerText;
+
+    try {
+        let obj = formatToObject(txt, fmt);
+        setLSObject(obj);
+        document.getElementById("editMsg").innerText = "Updated!";
+    } catch (e) {
+        document.getElementById("editMsg").innerText = "Error: " + e.message;
+    }
+}
+
+function exportLS() {
+    let fmt = document.getElementById("format").value;
+    let obj = getLSObject();
+    let content = objectToFormat(obj, fmt);
+
+    let blob = new Blob([content], {type:"text/plain"});
+    let a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "localstorage_export." + fmt;
+    a.click();
+}
+
+// ------------------------------
+// KEY CRUD
+// ------------------------------
+function writeLS() {
+    let k = document.getElementById("key").value;
+    let v = document.getElementById("value").value;
+    localStorage.setItem(k, v);
+    refreshLS();
+}
+
+function deleteLS() {
+    let k = document.getElementById("key").value;
+    localStorage.removeItem(k);
+    refreshLS();
+}
+
+function updateKeyList() {
+    let ul = document.getElementById("keyList");
+    ul.innerHTML = "";
+    for (let i = 0; i < localStorage.length; i++) {
+        let k = localStorage.key(i);
+        let li = document.createElement("li");
+        li.innerText = k;
+        ul.appendChild(li);
+    }
+}
+</script>
+
+</body>
+</html>

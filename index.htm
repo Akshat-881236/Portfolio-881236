@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Akshat Prasad"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<meta name="robots" content="index, follow"> 
+<meta name="language" content="English"> 
+<meta name="revisit-after" content="7 days"> 
+<meta name="distribution" content="global"> 
+<meta name="rating" content="general"> 
+<meta course="BCA"> 
+<meta college="DPG Degree College"> 
+<meta university="Maharshi Dayanand University, Rohtak"> 
+<meta student ID="881238">
+<title>Portfolio Dashboard</title>
+<style>
+    body { margin:0; font-family:Arial, sans-serif; display:flex; }
+    .sidebar h2 { text-align:center; margin-bottom:10px; }
+    .sidebar ul { list-style:none; padding:0; }
+    .sidebar ul li { padding:12px 20px; cursor:pointer; border-bottom:1px solid #333; font-size:15px; }
+    .sidebar ul li:hover { background:#333; }
+    .sidebar {
+    width:270px;
+    background:#1e1e1e;
+    color:white;
+    height:auto;
+    padding-top:20px;
+    overflow-y:auto;
+    transition:0.3s ease;
+    transform:translateX(0);
+    display: none;
+}
+
+body.sidebar-collapsed .sidebar {
+    display: block;
+    transform:translateX(0);
+}
+
+
+    .main { flex:1; padding:20px; overflow-y:auto; }
+    .profile { text-align:center; margin-bottom:20px; }
+    .profile img { width:130px; height:130px; border-radius:50%; cursor:pointer; border:3px solid #777; object-fit:cover; }
+    #fileInput { display:none; }
+
+    .section-title { font-size:20px; margin-top:25px; color:#222; border-left:5px solid #007bff; padding-left:10px; }
+    .info-block { background:#f5f5f5; padding:12px; border-radius:8px; margin:10px 0; }
+    .edit-btn { background:#007bff; color:white; padding:5px 10px; border:none; cursor:pointer; border-radius:5px; font-size:14px; }
+    .edit-btn:hover { background:#0056b3; }
+    .line { display:inline; font-size:18px; font-weight:bold; }
+</style>
+</head>
+<body onload="alert('Welcome to my portfolio')" unload="alert('Thank you for visiting my portfolio')">
+    <div class="sidebar">
+    <h2>Dashboard</h2>
+    <div class="profile">
+        <img id="profilePic" src="http://student.mdu.ac.in/Student_Biometrics/881238_Snap_10-4-2024_305%20AKSHAT%20P.jpg" alt="Profile Photo">
+        <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <ul>
+        <li onclick="window.location.reload()">Home</li>
+        <li onclick="loadPage('Skills.html')">Skills</li>
+        <li onclick="loadPage('Education.html')">Education</li>
+        <li onclick="loadPage('Projects.htm')">Projects</li>
+        <li onclick="loadPage('Practice.html')">Practice</li>
+        <li onclick="loadPage('Contact.html')">Contact</li>
+        <li onclick="loadPage('aboutme.htm')">About Me</li>
+        <li onclick="loadPage('/PORTFOLIO/Resume.htm')">Resume</li>
+    </ul>
+</div>
+
+<div class="main">
+    <header>
+        <pre>
+<p class="line"><button id="Menu" class="line" style="margin:2px; padding:2px 6px; background:#007bff; color:white; border:none; border-radius:0.5px; cursor:pointer;" onclick="document.body.classList.toggle('sidebar-collapsed')">☰ Menu</button></p> <p class="line" id="greeting"></p> <p class="line">I'M AKSHAT PRASAD , AND I WELCOME YOU TO MY PORTFOLIO SITE</p> <p class="line" id="datetime"></p>
+        </pre>    
+   </header>
+    <div id="contentArea">
+        <h1 id="title">Dashboard</h1>
+        <p>Welcome to your dynamic portfolio dashboard! Select an item from the sidebar to load content without refreshing.</p>
+        <!-- PREDEFINED INFO SECTIONS -->
+
+    <h2 class="section-title">Personal Information</h2>
+    <div id="personalContainer"></div>
+
+    <h2 class="section-title">Education</h2>
+    <div id="educationContainer"></div>
+
+    <h2 class="section-title">University & Course</h2>
+    <div id="courseContainer"></div>
+    <div style="margin-top:20px;">
+        <button onclick="addInfo()" style="padding:10px 15px; background:#28a745; color:white; border:none; border-radius:5px; cursor:pointer; font-size:16px;">Add Info</button>
+    </div>
+</div>
+
+<script>
+// COMPLETE PREDEFINED INFO FROM YOUR ORIGINAL PAGE
+let personalInfo = [
+    { title:"Name", info:"Akshat Prasad" },
+    { title:"Student ID", info:"881238" },
+    { title:"College Address", info:"Sector - 34 , Gurugram" }
+];
+
+let courseInfo = [
+    { title:"Course", info:"Bachelor of Computer Application" },
+    { title:"College", info:"DPG Degree College" },
+    { title:"University", info:"Maharshi Dayanand University, Rohtak" }
+];
+
+let educationInfo = [
+    { title:"High School", info:"CBSE, 2022, 78.5%" },
+    { title:"Senior Secondary", info:"BSEH, 2024, 74.4%" },
+    { title:"Semester 1 Result", info:"8.82 SGPA" },
+    { title:"Semester 2 Result", info:"9.0 SGPA" }
+];
+
+function renderSections() {
+    render('personalContainer', personalInfo);
+    render('educationContainer', educationInfo);
+    render('courseContainer', courseInfo);
+}
+
+function render(containerId, list) {
+    const box = document.getElementById(containerId);
+    box.innerHTML = "";
+    list.forEach((item, i) => {
+        box.innerHTML += `
+            <div class='info-block'>
+                <b>${item.title}:</b> <span>${item.info}</span><br>
+                <button class='edit-btn' onclick="editItem('${containerId}', ${i})">Edit</button>
+            </div>
+        `;
+    });
+}
+
+function editItem(container, index) {
+    let target = container === 'personalContainer' ? personalInfo : container === 'educationContainer' ? educationInfo : courseInfo;
+    const newInfo = prompt("Edit Info", target[index].info);
+    if(newInfo !== null) { target[index].info = newInfo; renderSections(); }
+}
+
+function addInfo() {
+    let section = prompt("Add to which section? (personal / education / course)");
+    let title = prompt("Enter Title:");
+    let info = prompt("Enter Info:");
+    if(!title || !info) return;
+
+    if(section === "personal") personalInfo.push({title, info});
+    else if(section === "education") educationInfo.push({title, info});
+    else if(section === "course") courseInfo.push({title, info});
+
+    renderSections();
+}
+
+renderSections();
+
+// AJAX LOADER
+function loadPage(page) {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", page, true);
+    xhr.onload = () => document.getElementById("contentArea").innerHTML = xhr.status === 200 ? xhr.responseText : "<p>Error loading page.</p>";
+    xhr.send();
+}
+
+// PROFILE PIC UPLOADER
+const profilePic = document.getElementById("profilePic");
+const fileInput = document.getElementById("fileInput");
+profilePic.onclick = () => fileInput.click();
+fileInput.addEventListener("change", () => {
+    const file = fileInput.files[0];
+    if(file) {
+        const reader = new FileReader();
+        reader.onload = e => profilePic.src = e.target.result;
+        reader.readAsDataURL(file);
+    }
+});
+
+// SIDEBAR TOGGLE when menu button clicked ( i.e when sidebar is displayed , hide it and vice versa)
+document.getElementById("Menu").onclick = () => {
+    document.body.classList.toggle('sidebar-collapsed');
+};
+
+// DATETIME DISPLAY with greeting
+function updateDateTime() {
+    const now = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    const dateTimeStr = now.toLocaleDateString('en-US', options);
+    document.getElementById("datetime").innerText = dateTimeStr;
+}
+setInterval(updateDateTime, 1000);
+updateDateTime();
+// GREETING BASED ON TIME OF DAY 
+function updateGreeting() {
+    const now = new Date();
+    const hour = now.getHours();
+    let greeting = "HELLO";
+    if(hour >= 20 || hour < 4) greeting = "GOOD NIGHT";
+    else if(hour >= 4 && hour < 12) greeting = "GOOD MORNING";
+    else if(hour >= 12 && hour < 16) greeting = "GOOD AFTERNOON";
+    else if(hour >= 16 && hour < 20) greeting = "GOOD EVENING";
+
+    document.getElementById("greeting").innerText = greeting + " ";
+}
+updateGreeting();
+</script>
+</body>
+</html>
