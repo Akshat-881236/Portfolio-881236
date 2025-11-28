@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order List</title>
+    <title>List in Html</title>
     <style>
         .Example {
             display: inline-block;
@@ -47,6 +47,12 @@
         .logo {
             display: block;
             margin: 20px auto;
+        }
+        ul, ol {
+            margin-left: 20px;
+        }
+        ul li, ol li {
+            margin-bottom: 5px;
         }
     </style>
 </head>
@@ -246,6 +252,212 @@ Code :
                     </ol> 
             </div>
         </div>
+    </div>
+    <h3> Write a program in HTML to demonstrate Unordered List</h3>
+    <p><b>&lt;ul&gt;</b> tag is used to show unordered list follow by bullet points. The closing tag is <b>&lt;/ul&gt;</b> .</p>
+    <div class="Example">
+        <h3>Unordered List using Bullet Points</h3>
+        <div class="program">
+            <div class="code">
+                <pre>
+Code :
+&lt;ul&gt; 
+    &lt;li&gt; Item 1 &lt;/li&gt;
+    &lt;li&gt; Item 2 &lt;/li&gt;
+    &lt;li&gt; Item 3 &lt;/li&gt;
+&lt;/ul&gt; 
+                </pre>
+            </div>
+            <div class="output">
+                <p>Output :</p>
+                    <ul> 
+                      <li> Item 1 </li>
+                      <li> Item 2 </li>
+                      <li> Item 3 </li>
+                    </ul> 
+            </div>
+        </div>
+    </div>
+    <div class="Example">
+        <h3>Unordered List using Different Bullet Styles</h3>
+        <div class="program">
+            <div class="code">
+                <pre>
+Code :
+&lt;ul style="list-style-type:circle;"&gt; 
+    &lt;li&gt; Item 1 &lt;/li&gt;
+    &lt;li&gt; Item 2 &lt;/li&gt;
+    &lt;li&gt; Item 3 &lt;/li&gt;
+&lt;/ul&gt; 
+                </pre>
+            </div>
+            <div class="output">
+                <p>Output :</p>
+                    <ul style="list-style-type:circle;"> 
+                      <li> Item 1 </li>
+                      <li> Item 2 </li>
+                      <li> Item 3 </li>
+                    </ul> 
+            </div>
+        </div>
+    </div>
+    <div class="Example">
+        <h3>Unordered List using Nested List</h3>
+        <div class="program">
+            <div class="code">
+                <pre>
+Code :
+&lt;ul&gt; 
+    &lt;li&gt; Item 1
+        &lt;ul&gt;
+            &lt;li&gt; Subitem 1 &lt;/li&gt;
+            &lt;li&gt; Subitem 2 &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt; Item 2 &lt;/li&gt;
+    &lt;li&gt; Item 3 &lt;/li&gt;
+&lt;/ul&gt;
+                </pre>
+            </div>
+            <div class="output">
+                <p>Output :</p>
+                    <ul> 
+                      <li> Item 1
+                          <ul>
+                              <li> Subitem 1 </li>
+                              <li> Subitem 2 </li>
+                          </ul>
+                      </li>
+                      <li> Item 2 </li>
+                      <li> Item 3 </li>
+                    </ul> 
+            </div>
+        </div>
+    </div>
+    <div class="Example">
+        <h3>Unordered List using Custom Bullet Images</h3>
+        <div class="program">
+            <div class="code">
+                <pre>
+Code :
+&lt;ul style="list-style-image:url('bullet.png');"&gt; 
+    &lt;li&gt; Item 1 &lt;/li&gt;
+    &lt;li&gt; Item 2 &lt;/li&gt;
+    &lt;li&gt; Item 3 &lt;/li&gt;
+&lt;/ul&gt; 
+                </pre>
+            </div>
+            <div class="output">
+                <p>Output :</p>
+                    <ul style="list-style-image:url('https://upload.wikimedia.org/wikipedia/commons/7/72/Smiley_face.png');">
+                      <li> Item 1 </li>
+                      <li> Item 2 </li>
+                      <li> Item 3 </li>
+                    </ul> 
+            </div>
+        </div>
+    </div>
+    <div class="Example">
+        <h3>Unordered List using Different Bullet Styles</h3>
+        <div class="program">
+            <div class="code">
+                <pre>
+Code :
+&lt;ul style="list-style-type:square;"&gt;
+    &lt;li&gt; Item 1 &lt;/li&gt;
+    &lt;li&gt; Item 2 &lt;/li&gt;
+    &lt;li&gt; Item 3 &lt;/li&gt;
+&lt;/ul&gt; 
+                </pre>
+            </div>
+            <div class="output">
+                <p>Output :</p>
+                    <ul style="list-style-type:square;"> 
+                      <li> Item 1 </li>
+                      <li> Item 2 </li>
+                      <li> Item 3 </li>
+                    </ul> 
+            </div>
+        </div>
+    </div>
+    <div class="Example">
+        <h3>Unordered List using Custom Start Value</h3>
+        <div class="program">
+            <div class="code">
+                <pre>
+Code :
+&lt;ul type="A"&gt; 
+    &lt;li&gt; Item 1 &lt;/li&gt;
+    &lt;li&gt; Item 2 &lt;/li&gt;
+    &lt;li&gt; Item 3 &lt;/li&gt;   
+&lt;/ul&gt; 
+                </pre>
+            </div>
+            <div class="output">
+                <p>Output :</p>
+                    <ul type="A"> 
+                      <li> Item 1 </li>
+                      <li> Item 2 </li>
+                      <li> Item 3 </li>
+                    </ul> 
+            </div>
+        </div>  
+    </div>
+    <div class="Example">
+        <h3>Unordered List using Custom Values</h3>
+        <div class="program">
+            <div class="code">
+                <pre>
+Code :
+&lt;ul&gt; 
+    &lt;li value="10"&gt; Item 1 &lt;/li&gt
+    &lt;li value="20"&gt; Item 2 &lt;/li&gt;
+    &lt;li value="30"&gt; Item 3 &lt;/li&gt;
+&lt;/ul&gt;
+                </pre>
+            </div>
+            <div class="output">
+                <p>Output :</p>
+                    <ul> 
+                      <li value="10"> Item 1 </li>
+                      <li value="20"> Item 2 </li>
+                      <li value="30"> Item 3 </li>
+                    </ul> 
+            </div>
+        </div>
+    </div>
+    <div class="Example">
+        <h3>Combination of Ordered and Unordered List</h3>
+        <div class="program">
+            <div class="code">
+                <pre>
+Code :
+&lt;ol&gt; 
+    &lt;li&gt; Item 1
+        &lt;ul&gt;
+            &lt;li&gt; Subitem 1 &lt;/li&gt;
+            &lt;li&gt; Subitem 2 &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt; Item 2 &lt;/li&gt;
+    &lt;li&gt; Item 3 &lt;/li&gt;   
+&lt;/ol&gt;
+                </pre>
+            </div>
+            <div class="output">
+                <p>Output :</p>
+                    <ol> 
+                      <li> Item 1
+                          <ul>
+                              <li> Subitem 1 </li>
+                              <li> Subitem 2 </li>
+                          </ul>
+                      </li>
+                      <li> Item 2 </li>
+                      <li> Item 3 </li>
+                    </ol> 
+            </div>
+        </div>  
     </div>
 </body>
 </html>
