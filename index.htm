@@ -3,100 +3,260 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="author" content="Akshat Prasad"> 
-<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-<meta name="robots" content="index, follow"> 
-<meta name="language" content="English"> 
-<meta name="revisit-after" content="7 days"> 
-<meta name="distribution" content="global"> 
-<meta name="rating" content="general"> 
-<meta course="BCA"> 
-<meta college="DPG Degree College"> 
-<meta university="Maharshi Dayanand University, Rohtak"> 
+<meta name="author" content="Akshat Prasad">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="robots" content="index, follow">
+<meta name="language" content="English">
+<meta name="revisit-after" content="7 days">
+<meta name="distribution" content="global">
+<meta name="rating" content="general">
+<meta course="BCA">
+<meta college="DPG Degree College">
+<meta university="Maharshi Dayanand University, Rohtak">
 <meta student ID="881238">
-<title>Portfolio Dashboard</title>
+<title>Portfolio Dashboard — Admin & Static Modes</title>
+
+<!-- Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
 <style>
-    body { margin:0; font-family:Arial, sans-serif; display:flex; }
-    .sidebar h2 { text-align:center; margin-bottom:10px; }
-    .sidebar ul { list-style:none; padding:0; }
-    .sidebar ul li { padding:12px 20px; cursor:pointer; border-bottom:1px solid #333; font-size:15px; }
-    .sidebar ul li:hover { background:#333; }
-    .sidebar {
-    width:270px;
-    background:#1e1e1e;
-    color:white;
-    height:auto;
-    padding-top:20px;
-    overflow-y:auto;
-    transition:0.3s ease;
-    transform:translateX(0);
-    display: none;
-}
+    :root{
+        --bg:#ffffff; --text:#111; --accent:#007bff; --muted:#f5f5f5;
+    }
+    /* theme modifiers */
+    body.theme-dark { --bg:#111317; --text:#f2f2f2; --accent:#0d6efd; --muted:#1e1e1e; }
+    body.theme-colorful { --bg:#fff8f2; --text:#2b2b2b; --accent:#ff6b6b; --muted:#fff1f0; }
 
-body.sidebar-collapsed .sidebar {
-    display: block;
-    transform:translateX(0);
-}
+    *{box-sizing: border-box}
+    body { margin:0; font-family:Arial, sans-serif; display:flex; background:var(--bg); color:var(--text); transition:background .3s, color .3s; min-height:100vh; }
+    /* SIDEBAR */
+    .sidebar { width:260px; background:var(--muted); color:var(--text); padding:18px; overflow:auto; transform:translateX(0); transition:transform .25s; border-right:1px solid rgba(0,0,0,0.06);}
+    .sidebar h2 { text-align:center; margin-bottom:8px; font-size:18px; letter-spacing:0.6px; }
+    .profile { text-align:center; margin-bottom:12px; }
+    .profile img { width:110px; height:110px; border-radius:8px; cursor:pointer; border:3px solid rgba(0,0,0,0.05); object-fit:cover; box-shadow:0 6px 18px rgba(0,0,0,0.06); transition:transform .18s ease; }
+    .profile img:hover { transform:translateY(-3px) scale(1.02); }
+    .sidebar ul { list-style:none; padding:0; margin:10px 0 40px 0; }
+    .sidebar ul li { padding:12px 12px; cursor:pointer; border-radius:8px; margin-bottom:6px; display:flex; gap:10px; align-items:center; }
+    .sidebar ul li:hover { background:rgba(0,0,0,0.04); }
+    .sidebar small { display:block; color:rgba(0,0,0,0.45); font-size:12px; margin-top:6px; text-align:center; }
 
+    .main { flex:1; padding:20px; overflow-y:auto; min-width:320px; }
+    header { display:flex; gap:18px; align-items:center; justify-content:space-between; margin-bottom:10px; }
+    .left-controls { display:flex; gap:10px; align-items:center; }
+    .menu-btn { padding:6px 8px; background:var(--accent); color:white; border:none; border-radius:6px; cursor:pointer; font-weight:600; display:flex; gap:8px; align-items:center;}
+    .theme-switcher { display:flex; gap:6px; }
+    .theme-switcher button { padding:6px 8px; border-radius:6px; border:1px solid rgba(0,0,0,0.06); background:transparent; cursor:pointer; }
 
-    .main { flex:1; padding:20px; overflow-y:auto; }
-    .profile { text-align:center; margin-bottom:20px; }
-    .profile img { width:130px; height:130px; border-radius:50%; cursor:pointer; border:3px solid #777; object-fit:cover; }
-    #fileInput { display:none; }
+    /* Welcome box subdivided */
+    .welcome-wrap { display:flex; gap:12px; align-items:center; margin-bottom:12px; flex-wrap:wrap; }
+    .welcome-box { background:var(--muted); padding:14px; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,0.03); min-width:220px; display:flex; flex-direction:column; gap:6px; }
+    .ts-box { font-size:13px; color:rgba(0,0,0,0.6); }
+    .greet-box { font-size:18px; font-weight:700; color:var(--text); }
+    .welcome-sub { font-size:13px; color:rgba(0,0,0,0.55); }
 
-    .section-title { font-size:20px; margin-top:25px; color:#222; border-left:5px solid #007bff; padding-left:10px; }
-    .info-block { background:#f5f5f5; padding:12px; border-radius:8px; margin:10px 0; }
-    .edit-btn { background:#007bff; color:white; padding:5px 10px; border:none; cursor:pointer; border-radius:5px; font-size:14px; }
-    .edit-btn:hover { background:#0056b3; }
-    .line { display:inline; font-size:18px; font-weight:bold; }
+    /* content areas */
+    .section-title { font-size:18px; margin-top:18px; color:var(--text); border-left:5px solid var(--accent); padding-left:10px; }
+    .info-block { background:transparent; padding:12px; border-radius:8px; margin:10px 0; border:1px dashed rgba(0,0,0,0.04); display:flex; justify-content:space-between; gap:8px; align-items:center; }
+    .info-left { display:flex; flex-direction:column; gap:6px; }
+    .edit-btn { background:var(--accent); color:white; padding:6px 10px; border:none; cursor:pointer; border-radius:6px; font-size:14px; display:inline-flex; gap:8px; align-items:center; }
+    .edit-btn:hover { opacity:0.92; transform:translateY(-1px); }
+
+    .admin-only { display:none; } /* hidden by default */
+
+    /* README area */
+    #readmeViewer { white-space:pre-wrap; padding:14px; border-radius:10px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.01)); border:1px solid rgba(0,0,0,0.04); margin-top:8px; max-height:420px; overflow:auto; }
+
+    /* animation */
+    @keyframes float { from{transform:translateY(0)} to{transform:translateY(-6px)} }
+    .float { animation:float 2.5s ease-in-out infinite alternate; }
+
+    /* small responsive tweaks */
+    @media (max-width:900px) {
+        .sidebar { display:none; position:fixed; left:0; top:0; bottom:0; z-index:2000; }
+        body.sidebar-collapsed .sidebar { display:block; }
+    }
+
+    /* admin visible class */
+    body.is-admin .admin-only { display:inline-flex !important; }
+
+    /* small helper */
+    .muted { color:rgba(0,0,0,0.45); font-size:13px; }
+    .nav-links a { display:flex; gap:8px; padding:8px 10px; border-radius:8px; text-decoration:none; color:var(--text); align-items:center; }
+    .nav-links a:hover { background:rgba(0,0,0,0.04); }
 </style>
 </head>
 <body onload="alert('Welcome to my portfolio')" unload="alert('Thank you for visiting my portfolio')">
-    <div class="sidebar">
-    <h2>Dashboard</h2>
-    <div class="profile">
-        <img id="profilePic" src="http://student.mdu.ac.in/Student_Biometrics/881238_Snap_10-4-2024_305%20AKSHAT%20P.jpg" alt="Profile Photo">
-        <input type="file" id="fileInput" accept="image/*">
+
+    <div class="sidebar" id="sidebar">
+        <h2><i class="bi bi-person-badge"></i> Dashboard</h2>
+        <div class="profile">
+            <img id="profilePic" src="http://student.mdu.ac.in/Student_Biometrics/881238_Snap_10-4-2024_305%20AKSHAT%20P.jpg" alt="Profile Photo" title="Double click to open Admin">
+            <input type="file" id="fileInput" accept="image/*" class="admin-only" />
+            <div style="margin-top:8px;">
+                <button class="admin-only edit-btn" id="changePicBtn" onclick="triggerFile()" title="Change Photo"><i class="bi bi-pencil-fill"></i> Change Photo</button>
+            </div>
+        </div>
+
+        <ul>
+            <li onclick="window.location.reload()"><i class="bi bi-house-door"></i> Home</li>
+            <li onclick="loadPage('/Portfolio-881236/skills.htm')"><i class="bi bi-tools"></i> Skills</li>
+            <li onclick="loadPage('Education.html')"><i class="bi bi-mortarboard"></i> Education</li>
+            <li onclick="loadPage('/Portfolio-881236/Projects.htm')"><i class="bi bi-folder2-open"></i> Projects</li>
+            <li onclick="loadPage('/Portfolio-881236/Practice.htm')"><i class="bi bi-pencil-square"></i> Practice</li>
+            <li onclick="loadPage('Contact.html')"><i class="bi bi-envelope"></i> Contact</li>
+            <li onclick="loadPage('/Portfolio-881236/aboutme.htm')"><i class="bi bi-person-lines-fill"></i> About Me</li>
+            <li onclick="loadPage('/Portfolio-881236/Resume.htm')"><i class="bi bi-file-earmark-person"></i> Resume</li>
+        </ul>
+
+        <small>Tip: Double-click the photo to open the admin panel.</small>
     </div>
 
-    <ul>
-        <li onclick="window.location.reload()">Home</li>
-        <li onclick="loadPage('skills.htm')">Skills</li>
-        <li onclick="loadPage('Education.html')">Education</li>
-        <li onclick="loadPage('/Portfolio-881236/Projects.htm')">Projects</li>
-        <li onclick="loadPage('/Portfolio-881236/Practice.htm')">Practice</li>
-        <li onclick="loadPage('Contact.html')">Contact</li>
-        <li onclick="loadPage('/Portfolio-881236/aboutme.htm')">About Me</li>
-        <li onclick="loadPage('/Portfolio-881236/Resume.htm')">Resume</li>
-    </ul>
-</div>
+    <div class="main">
+        <header>
+            <div class="left-controls">
+                <button id="Menu" class="menu-btn" onclick="document.body.classList.toggle('sidebar-collapsed')"><i class="bi bi-list"></i> Menu</button>
 
-<div class="main">
-    <header>
-        <pre>
-<p class="line"><button id="Menu" class="line" style="margin:2px; padding:2px 6px; background:#007bff; color:white; border:none; border-radius:0.5px; cursor:pointer;" onclick="document.body.classList.toggle('sidebar-collapsed')">☰ Menu</button></p> <p class="line" id="greeting"></p> <p class="line">I'M AKSHAT PRASAD , AND I WELCOME YOU TO MY PORTFOLIO SITE</p> <p class="line" id="datetime"></p>
-        </pre>    
-   </header>
-    <div id="contentArea">
-        <h1 id="title">Dashboard</h1>
-        <p>Welcome to your dynamic portfolio dashboard! Select an item from the sidebar to load content without refreshing.</p>
-        <!-- PREDEFINED INFO SECTIONS -->
+                <div class="theme-switcher" role="tablist" aria-label="Theme switcher">
+                    <button onclick="setTheme('')" title="Light theme"><i class="bi bi-sun"></i></button>
+                    <button onclick="setTheme('theme-dark')" title="Dark theme"><i class="bi bi-moon-stars"></i></button>
+                    <button onclick="setTheme('theme-colorful')" title="Colorful"><i class="bi bi-droplet"></i></button>
+                </div>
 
-    <h2 class="section-title">Personal Information</h2>
-    <div id="personalContainer"></div>
+                <div style="display:flex; gap:8px; align-items:center;">
+                    <button class="admin-only edit-btn" id="exitAdminBtn" onclick="exitAdminMode()" title="Exit Admin"><i class="bi bi-lock-fill"></i> Exit Admin</button>
+                    <button class="admin-only edit-btn" id="saveSnapshotBtn" onclick="saveSnapshot()" title="Save snapshot locally"><i class="bi bi-save-fill"></i> Save</button>
+                </div>
+            </div>
 
-    <h2 class="section-title">Education</h2>
-    <div id="educationContainer"></div>
+            <div style="display:flex; gap:12px; align-items:center;">
+                <div style="display:flex; gap:10px; align-items:center;">
+                    <div style="font-size:14px;" id="datetimeHeader"> </div>
+                </div>
+            </div>
+        </header>
 
-    <h2 class="section-title">University & Course</h2>
-    <div id="courseContainer"></div>
-    <div style="margin-top:20px;">
-        <button onclick="addInfo()" style="padding:10px 15px; background:#28a745; color:white; border:none; border-radius:5px; cursor:pointer; font-size:16px;">Add Info</button>
+        <div class="welcome-wrap">
+            <div class="welcome-box ts-box float" aria-live="polite">
+                <div><i class="bi bi-clock-history"></i> <strong>Timestamp</strong></div>
+                <div id="datetime" style="font-weight:600;"></div>
+                <div class="muted">Local time stamp (updates every second)</div>
+            </div>
+
+            <div class="welcome-box greet-box">
+                <div id="greeting">HELLO</div>
+                <div class="welcome-sub" id="titleLine">I'M AKSHAT PRASAD, AND I WELCOME YOU TO MY PORTFOLIO SITE</div>
+            </div>
+
+            <div style="margin-left:auto; display:flex; gap:8px; align-items:center;">
+                <nav class="nav-links" aria-label="Quick links">
+                    <!-- quick external links -->
+                    <a href="https://github.com/" target="_blank" title="GitHub"><i class="bi bi-github"></i> GitHub</a>
+                    <a href="https://linkedin.com/" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i> LinkedIn</a>
+                    <a href="mailto:example@example.com" title="Email"><i class="bi bi-envelope-fill"></i> Email</a>
+                </nav>
+            </div>
+        </div>
+
+        <div id="contentArea">
+            <h1 id="title">Dashboard</h1>
+            <p>Welcome to your dynamic portfolio dashboard! Select an item from the sidebar to load content without refreshing.</p>
+
+            <h2 class="section-title">Personal Information</h2>
+            <div id="personalContainer"></div>
+
+            <h2 class="section-title">Education</h2>
+            <div id="educationContainer"></div>
+
+            <h2 class="section-title">University & Course</h2>
+            <div id="courseContainer"></div>
+
+            <div style="margin-top:20px;">
+                <!-- Add Info is admin-only -->
+                <button onclick="addInfo()" class="admin-only edit-btn" style="margin-right:10px;"><i class="bi bi-plus-circle"></i> Add Info</button>
+
+                <!-- README loader -->
+                <label for="readmeFile" class="edit-btn" style="cursor:pointer;">
+                    <i class="bi bi-file-earmark-text"></i> Load README
+                </label>
+                <input id="readmeFile" type="file" accept=".md,.txt" style="display:none" />
+            </div>
+
+            <div id="readmeViewer" aria-live="polite" tabindex="0">
+                <div class="muted">README content will appear here after you load a markdown file.</div>
+            </div>
+        </div>
     </div>
-</div>
 
 <script>
-// COMPLETE PREDEFINED INFO FROM YOUR ORIGINAL PAGE
+/* --------------------------
+   Admin / Normal Mode Setup
+   -------------------------- */
+const ADMIN_PASSWORD = "admin123"; // <-- change this to your desired admin password
+let isAdmin = false;
+
+// Helper: toggle admin UI
+function enterAdminMode() {
+    isAdmin = true;
+    document.body.classList.add('is-admin');
+    alert("Admin mode enabled");
+}
+function exitAdminMode() {
+    isAdmin = false;
+    document.body.classList.remove('is-admin');
+    alert("Exited admin mode");
+}
+
+/* Double click passport image to request password and enter admin */
+const profilePic = document.getElementById("profilePic");
+const fileInput = document.getElementById("fileInput");
+profilePic.addEventListener('dblclick', async () => {
+    const pwd = prompt("Enter admin password:");
+    if(pwd === null) return;
+    if(pwd === ADMIN_PASSWORD) {
+        enterAdminMode();
+    } else {
+        alert("Incorrect password");
+    }
+});
+
+// only allow changing photo when admin
+profilePic.onclick = () => {
+    if(isAdmin) fileInput.click();
+    else {
+        // small animation to indicate action disabled
+        profilePic.classList.add('float');
+        setTimeout(()=> profilePic.classList.remove('float'), 700);
+    }
+};
+
+fileInput.addEventListener("change", () => {
+    if(!isAdmin) { alert("Only admin can change photo."); fileInput.value=''; return; }
+    const file = fileInput.files[0];
+    if(file) {
+        const reader = new FileReader();
+        reader.onload = e => profilePic.src = e.target.result;
+        reader.readAsDataURL(file);
+    }
+});
+function triggerFile(){ if(isAdmin) fileInput.click(); else alert("Admin required"); }
+
+/* show/hide admin-only elements -> controlled by body.is-admin via CSS */
+
+/* save snapshot - just an example to download current DOM as HTML */
+function saveSnapshot(){
+    if(!isAdmin) return alert("Admin required");
+    const html = "<!doctype html>\n" + document.documentElement.outerHTML;
+    const blob = new Blob([html], {type:'text/html'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'snapshot.html';
+    a.click();
+    URL.revokeObjectURL(a.href);
+}
+
+/* --------------------------
+   Data & Rendering (unchanged behavior)
+   -------------------------- */
 let personalInfo = [
     { title:"Name", info:"Akshat Prasad" },
     { title:"Student ID", info:"881238" },
@@ -126,23 +286,33 @@ function render(containerId, list) {
     const box = document.getElementById(containerId);
     box.innerHTML = "";
     list.forEach((item, i) => {
+        // edit button exists but has admin-only class so hidden in normal mode
         box.innerHTML += `
             <div class='info-block'>
-                <b>${item.title}:</b> <span>${item.info}</span><br>
-                <button class='edit-btn' onclick="editItem('${containerId}', ${i})">Edit</button>
+                <div class="info-left">
+                    <div><b>${item.title}:</b> <span>${item.info}</span></div>
+                    <div class="muted">Use admin mode to edit</div>
+                </div>
+                <div>
+                    <button class='edit-btn admin-only' onclick="editItem('${containerId}', ${i})"><i class="bi bi-pencil-fill"></i> Edit</button>
+                </div>
             </div>
         `;
     });
 }
 
 function editItem(container, index) {
+    if(!isAdmin) return alert("Admin required to edit.");
     let target = container === 'personalContainer' ? personalInfo : container === 'educationContainer' ? educationInfo : courseInfo;
     const newInfo = prompt("Edit Info", target[index].info);
     if(newInfo !== null) { target[index].info = newInfo; renderSections(); }
 }
 
 function addInfo() {
+    if(!isAdmin) return alert("Admin required to add info.");
     let section = prompt("Add to which section? (personal / education / course)");
+    if(!section) return;
+    section = section.toLowerCase();
     let title = prompt("Enter Title:");
     let info = prompt("Enter Info:");
     if(!title || !info) return;
@@ -150,48 +320,44 @@ function addInfo() {
     if(section === "personal") personalInfo.push({title, info});
     else if(section === "education") educationInfo.push({title, info});
     else if(section === "course") courseInfo.push({title, info});
+    else { alert("Unknown section"); return; }
 
     renderSections();
 }
 
 renderSections();
 
-// AJAX LOADER
+/* --------------------------
+   AJAX loader for pages (same as before)
+   -------------------------- */
 function loadPage(page) {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", page, true);
-    xhr.onload = () => document.getElementById("contentArea").innerHTML = xhr.status === 200 ? xhr.responseText : "<p>Error loading page.</p>";
+    xhr.onload = () => {
+        if(xhr.status === 200) {
+            document.getElementById("contentArea").innerHTML = xhr.responseText;
+        } else {
+            document.getElementById("contentArea").innerHTML = "<p>Error loading page.</p>";
+        }
+    };
+    xhr.onerror = () => { document.getElementById("contentArea").innerHTML = "<p>Network error.</p>"; };
     xhr.send();
 }
 
-// PROFILE PIC UPLOADER
-const profilePic = document.getElementById("profilePic");
-const fileInput = document.getElementById("fileInput");
-profilePic.onclick = () => fileInput.click();
-fileInput.addEventListener("change", () => {
-    const file = fileInput.files[0];
-    if(file) {
-        const reader = new FileReader();
-        reader.onload = e => profilePic.src = e.target.result;
-        reader.readAsDataURL(file);
-    }
-});
-
-// SIDEBAR TOGGLE when menu button clicked ( i.e when sidebar is displayed , hide it and vice versa)
-document.getElementById("Menu").onclick = () => {
-    document.body.classList.toggle('sidebar-collapsed');
-};
-
-// DATETIME DISPLAY with greeting
+/* --------------------------
+   Date/time & Greeting
+   -------------------------- */
 function updateDateTime() {
     const now = new Date();
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+        hour: '2-digit', minute: '2-digit', second: '2-digit' };
     const dateTimeStr = now.toLocaleDateString('en-US', options);
     document.getElementById("datetime").innerText = dateTimeStr;
+    document.getElementById("datetimeHeader").innerText = now.toLocaleTimeString();
 }
 setInterval(updateDateTime, 1000);
 updateDateTime();
-// GREETING BASED ON TIME OF DAY 
+
 function updateGreeting() {
     const now = new Date();
     const hour = now.getHours();
@@ -201,9 +367,91 @@ function updateGreeting() {
     else if(hour >= 12 && hour < 16) greeting = "GOOD AFTERNOON";
     else if(hour >= 16 && hour < 20) greeting = "GOOD EVENING";
 
-    document.getElementById("greeting").innerText = greeting + " ";
+    document.getElementById("greeting").innerText = greeting;
 }
 updateGreeting();
+setInterval(updateGreeting, 60*1000);
+
+/* --------------------------
+   Theme switcher
+   -------------------------- */
+function setTheme(cls){
+    document.body.classList.remove('theme-dark','theme-colorful');
+    if(cls) document.body.classList.add(cls);
+}
+
+/* --------------------------
+   README.md reader (simple markdown render)
+   -------------------------- */
+const readmeFile = document.getElementById('readmeFile');
+const readmeViewer = document.getElementById('readmeViewer');
+
+readmeFile.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+        const md = reader.result;
+        readmeViewer.innerHTML = renderMarkdown(md);
+    };
+    reader.readAsText(file);
+});
+
+function escapeHTML(s) {
+    return s.replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+}
+
+// Minimal markdown -> HTML (headings, bold, italic, links, code blocks, lists)
+function renderMarkdown(md) {
+    // sanitize & process
+    let html = escapeHTML(md);
+
+    // code blocks ``` ```
+    html = html.replace(/```([\s\S]*?)```/g, (m, p1) => `<pre style="background:#0b0b0b;color:#dcdcdc;padding:10px;border-radius:6px;overflow:auto">${escapeHTML(p1)}</pre>`);
+
+    // headings # to ####
+    html = html.replace(/^###### (.*$)/gim, '<h6>$1</h6>');
+    html = html.replace(/^##### (.*$)/gim, '<h5>$1</h5>');
+    html = html.replace(/^#### (.*$)/gim, '<h4>$1</h4>');
+    html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+    html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+    html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+
+    // bold **
+    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    // italic *
+    html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+    // links [text](url)
+    html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+    // unordered lists
+    html = html.replace(/^\s*[-\*\+]\s+(.*)/gm, '<li>$1</li>');
+    html = html.replace(/(<li>[\s\S]*<\/li>)/g, (m)=> `<ul style="margin-left:16px;">${m}</ul>`);
+    // inline code `code`
+    html = html.replace(/`([^`]+)`/g, '<code style="background:rgba(0,0,0,0.04);padding:2px 4px;border-radius:4px;">$1</code>');
+    // paragraphs
+    html = html.replace(/\n{2,}/g, '</p><p>');
+    html = '<p>' + html + '</p>';
+    // tidy empty <p>
+    html = html.replace(/<p>\s*<\/p>/g, '');
+    return html;
+}
+
+/* --------------------------
+   Keyboard shortcut: Ctrl+Shift+A to toggle admin prompt
+   -------------------------- */
+document.addEventListener('keydown', (e) => {
+    if(e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
+        const pwd = prompt("Admin password (shortcut)");
+        if(pwd === ADMIN_PASSWORD) enterAdminMode();
+        else alert("Incorrect password");
+    }
+});
+
+/* --------------------------
+   Accessibility / quick nav enhancements
+   -------------------------- */
+// make quick links open in new tabs and show titles already set in HTML
+
 </script>
 </body>
 </html>
