@@ -20,19 +20,80 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-<h1>Term of Services</h1>
-<p>Carefully read the term of services and guidelines for the visitor to obtain the zerox copy to built their own website.</p>
+<h1>Terms of Services</h1>
+
+<p>
+Please read these Terms of Services and general guidelines carefully.  
+These points are written by me as a student and learner, to help visitors understand how they can view, use, or refer to my portfolio while creating their own website or practice projects.
+</p>
+
 <ol>
-<li>All visitors who visits my portfolio are hereby notified that they can take the view of source code and also inspect it well.</li>
-<li>You can take my source code or format of design as a referal and utilise it to create your source code.</li>
-<li>The document related to Educations like DMC , Certificates , Images are uploaded first in third party site : <a href="https://imagekit.io/dashboard/media-library"> Image Kit Site </a> . Visitors are requested to used this third party site at their own risk </li>
-<li> Site like  <a href="/Portfolio-881236/localStorage.htm"> Local Storage Manager </a> and <a href="/Portfolio-881236/file_manager.htm"> File Manager </a> doesn't use backend technologies and their data are only store within Local Chrome Storage . You can use our <a href="/Portfolio-881236/localStorage.htm"> Local Storage Manager </a> to manage your browser local storage encrypted by (Password : admin123) .</li>
-<li>I mentioned that I'm a student of DPG DEGREE COLLEGE. I hereby declare that this is belongs to me and my educational institute and university are not responsible behind any kind of inadvertent data that may have been crept in the site. </li>
-<li>This site use Github Repository and Github Environment to deploy and create a public URL for <a href="https://akshat-881236.github.io/Portfolio-881236/"> My Portfolio Website </a> </li>
-<li>This site is now only for demo and practice purpose only. Any kind of data are hereby not to be used by anyone for his personal use by any means.</li>
-<li>This portfolio demonstrate a blueprint that how I dive in the world of Web Development. I'm not a professional and the complete portfolio site is hereby subject to further updation and modification in future.</li>
-<li>Later this site may also you backend technologies but yet it is limited to frontend only.</li>
+  <li>
+    Anyone who visits my portfolio is allowed to view the source code.  
+    You can inspect the page, explore the structure, and understand how the dashboard or pages are created.
+  </li>
+
+  <li>
+    You are free to take my code or page design as a reference for learning.  
+    I request you to modify it according to your own requirements instead of copying it exactly.
+  </li>
+
+  <li>
+    Educational documents like DMCs, certificates, and images are uploaded on a third-party platform:
+    <a href="https://imagekit.io/dashboard/media-library" target="_blank">ImageKit</a>.  
+    You may view them, but please use any third-party service at your own risk.
+  </li>
+
+  <li>
+    Tools such as  
+    <a href="/Portfolio-881236/localStorage.htm">Local Storage Manager</a> and  
+    <a href="/Portfolio-881236/file_manager.htm">File Manager</a>  
+    do not use any backend databases.  
+    All data stays inside your browser’s Local Storage only.  
+    You may experiment with it using the password <b>admin123</b>, which is only for learning purposes.
+  </li>
+
+  <li>
+    I am a student of DPG Degree College, and this website is completely my own practice work.  
+    My college or university is not responsible for any incorrect or outdated data shown on this site.
+  </li>
+
+  <li>
+    This website is hosted using a GitHub Repository and deployed through GitHub Pages:  
+    <a href="https://akshat-881236.github.io/Portfolio-881236/" target="_blank">View Portfolio</a>.
+  </li>
+
+  <li>
+    This site is meant purely for learning, practicing, experimenting, and improving my web development skills.  
+    Any content here should not be used by others for personal or official purposes.
+  </li>
+
+  <li>
+    This portfolio is a simple representation of how I am exploring and growing in web development.  
+    I am still learning, and the website will continue to change as I improve my knowledge.
+  </li>
+
+  <li>
+    In the future, I may learn backend technologies and update the site,  
+    but right now, everything here is created only using frontend development.
+  </li>
 </ol>
-<hr><br><br>
-<p>Akshat Prasad</p>
-<p>Frontend Developer, Database Designer, MySQL , Java , C++, C</p>
+
+<hr><br>
+
+<!-- EXTRA STUDENT-LEARNER STATEMENT (as you requested) -->
+<p>
+I am still learning new things every day in web development, design, and programming.  
+This portfolio is not perfect, but it represents my effort, growth, and interest in technology.  
+If you find anything incorrect, incomplete, or outdated, please understand that I am improving step by step.
+</p>
+
+<p>
+If you want to give <a href="/Portfolio-881236/feedback.htm">feedback </a>, share suggestions, or guide me,  
+I will be thankful for your support as I continue my learning journey.
+</p>
+
+<br>
+
+<p><strong>Akshat Prasad</strong></p>
+<p>Frontend Developer (Learner) • Database Designer • MySQL • Java • C++ • C</p>
