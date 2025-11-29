@@ -28,54 +28,31 @@ These points are written by me as a student and learner, to help visitors unders
 </p>
 
 <ol>
-  <li>
-    Anyone who visits my portfolio is allowed to view the source code.  
-    You can inspect the page, explore the structure, and understand how the dashboard or pages are created.
+  <li>Anyone who visits my portfolio is allowed to view the source code. You can inspect the page, explore the structure, and understand how the dashboard or pages are created.
   </li>
 
-  <li>
-    You are free to take my code or page design as a reference for learning.  
-    I request you to modify it according to your own requirements instead of copying it exactly.
+  <li>You are free to take my code or page design as a reference for learning. I request you to modify it according to your own requirements instead of copying it exactly.
   </li>
 
-  <li>
-    Educational documents like DMCs, certificates, and images are uploaded on a third-party platform:
-    <a href="https://imagekit.io/dashboard/media-library" target="_blank">ImageKit</a>.  
-    You may view them, but please use any third-party service at your own risk.
+  <li>Educational documents like DMCs, certificates, and images are uploaded on a third-party platform: <a href="https://imagekit.io/dashboard/media-library" target="_blank">ImageKit</a>. You may view them, but please use any third-party service at your own risk.
   </li>
 
-  <li>
-    Tools such as  
-    <a href="/Portfolio-881236/localStorage.htm">Local Storage Manager</a> and  
-    <a href="/Portfolio-881236/file_manager.htm">File Manager</a>  
-    do not use any backend databases.  
-    All data stays inside your browser’s Local Storage only.  
-    You may experiment with it using the password <b>admin123</b>, which is only for learning purposes.
+  <li>Tools such as <a href="/Portfolio-881236/localStorage.htm"> Local Storage Manager</a> and <a href="/Portfolio-881236/file_manager.htm">File Manager</a> do not use any backend databases. All data stays inside your browser’s Local Storage only. You may experiment with it using the password <b>admin123</b>, which is only for learning purposes.
   </li>
 
-  <li>
-    I am a student of DPG Degree College, and this website is completely my own practice work.  
-    My college or university is not responsible for any incorrect or outdated data shown on this site.
+  <li> I am a student of DPG Degree College, and this website is completely my own practice work. My college or university is not responsible for any incorrect or outdated data shown on this site.
   </li>
 
-  <li>
-    This website is hosted using a GitHub Repository and deployed through GitHub Pages:  
-    <a href="https://akshat-881236.github.io/Portfolio-881236/" target="_blank">View Portfolio</a>.
+  <li> This website is hosted using a GitHub Repository and deployed through GitHub Pages: <a href="https://akshat-881236.github.io/Portfolio-881236/" target="_blank"> View Portfolio</a>.
   </li>
 
-  <li>
-    This site is meant purely for learning, practicing, experimenting, and improving my web development skills.  
-    Any content here should not be used by others for personal or official purposes.
+  <li> This site is meant purely for learning, practicing, experimenting, and improving my web development skills. Any content here should not be used by others for personal or official purposes.
   </li>
 
-  <li>
-    This portfolio is a simple representation of how I am exploring and growing in web development.  
-    I am still learning, and the website will continue to change as I improve my knowledge.
+  <li> This portfolio is a simple representation of how I am exploring and growing in web development. I am still learning, and the website will continue to change as I improve my knowledge.
   </li>
 
-  <li>
-    In the future, I may learn backend technologies and update the site,  
-    but right now, everything here is created only using frontend development.
+  <li>In the future, I may learn backend technologies and update the site, but right now, everything here is created only using frontend development.
   </li>
 </ol>
 
