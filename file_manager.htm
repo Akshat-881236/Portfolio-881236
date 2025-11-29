@@ -1231,6 +1231,8 @@ function answerQuiz(selected){
     quizResultText.textContent="✅ Correct! +5 Gold";
     quizResultText.className="small text-success";
     logActivity("Quiz: Correct (+5 Gold)");
+    // Automatically render new question
+    setTimeout(renderQuiz,1500);
   } else {
     currentUser.gold=Math.max(0,currentUser.gold-3);
     quizResultText.textContent=`❌ Wrong (-3 Gold). Correct: ${currentQuiz.correctText}`;
