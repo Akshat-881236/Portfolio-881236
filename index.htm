@@ -1,373 +1,586 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="author" content="Akshat Prasad" />
-<meta name="description" content="Portfolio of Akshat Prasad — BCA Student at DPG Degree College (MDU Rohtak). Dashboard with projects, README and feedback." />
-<meta name="keywords" content="Akshat Prasad, Portfolio, BCA, DPG, MDU Rohtak, student portfolio" />
-<link rel="canonical" href="https://akshat-881236.github.io/Portfolio-881236/" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Akshat Prasad — Portfolio Dashboard" />
-<meta property="og:description" content="Portfolio of Akshat Prasad — BCA Student at DPG Degree College (MDU Rohtak)." />
-<meta property="og:url" content="https://akshat-881236.github.io/Portfolio-881236/" />
-<meta name="twitter:card" content="summary" />
-<meta name="theme-color" content="#007bff" />
-<meta name="student-ID" content="881238" />
-<title>Akshat Prasad — Portfolio Dashboard</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="Akshat Prasad" />
+    <meta name="description"
+        content="Portfolio of Akshat Prasad — BCA Student at DPG Degree College (MDU Rohtak). Dashboard with projects, README and feedback." />
+    <meta name="keywords" content="Akshat Prasad, Portfolio, BCA, DPG, MDU Rohtak, student portfolio" />
+    <link rel="canonical" href="https://akshat-881236.github.io/Portfolio-881236/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Akshat Prasad — Portfolio Dashboard" />
+    <meta property="og:description" content="Portfolio of Akshat Prasad — BCA Student at DPG Degree College (MDU Rohtak)." />
+    <meta property="og:url" content="https://akshat-881236.github.io/Portfolio-881236/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="theme-color" content="#007bff" />
+    <meta name="student-ID" content="881238" />
 
-<!-- JSON-LD structured data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Akshat Prasad",
-  "url": "https://akshat-881236.github.io/Portfolio-881236/",
-  "jobTitle": "BCA Student",
-  "affiliation": {
-    "@type":"CollegeOrUniversity",
-    "name":"DPG Degree College",
-    "sameAs":"https://mdu.ac.in/"
-  }
-}
-</script>
+    <title>Akshat Prasad — Portfolio Dashboard</title>
 
-<!-- bootstrap-icons -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Akshat Prasad",
+            "url": "https://akshat-881236.github.io/Portfolio-881236/",
+            "jobTitle": "BCA Student",
+            "affiliation": {
+                "@type": "CollegeOrUniversity",
+                "name": "DPG Degree College",
+                "sameAs": "https://mdu.ac.in/"
+            }
+        }
+    </script>
 
-<style>
-:root{
-  --bg:#fff; --text:#111; --accent:#007bff; --muted:#f4f4f4;
-}
-body.theme-dark{--bg:#121216;--text:#eee;--muted:#1a1a1a}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;transition:.25s}
-.sidebar{width:260px;background:var(--muted);padding:18px;position:fixed;top:0;bottom:0;left:-260px;transition:.25s;overflow:auto;box-sizing:border-box}
-body.sidebar-open .sidebar{left:0}
-.main{flex:1;padding:18px;margin-left:260px;transition:.25s}
-body:not(.sidebar-open) .main{margin-left:0;width:100%}
-.header-box{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--muted);padding:12px;border-radius:8px}
-.welcome-box{display:flex;flex-direction:column}
-.menu-btn{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:6px;cursor:pointer}
-.menu-location{display:flex;align-items:center;gap:8px}
-.sidebar-top-slot{display:flex;align-items:center;justify-content:center;margin-bottom:8px}
-.profile img{width:110px;height:110px;border-radius:8px;object-fit:cover;border:3px solid rgba(0,0,0,0.12);cursor:pointer}
-.sidebar ul{list-style:none;padding:0;margin-top:12px}
-.sidebar li{padding:10px;border-radius:8px;cursor:pointer;display:flex;gap:10px;align-items:center}
-.sidebar li:hover{background:rgba(0,0,0,0.05)}
-.section-title{border-left:4px solid var(--accent);padding-left:10px;margin-top:24px;font-size:18px}
-.info-block{background:#fafafa;padding:12px;border-radius:8px;margin-top:10px;border:1px solid rgba(0,0,0,0.08)}
-.social-box a{display:flex;gap:10px;align-items:center;padding:8px 0;text-decoration:none;color:var(--text)}
-.social-box a:hover{color:var(--accent)}
-#readmeViewer{margin-top:14px;background:#fff;padding:12px;border-radius:8px;border:1px solid #e6e6e6;max-height:480px;overflow:auto}
-pre{background:#1e1e1e;color:#fff;padding:10px;border-radius:6px}
-.admin-only{display:none}
-body.is-admin .admin-only{display:inline-block !important}
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
 
-/* responsive */
-@media (max-width:900px){
-  .sidebar{left:-260px}
-  body.sidebar-open .sidebar{left:0}
-  .main{margin-left:0}
-}
-</style>
+    <!-- Styles -->
+    <style>
+        :root {
+            --bg: #fff;
+            --text: #111;
+            --accent: #007bff;
+            --muted: #f4f4f4;
+        }
+
+        body.theme-dark {
+            --bg: #121216;
+            --text: #eee;
+            --muted: #1a1a1a
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            min-height: 100vh;
+            transition: .25s
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: var(--muted);
+            padding: 18px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: -260px;
+            transition: .25s;
+            overflow: auto;
+            box-sizing: border-box
+        }
+
+        body.sidebar-open .sidebar {
+            left: 0
+        }
+
+        /* Main content */
+        .main {
+            flex: 1;
+            padding: 18px;
+            margin-left: 260px;
+            transition: .25s
+        }
+
+        body:not(.sidebar-open) .main {
+            margin-left: 0;
+            width: 100%
+        }
+
+        /* Header */
+        .header-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            background: var(--muted);
+            padding: 12px;
+            border-radius: 8px
+        }
+
+        .welcome-box {
+            display: flex;
+            flex-direction: column
+        }
+
+        .menu-btn {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer
+        }
+
+        .menu-location {
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        /* Sidebar UI */
+        .sidebar-top-slot {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px
+        }
+
+        .profile img {
+            width: 110px;
+            height: 110px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 3px solid rgba(0, 0, 0, 0.12);
+            cursor: pointer
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 12px
+        }
+
+        .sidebar li {
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            gap: 10px;
+            align-items: center
+        }
+
+        .sidebar li:hover {
+            background: rgba(0, 0, 0, 0.05)
+        }
+
+        /* Content */
+        .section-title {
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+            margin-top: 24px;
+            font-size: 18px
+        }
+
+        .info-block {
+            background: #fafafa;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.08)
+        }
+
+        .social-box a {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            padding: 8px 0;
+            text-decoration: none;
+            color: var(--text)
+        }
+
+        .social-box a:hover {
+            color: var(--accent)
+        }
+
+        #readmeViewer {
+            margin-top: 14px;
+            background: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #e6e6e6;
+            max-height: 480px;
+            overflow: auto
+        }
+
+        pre {
+            background: #1e1e1e;
+            color: #fff;
+            padding: 10px;
+            border-radius: 6px
+        }
+
+        /* Admin Mode */
+        .admin-only {
+            display: none
+        }
+
+        body.is-admin .admin-only {
+            display: inline-block !important
+        }
+
+        /* Responsive */
+        @media (max-width:900px) {
+            .sidebar {
+                left: -260px
+            }
+
+            body.sidebar-open .sidebar {
+                left: 0
+            }
+
+            .main {
+                margin-left: 0
+            }
+        }
+    </style>
 </head>
-<body onload="updateClock();updateGreeting();alert('Welcome to Akshat Prasad\'s Portfolio!')">
 
-<!-- SIDEBAR -->
-<div class="sidebar" id="sidebar">
-  <div class="sidebar-top-slot" id="sidebarTopSlot">
-    <!-- menu button will be moved here when sidebar open -->
-  </div>
 
-  <h2 style="margin:0;font-size:18px"><i class="bi bi-person-badge"></i> Dashboard</h2>
+<body onload="updateClock(); updateGreeting(); alert('Welcome to Akshat Prasad\'s Portfolio!')">
 
-  <div style="text-align:center;margin-top:8px" class="profile">
-    <img id="profilePic" src="http://student.mdu.ac.in/Student_Biometrics/881238_Snap_10-4-2024_305%20AKSHAT%20P.jpg" alt="Akshat">
-    <input id="fileInput" type="file" class="admin-only" accept="image/*" />
-    <button class="admin-only menu-btn" onclick="triggerFile()" style="margin-top:8px">Change Photo</button>
-  </div>
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
 
-  <ul>
-    <li onclick="loadHomeContent()"><i class="bi bi-house"></i> Home</li>
-    <li onclick="loadPage('/Portfolio-881236/skills.htm')"><i class="bi bi-tools"></i> Skills</li>
-    <li onclick="loadPage('/Portfolio-881236/Education.htm')"><i class="bi bi-mortarboard"></i> Education</li>
-    <li onclick="loadPage('/Portfolio-881236/Projects.htm')"><i class="bi bi-folder"></i> Projects</li>
-    <li onclick="loadPage('/Portfolio-881236/aboutme.htm')"><i class="bi bi-person-lines-fill"></i> About Me</li>
-    <li onclick="loadPage('/Portfolio-881236/Resume.htm')"><i class="bi bi-file-earmark-person"></i> Resume</li>
-    <!-- READ carefully: Feedback must be a direct full-page navigation (no AJAX). Use absolute path. -->
-    <li><a href="/Portfolio-881236/feedback.htm" style="text-decoration:none;color:inherit"><i class="bi bi-chat-dots"></i> Feedback</a></li>
-    <li onclick="loadREADME()"><i class="bi bi-file-text"></i> README.md</li>
-    <li onclick="loadLicense()"><i class="bi bi-shield-lock"></i> LICENSE</li>
-  </ul>
-</div>
+        <div class="sidebar-top-slot" id="sidebarTopSlot"></div>
 
-<!-- MAIN -->
-<div class="main" id="main">
+        <h2 style="margin:0;font-size:18px">
+            <i class="bi bi-person-badge"></i> Dashboard
+        </h2>
 
-  <!-- header with menu button placeholder (when sidebar closed menu button appears here) -->
-  <div class="header-box" id="headerBox">
-    <div id="menuHeaderSlot" class="menu-location"></div>
+        <div style="text-align:center;margin-top:8px" class="profile">
+            <img id="profilePic"
+                src="http://student.mdu.ac.in/Student_Biometrics/881238_Snap_10-4-2024_305%20AKSHAT%20P.jpg" />
 
-    <div class="welcome-box">
-      <div id="greeting" style="font-weight:700">HELLO</div>
-      <small>I'M AKSHAT PRASAD — Welcome to my portfolio</small>
+            <input id="fileInput" type="file" accept="image/*" class="admin-only" />
+
+            <button class="admin-only menu-btn" style="margin-top:8px" onclick="triggerFile()">Change Photo</button>
+        </div>
+
+        <ul>
+            <li onclick="loadHomeContent()"><i class="bi bi-house"></i> Home</li>
+            <li onclick="loadPage('/Portfolio-881236/skills.htm')"><i class="bi bi-tools"></i> Skills</li>
+            <li onclick="loadPage('/Portfolio-881236/Education.htm')"><i class="bi bi-mortarboard"></i> Education</li>
+            <li onclick="loadPage('/Portfolio-881236/Projects.htm')"><i class="bi bi-folder"></i> Projects</li>
+            <li onclick="loadPage('/Portfolio-881236/aboutme.htm')"><i class="bi bi-person-lines-fill"></i> About Me</li>
+            <li onclick="loadPage('/Portfolio-881236/Resume.htm')"><i class="bi bi-file-earmark-person"></i> Resume</li>
+
+            <li>
+                <a href="/Portfolio-881236/feedback.htm" style="text-decoration:none;color:inherit">
+                    <i class="bi bi-chat-dots"></i> Feedback
+                </a>
+            </li>
+
+            <li onclick="loadREADME()"><i class="bi bi-file-text"></i> README.md</li>
+            <li onclick="loadLicense()"><i class="bi bi-shield-lock"></i> LICENSE</li>
+        </ul>
     </div>
 
-    <div class="welcome-box" style="text-align:right">
-      <div style="font-size:13px;color:rgba(0,0,0,0.65)"><i class="bi bi-clock-history"></i> Live Time</div>
-      <div id="timestamp" style="font-weight:600"></div>
+    <!-- MAIN -->
+    <div class="main" id="main">
+
+        <div class="header-box" id="headerBox">
+            <div id="menuHeaderSlot" class="menu-location"></div>
+
+            <div class="welcome-box">
+                <div id="greeting" style="font-weight:700">HELLO</div>
+                <small>I'M AKSHAT PRASAD — Welcome to my portfolio</small>
+            </div>
+
+            <div class="welcome-box" style="text-align:right">
+                <div style="font-size:13px;color:rgba(0,0,0,0.65)">
+                    <i class="bi bi-clock-history"></i> Live Time
+                </div>
+                <div id="timestamp" style="font-weight:600"></div>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div id="contentArea" style="margin-top:14px"></div>
+
+        <!-- README Viewer -->
+        <div id="readmeViewer" aria-live="polite"></div>
+
     </div>
-  </div>
 
-  <!-- content area -->
-  <div id="contentArea" style="margin-top:14px"></div>
+    <!-- SCRIPT -->
+    <script>
+        /* CONFIG */
+        const SITE_ROOT = "https://akshat-881236.github.io/Portfolio-881236/";
+        const ADMIN_PASSWORD = "admin123";
 
-  <!-- README viewer -->
-  <div id="readmeViewer" aria-live="polite"></div>
-</div>
+        /* UPDATE META */
+        function updateMeta(title, description) {
+            document.title = title;
 
-<script>
-/* ========================= CONFIG / SEO DYNAMIC ========================= */
-const SITE_ROOT = "https://akshat-881236.github.io/Portfolio-881236/";
-const ADMIN_PASSWORD = "admin123";
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.setAttribute("content", description);
 
-/* quick SEO dynamic function to update title and meta description */
-function updateMeta(title, description){
-  document.title = title;
-  const metaDesc = document.querySelector('meta[name="description"]');
-  if(metaDesc) metaDesc.setAttribute("content", description);
-  // Open Graph and twitter card updates
-  const ogTitle = document.querySelector('meta[property="og:title"]');
-  if(ogTitle) ogTitle.setAttribute("content", title);
-  const ogDesc = document.querySelector('meta[property="og:description"]');
-  if(ogDesc) ogDesc.setAttribute("content", description);
-}
+            const ogTitle = document.querySelector('meta[property="og:title"]');
+            if (ogTitle) ogTitle.setAttribute("content", title);
 
-/* ========================= MENU BUTTON MOVEMENT ========================= */
-/* create one menu button element and move between header slot and sidebar slot */
-const menuBtn = document.createElement("button");
-menuBtn.className = "menu-btn";
-menuBtn.innerHTML = '<i class="bi bi-list"></i> Menu';
-menuBtn.addEventListener("click", toggleSidebar);
+            const ogDesc = document.querySelector('meta[property="og:description"]');
+            if (ogDesc) ogDesc.setAttribute("content", description);
+        }
 
-/* slots */
-const headerMenuSlot = document.getElementById("menuHeaderSlot");
-const sidebarTopSlot = document.getElementById("sidebarTopSlot");
+        /* DYNAMIC MENU BUTTON MOVEMENT */
+        const menuBtn = document.createElement("button");
+        menuBtn.className = "menu-btn";
+        menuBtn.innerHTML = '<i class="bi bi-list"></i> Menu';
+        menuBtn.addEventListener("click", toggleSidebar);
 
-/* initially sidebar closed -> put menu in header */
-headerMenuSlot.appendChild(menuBtn);
+        const headerMenuSlot = document.getElementById("menuHeaderSlot");
+        const sidebarTopSlot = document.getElementById("sidebarTopSlot");
 
-function toggleSidebar(){
-  document.body.classList.toggle("sidebar-open");
-  // move menu button depending on state
-  if(document.body.classList.contains("sidebar-open")){
-    // move into sidebar top
-    sidebarTopSlot.appendChild(menuBtn);
-  } else {
-    // move to header
-    headerMenuSlot.appendChild(menuBtn);
-  }
-}
-
-/* ensure menu position matches real state on load (sidebar closed) */
-if(document.body.classList.contains("sidebar-open")){
-  sidebarTopSlot.appendChild(menuBtn);
-} else {
-  headerMenuSlot.appendChild(menuBtn);
-}
-
-/* close sidebar when clicking links (already bound via onclick) - also ensures menu moves */
-document.querySelectorAll(".sidebar ul li").forEach(li=>{
-  li.addEventListener("click", ()=>{
-    // except feedback direct link (which is inside an <a>) we should close
-    setTimeout(()=> {
-      if(document.body.classList.contains("sidebar-open")){
-        document.body.classList.remove("sidebar-open");
         headerMenuSlot.appendChild(menuBtn);
-      }
-    }, 120);
-  });
-});
 
-/* ========================= CLOCK & GREETING ========================= */
-function updateClock(){
-  document.getElementById("timestamp").innerText = new Date().toLocaleString();
+        function toggleSidebar() {
+            document.body.classList.toggle("sidebar-open");
+
+            if (document.body.classList.contains("sidebar-open")) {
+                sidebarTopSlot.appendChild(menuBtn);
+            } else {
+                headerMenuSlot.appendChild(menuBtn);
+            }
+        }
+
+        /* auto-place on load */
+        if (document.body.classList.contains("sidebar-open")) {
+            sidebarTopSlot.appendChild(menuBtn);
+        } else {
+            headerMenuSlot.appendChild(menuBtn);
+        }
+
+        /* close sidebar after navigation */
+        document.querySelectorAll(".sidebar ul li").forEach(li => {
+            li.addEventListener("click", () => {
+                setTimeout(() => {
+                    if (document.body.classList.contains("sidebar-open")) {
+                        document.body.classList.remove("sidebar-open");
+                        headerMenuSlot.appendChild(menuBtn);
+                    }
+                }, 120);
+            });
+        });
+
+        /* CLOCK */
+        function updateClock() {
+            document.getElementById("timestamp").innerText = new Date().toLocaleString();
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        /* GREETING */
+        function updateGreeting() {
+            const hour = new Date().getHours();
+            let g = "HELLO";
+
+            if (hour < 12) g = "GOOD MORNING";
+            else if (hour < 16) g = "GOOD AFTERNOON";
+            else if (hour < 20) g = "GOOD EVENING";
+            else g = "GOOD NIGHT";
+
+            document.getElementById("greeting").innerText = g;
+        }
+        updateGreeting();
+
+
+        /* ADMIN PHOTO UPLOAD */
+        const profilePic = document.getElementById("profilePic");
+        const fileInput = document.getElementById("fileInput");
+
+        profilePic.addEventListener("click", () => {
+            const pwd = prompt("Enter Admin password:");
+            if (pwd === ADMIN_PASSWORD) {
+                document.body.classList.add("is-admin");
+                alert("Admin mode enabled.");
+            }
+        });
+
+        function triggerFile() {
+            fileInput.click();
+        }
+
+        fileInput.addEventListener("change", () => {
+            if (!document.body.classList.contains("is-admin")) {
+                alert("Admin only");
+                return;
+            }
+            const f = fileInput.files[0];
+            if (!f) return;
+
+            const reader = new FileReader();
+            reader.onload = e => profilePic.src = e.target.result;
+            reader.readAsDataURL(f);
+        });
+
+
+        /* AJAX PAGE LOADING */
+        const contentArea = document.getElementById("contentArea");
+        const readmeViewer = document.getElementById("readmeViewer");
+
+        function loadPage(path) {
+            readmeViewer.innerHTML = "";
+
+            fetch(path).then(r => {
+                if (!r.ok) throw new Error("not found");
+                return r.text();
+            }).then(html => {
+                contentArea.innerHTML = html;
+                updateMeta("Akshat — " + (path.split('/').pop()), "Portfolio content: " + path);
+
+                if (path.toLowerCase().includes("license")) {
+                    styleLicenseText();
+                }
+            }).catch(() => {
+                contentArea.innerHTML = "<p>Page Not Found</p>";
+            });
+        }
+
+        /* README LOADER */
+        function loadREADME() {
+            contentArea.innerHTML = "";
+
+            fetch(SITE_ROOT + "README.md")
+                .then(r => r.ok ? r.text() : Promise.reject("no"))
+                .then(md => {
+                    readmeViewer.innerHTML = mdToHtml(md);
+                    updateMeta("Akshat — README", "README content from portfolio repository");
+                })
+                .catch(() => {
+                    readmeViewer.innerHTML = "<p>README not found</p>";
+                });
+        }
+
+        /* BASIC MARKDOWN PARSER (UNCHANGED) */
+        function mdToHtml(md) {
+            return md
+                .replace(/### (.*?)(\n|$)/g, '<h3>$1</h3>')
+                .replace(/## (.*?)(\n|$)/g, '<h2>$1</h2>')
+                .replace(/# (.*?)(\n|$)/g, '<h1>$1</h1>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/`(.*?)`/g, '<code>$1</code>')
+                .replace(/\n/g, '<br/>')
+                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+        }
+
+
+        /* LICENSE LOADER */
+        /* ========================= SIMPLE LICENSE LOADER (SAME AS README) ========================= */
+
+function loadLicense() {
+    contentArea.innerHTML = "";
+    readmeViewer.innerHTML = "";
+
+    // Direct raw GitHub URL for auto-update
+    const licenseURL =
+      "https://raw.githubusercontent.com/akshat-881236/Portfolio-881236/main/LICENSE";
+
+    fetch(licenseURL)
+      .then(r => r.ok ? r.text() : Promise.reject("Not Found"))
+      .then(text => {
+          readmeViewer.innerHTML = mdToHtml(text);   // SAME LOGIC AS README
+          updateMeta("Akshat — LICENSE", "License preview from GitHub repository");
+      })
+      .catch(() => {
+          readmeViewer.innerHTML = "<p>LICENSE not found</p>";
+      });
 }
-setInterval(updateClock,1000);
-updateClock();
 
-function updateGreeting(){
-  const hour = new Date().getHours();
-  let g = "HELLO";
-  if(hour < 12) g = "GOOD MORNING";
-  else if(hour < 16) g = "GOOD AFTERNOON";
-  else if(hour < 20) g = "GOOD EVENING";
-  else g = "GOOD NIGHT";
-  document.getElementById("greeting").innerText = g;
-}
-updateGreeting();
 
-/* ========================= ADMIN PHOTO EDIT ========================= */
-const profilePic = document.getElementById("profilePic");
-const fileInput = document.getElementById("fileInput");
+        /* LICENSE PARSER (UNCHANGED) */
+        function licenseToHtml(txt) {
+            if (!txt) return "";
 
-profilePic.addEventListener("click", ()=>{
-  const pwd = prompt("Enter Admin password:");
-  if(pwd === ADMIN_PASSWORD){
-    document.body.classList.add("is-admin");
-    alert("Admin mode enabled. Use Change Photo button inside sidebar to upload.");
-  }
-});
+            let safe = txt.replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
 
-function triggerFile(){ fileInput.click(); }
-fileInput.addEventListener("change", ()=>{
-  if(!document.body.classList.contains("is-admin")){
-    alert("Admin only");
-    return;
-  }
-  const f = fileInput.files[0];
-  if(!f) return;
-  const reader = new FileReader();
-  reader.onload = e => profilePic.src = e.target.result;
-  reader.readAsDataURL(f);
-});
+            safe = safe
+                .replace(/^###### (.*)$/gm, "<h6>$1</h6>")
+                .replace(/^##### (.*)$/gm, "<h5>$1</h5>")
+                .replace(/^#### (.*)$/gm, "<h4>$1</h4>")
+                .replace(/^### (.*)$/gm, "<h3>$1</h3>")
+                .replace(/^## (.*)$/gm, "<h2>$1</h2>")
+                .replace(/^# (.*)$/gm, "<h1>$1</h1>")
+                .replace(/^---$/gm, "<hr>")
+                .replace(/^> (.*)$/gm,
+                    `<blockquote style="border-left:4px solid var(--accent);padding-left:10px;margin:8px 0;">$1</blockquote>`
+                )
+                .replace(/```([\s\S]*?)```/g,
+                    `<pre style="background:#222;color:#fff;padding:12px;border-radius:8px;overflow:auto;"><code>$1</code></pre>`
+                )
+                .replace(/\*\*\*(.*?)\*\*\*/g, "<strong><em>$1</em></strong>")
+                .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+                .replace(/\*(.*?)\*/g, "<em>$1</em>")
+                .replace(/`([^`]+)`/g,
+                    "<code style='background:#eee;padding:2px 4px;border-radius:4px;'>$1</code>")
+                .replace(/\[([^\]]+)\]\(([^)]+)\)/g,
+                    "<a href='$2' target='_blank' style='color:var(--accent)'>$1</a>"
+                )
+                .replace(/^\s*[-+*]\s+(.*)/gm, "<ul><li>$1</li></ul>")
+                .replace(/<\/ul>\s*<ul>/g, "")
+                .replace(/^\s*\d+\.\s+(.*)/gm, "<ol><li>$1</li></ol>")
+                .replace(/<\/ol>\s*<ol>/g, "")
+                .replace(/\b(MIT|Apache|GPL|BSD|License|Copyright|Warranty|Redistribution)\b/g,
+                    "<span style='font-weight:bold;color:var(--accent)'>$1</span>"
+                )
+                .replace(/\n{2,}/g, "</p><p>");
 
-/* ========================= AJAX PAGE LOADING (except feedback.htm direct link) ========================= */
-const contentArea = document.getElementById("contentArea");
-const readmeViewer = document.getElementById("readmeViewer");
+            safe = "<p>" + safe + "</p>";
+            return safe.replace(/<p><\/p>/g, "");
+        }
 
-function loadPage(path){
-  // path is relative path on the server (e.g. /Portfolio-881236/skills.htm)
-  // handle license specially to style it after fetch
-  readmeViewer.innerHTML = "";
-  fetch(path).then(r=>{
-    if(!r.ok) throw new Error("not found");
-    return r.text();
-  }).then(html=>{
-    contentArea.innerHTML = html;
-    updateMeta("Akshat — " + (path.split('/').pop()), "Portfolio content: " + path);
-    // if license file, style it
-    if(path.toLowerCase().includes("license")){
-      styleLicenseText();
-    }
-  }).catch(()=> {
-    contentArea.innerHTML = "<p>Page Not Found</p>";
-  });
-}
+        /* STYLE LICENSE DIRECT TEXT (if needed) */
+        function styleLicenseText() {
+            const el = contentArea;
+            const txt = el.innerText || el.textContent || "";
+            if (txt) el.innerHTML = licenseToHtml(txt);
+        }
 
-/* README loader */
-function loadREADME(){
-  contentArea.innerHTML = "";
-  fetch(SITE_ROOT + "README.md")
-  .then(r=> r.ok ? r.text() : Promise.reject("no"))
-  .then(md=>{
-    readmeViewer.innerHTML = mdToHtml(md);
-    updateMeta("Akshat — README", "README content from portfolio repository");
-  })
-  .catch(()=> readmeViewer.innerHTML = "<p>README not found</p>");
-}
+        /* HOME CONTENT */
+        function loadHomeContent() {
+            readmeViewer.innerHTML = "";
+            contentArea.innerHTML = `
+                <h2 class="section-title">👤 Personal Information</h2>
+                <div class="info-block"><b>Name:</b> Akshat Prasad</div>
+                <div class="info-block"><b>Student ID:</b> 881238</div>
+                <div class="info-block"><b>Address:</b> Gurugram</div>
 
-/* convert minimal Markdown -> HTML */
-function mdToHtml(md){
-  // very basic conversion: headings, bold, italics, links, code blocks
-  let html = md
-    .replace(/### (.*?)(\n|$)/g, '<h3>$1</h3>')
-    .replace(/## (.*?)(\n|$)/g, '<h2>$1</h2>')
-    .replace(/# (.*?)(\n|$)/g, '<h1>$1</h1>')
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    .replace(/`(.*?)`/g, '<code>$1</code>')
-    .replace(/\n/g, '<br/>')
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
-  return html;
-}
+                <h2 class="section-title">🎓 Education</h2>
+                <div class="info-block"><b>High School:</b> CBSE 78.5%</div>
+                <div class="info-block"><b>Senior Secondary:</b> 74.4%</div>
+                <div class="info-block"><b>Semester 1:</b> 8.82 SGPA</div>
 
-/* ========================= LICENSE LOADER + STYLER ========================= */
-function loadLicense(){
-  contentArea.innerHTML = "";
-  readmeViewer.innerHTML = "";
-  const path = SITE_ROOT + "LICENSE";
-  fetch(path).then(r => r.ok ? r.text() : Promise.reject("no"))
-  .then(text => {
-    // convert to a styled license box
-    const styled = styleLicenseHtml(text);
-    contentArea.innerHTML = styled;
-    updateMeta("Akshat — LICENSE", "License page for the portfolio repository");
-  }).catch(()=> {
-    contentArea.innerHTML = "<p>LICENSE not found</p>";
-  });
-}
+                <h2 class="section-title">🏫 Course & University</h2>
+                <div class="info-block"><b>Course:</b> BCA</div>
+                <div class="info-block"><b>College:</b> DPG Degree College</div>
+                <div class="info-block"><b>University:</b> MDU Rohtak</div>
 
-function styleLicenseHtml(text){
-  // highlight common license keywords and create HTML
-  const escape = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  let safe = escape(text);
-  // highlight common keywords
-  safe = safe.replace(/\b(MIT|Apache|GPL|BSD|Copyright|License)\b/g, "<span style='color:var(--accent);font-weight:700'>$1</span>");
-  // paragraphs
-  const lines = safe.split(/\n/).map(l => l.trim());
-  let inner = '<div id="licenseBox" style="background:#fff;padding:16px;border-radius:8px;border:1px solid #e6e6e6">';
-  inner += '<h2 style="margin-top:0;color:var(--accent)">Repository License</h2>';
-  inner += '<div style="font-size:14px;line-height:1.6;color:var(--text)">';
-  lines.forEach(ln => {
-    if(ln === '') inner += '<br/>';
-    else inner += `<div>${ln}</div>`;
-  });
-  inner += '</div></div>';
-  return inner;
-}
+                <h2 class="section-title">🔗 Social Links</h2>
+                <div class="info-block social-box">
+                    <a href="https://github.com/akshat-881236" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+                    <a href="https://www.linkedin.com/in/akshat-prasad-b53936379" target="_blank"><i class="bi bi-linkedin"></i> LinkedIn</a>
+                    <a href="mailto:akshatpsd2005@gmail.com"><i class="bi bi-envelope"></i> Email</a>
+                </div>
+            `;
 
-/* also function to style license text in-place if LICENSE is just plain text inside contentArea */
-function styleLicenseText(){
-  const el = contentArea;
-  if(!el) return;
-  const txt = el.innerText || el.textContent || "";
-  if(!txt) return;
-  el.innerHTML = styleLicenseHtml(txt);
-}
+            updateMeta("Akshat — Dashboard", "Personal portfolio dashboard for Akshat Prasad");
+        }
+        loadHomeContent();
 
-/* ========================= HOME CONTENT (default) ========================= */
-function loadHomeContent(){
-  readmeViewer.innerHTML = "";
-  contentArea.innerHTML = `
-    <h2 class="section-title">👤 Personal Information</h2>
-    <div class="info-block"><b>Name:</b> Akshat Prasad</div>
-    <div class="info-block"><b>Student ID:</b> 881238</div>
-    <div class="info-block"><b>Address:</b> Gurugram</div>
+        /* ADMIN SHORTCUT */
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
+                const pwd = prompt("Admin password (shortcut):");
+                if (pwd === ADMIN_PASSWORD) {
+                    document.body.classList.add("is-admin");
+                    alert("Admin enabled");
+                } else alert("Incorrect");
+            }
+        });
+    </script>
 
-    <h2 class="section-title">🎓 Education</h2>
-    <div class="info-block"><b>High School:</b> CBSE 78.5%</div>
-    <div class="info-block"><b>Senior Secondary:</b> 74.4%</div>
-    <div class="info-block"><b>Semester 1:</b> 8.82 SGPA</div>
-
-    <h2 class="section-title">🏫 Course & University</h2>
-    <div class="info-block"><b>Course:</b> BCA</div>
-    <div class="info-block"><b>College:</b> DPG Degree College</div>
-    <div class="info-block"><b>University:</b> MDU Rohtak</div>
-
-    <h2 class="section-title">🔗 Social Links</h2>
-    <div class="info-block social-box">
-      <a href="https://github.com/akshat-881236" target="_blank"><i class="bi bi-github"></i> GitHub</a>
-      <a href="https://www.linkedin.com/in/akshat-prasad-b53936379" target="_blank"><i class="bi bi-linkedin"></i> LinkedIn</a>
-      <a href="mailto:akshatpsd2005@gmail.com"><i class="bi bi-envelope"></i> Email</a>
-    </div>
-  `;
-  updateMeta("Akshat — Dashboard", "Personal portfolio dashboard for Akshat Prasad");
-}
-loadHomeContent();
-
-/* ========================= INITIAL SEO hint (structured data already added) ========================= */
-/* nothing further to do */
-
-/* ========================= Accessibility: keyboard shortcut for admin (Ctrl+Shift+A) ========================= */
-document.addEventListener('keydown',(e)=>{
-  if(e.ctrlKey && e.shiftKey && e.key.toLowerCase()==='a'){
-    const pwd = prompt("Admin password (shortcut):");
-    if(pwd === ADMIN_PASSWORD){ document.body.classList.add("is-admin"); alert("Admin enabled"); }
-    else alert("Incorrect");
-  }
-});
-</script>
 </body>
+
 </html>
