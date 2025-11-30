@@ -1,281 +1,631 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>LocalStorage Admin</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="author" content="Akshat Prasad">
-<meta name="description" content="Portfolio of Akshat Prasad — BCA Student at DPG Degree College (MDU Rohtak)">
-<meta name="keywords" content="Akshat Prasad, Portfolio, BCA, DPG Degree College, MDU Rohtak">
-<meta name="robots" content="index, follow">
-<meta name="theme-color" content="#007bff">
-<meta name="course" content="BCA">
-<meta name="college" content="DPG Degree College">
-<meta name="university" content="Maharshi Dayanand University">
-<meta name="student-ID" content="881238">
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <meta charset="utf-8" />
+  <title>LocalStorage Manager — JSON Only + Accounts + Rulebooks (Auth Locked)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" id="prism-theme"/>
+  <style>
+    :root{--bg:#282c34;--fg:#fff;--panel:#21252b;--accent:#61dafb;--editorbg:#23272e;--appbar:#20232a}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:Segoe UI,Arial,sans-serif;transition:background .25s,color .25s}
+    .appbar{display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:var(--appbar);height:58px;box-shadow:0 2px 8px #0005}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand h1{font-size:1.15em;margin:0}
+    .nav{display:flex;gap:8px;align-items:center}
+    .nav button{background:none;border:none;color:var(--fg);cursor:pointer;padding:8px 10px;border-radius:6px}
+    .nav button.active{background:rgba(255,255,255,0.06)}
+    .theme-dropdown{position:absolute;right:0;top:48px;background:var(--panel);border:1px solid #3337;border-radius:8px;display:none;min-width:200px;z-index:40;padding:8px}
+    .content{padding:20px 2vw;min-height:82vh}
+    .grid{display:flex;gap:20px;flex-wrap:wrap}
+    .panel{background:var(--panel);border-radius:10px;padding:18px;flex:1 1 420px;min-width:320px;box-shadow:0 2px 12px #0003}
+    .panel h2{margin:0 0 12px;color:var(--accent)}
+    textarea,input,select,pre{width:100%;background:var(--editorbg);color:var(--fg);border:1px solid #374151;border-radius:6px;padding:8px;font-family:Consolas,monospace}
+    .codeblock{white-space:pre-wrap;min-height:160px;overflow:auto}
+    .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    button.btn{background:var(--accent);color:#111;border:none;border-radius:6px;padding:8px 12px;cursor:pointer}
+    .success{color:#27ae60;font-weight:600}
+    .error{color:#e74c3c;font-weight:600}
+    .inspect-block{background:#181a1b;color:#b5deff;border-radius:6px;padding:12px;overflow:auto;max-height:260px}
+    nav.rule-links{display:flex;gap:10px;flex-wrap:wrap}
+    .small{font-size:0.9em;color:#bfcbdc}
+    body.theme-light{--bg:#f8fafd;--fg:#1a232f;--panel:#fff;--accent:#3579ff;--editorbg:#f2f5fa;--appbar:#d8e8ff}
+    body.theme-blue{--bg:#101c2c;--fg:#b3e6ff;--panel:#17253c;--accent:#4fd6ff;--editorbg:#1d2940;--appbar:#133c5e}
+    body.theme-cyber{--bg:#181821;--fg:#00fff7;--panel:#1a1f2b;--accent:#ffd700;--editorbg:#23232d;--appbar:#181821}
+    body.theme-vscode{--bg:#1e1e1e;--fg:#d4d4d4;--panel:#252526;--accent:#007acc;--editorbg:#1e1e1e;--appbar:#23272e}
+    @media(max-width:900px){.grid{flex-direction:column}}
 
-<!-- Prism -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
-<style>
-body {
-    margin:0;
-    font-family:Arial;
-    background:#1e1e1e;
-    color:white;
-}
-.appbar {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:#111;
-    padding:10px 20px;
-}
-.content {
-    padding:20px;
-    display:flex;
-    flex-wrap:wrap;
-    gap:20px;
-}
-.panel {
-    background:#252525;
-    padding:20px;
-    border-radius:10px;
-    flex:1 1 400px;
-    min-width:350px;
-}
-textarea, input, select {
-    width:100%;
-    padding:7px;
-    margin-top:10px;
-    margin-bottom:15px;
-    background:#333;
-    border:1px solid #444;
-    color:white;
-}
-button {
-    background:#61dafb;
-    padding:7px 15px;
-    border:none;
-    cursor:pointer;
-    margin-right:10px;
-}
-.codeblock {
-    background:#111;
-    padding:10px;
-    border-radius:6px;
-    min-height:150px;
-    color:white;
-    white-space:pre-wrap;
-}
-#loginModal {
-    position:fixed;
-    left:0;top:0;
-    width:100%;height:100%;
-    background:#000d;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-#loginBox {
-    background:#222;
-    padding:30px;
-    border-radius:10px;
-    width:350px;
-}
-</style>
+    /* Auth Gate overlay */
+    #authGate {
+      position:fixed;
+      inset:0;
+      background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.7));
+      z-index:9999;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .auth-card {
+      background:var(--panel);
+      padding:20px;
+      border-radius:12px;
+      width:96%;
+      max-width:740px;
+      box-shadow:0 6px 24px #0008;
+      border:1px solid #3338;
+    }
+    .auth-actions { display:flex; gap:12px; margin-top:12px; flex-wrap:wrap; }
+    .auth-note { color:#c7d7e6; margin-top:8px; font-size:0.95em; }
+    .auth-compact { display:flex; gap:12px; align-items:center; justify-content:space-between; margin-top:14px; }
+    .auth-btn{ background:var(--accent); color:#111; border:none; padding:8px 12px; border-radius:8px; cursor:pointer }
+    .link-btn{ background:none; border:1px solid #3a3a44; color:var(--fg); padding:8px 10px; border-radius:8px; cursor:pointer }
+    .muted{ color:#9aa9bb; font-size:0.95em; }
+  </style>
 </head>
 <body>
-
-<div id="loginModal">
-  <div id="loginBox">
-      <h2>Admin Login </h2>
-    <p> For Password visit <a href="/Portfolio-881236/index.htm">Home</a> and View README.md</p>
-      <input type="password" id="adminPass" placeholder="Password">
-      <button onclick="checkAdmin()">Login</button>
-      <p id="loginMsg" style="color:red;"></p>
-  </div>
-</div>
-
-<div id="mainUI" style="display:none;">
   <div class="appbar">
-     <h2><i class="fa fa-database"></i> LocalStorage Admin</h2>
-     <button onclick="refreshLS()">Refresh</button>
-  </div>
-
-  <div class="content">
-    <!-- EDITOR PANEL -->
-    <div class="panel">
-      <h3>Editor</h3>
-      <select id="format">
-        <option value="json">JSON</option>
-        <option value="yaml">YAML</option>
-        <option value="xml">XML</option>
-        <option value="csv">CSV</option>
-      </select>
-
-      <pre class="codeblock" id="editor" contenteditable="true"></pre>
-
-      <button onclick="updateLS()">Update</button>
-      <button onclick="exportLS()">Export</button>
-      <p id="editMsg"></p>
+    <div class="brand">
+      <h1><i class="fa-solid fa-database"></i> LocalStorage Manager (JSON)</h1>
+      <span class="small">JSON-only • Rulebooks • Accounts</span>
     </div>
 
-    <!-- KEY MANAGER -->
-    <div class="panel">
-      <h3>Key Manager</h3>
-      <input id="key" placeholder="Key">
-      <textarea id="value" rows="3" placeholder="Value"></textarea>
+    <div class="nav">
+      <button id="nav-ls" class="active" onclick="spaShow('ls')"><i class="fa-solid fa-code"></i> LocalStorage</button>
 
-      <button onclick="writeLS()">Save</button>
-      <button onclick="deleteLS()">Delete</button>
+      <div style="position:relative">
+        <button id="nav-rule" onclick="toggleRuleMenu()"><i class="fa-solid fa-book"></i> Rulebooks ▾</button>
+        <div id="ruleMenu" class="theme-dropdown" style="min-width:320px;right:auto;left:0">
+          <button onclick="spaShow('rule1')">Interface 1 — Quick Usage</button>
+          <button onclick="spaShow('rule2')">Interface 2 — Security Rules</button>
+          <button onclick="spaShow('rule3')">Interface 3 — Undo & Retention</button>
+          <button onclick="spaShow('rule4')">Interface 4 — Debugging & Recovery</button>
+        </div>
+      </div>
 
-      <h4>Keys:</h4>
-      <ul id="keyList"></ul>
+      <div class="theme-menu">
+        <button id="nav-theme" onclick="document.getElementById('themeMenu').classList.toggle('active')"><i class="fa-solid fa-palette"></i> Themes ▾</button>
+        <div id="themeMenu" class="theme-dropdown">
+          <button onclick="setTheme('theme-vscode','prism-tomorrow')">VS Code</button>
+          <button onclick="setTheme('theme-light','prism')">Light</button>
+          <button onclick="setTheme('theme-blue','prism-coy')">Blue</button>
+          <button onclick="setTheme('theme-cyber','prism-dark')">Cyberpunk</button>
+        </div>
+      </div>
+
+      <div style="position:relative">
+        <button id="nav-account" onclick="spaShow('account')"><i class="fa-solid fa-user"></i> Account</button>
+      </div>
+
+      <button onclick="showAdminLogin()"><i class="fa-solid fa-shield-halved"></i> Admin</button>
     </div>
   </div>
-</div>
 
-<!-- YAML / XML / CSV libraries -->
-<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/xml-js@1.6.11/dist/xml-js.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <!-- Auth gate: prevents any access to functions until Admin or User login -->
+  <div id="authGate" style="display:none">
+    <div class="auth-card">
+      <h2 style="margin:0;color:var(--accent)"><i class="fa-solid fa-lock"></i> Authentication Required</h2>
+      <p class="auth-note">Access to the LocalStorage editor, recycle bin, recovery and debugging tools is restricted. Please sign up & login, or sign in as Admin to continue.</p>
+      <div class="auth-actions">
+        <button class="auth-btn" onclick="spaShow('account'); closeAuthGateIfAuthenticated()">Sign Up / Login (User)</button>
+        <button class="link-btn" onclick="showAdminLogin()">Admin Login</button>
+        <button class="link-btn" onclick="showRulebooks()">Read Rulebooks</button>
+      </div>
 
-<script>
-// ------------------------------
-// ADMIN LOGIN
-// ------------------------------
-const ADMIN_PASSWORD = "admin123";
+      <div class="auth-compact">
+        <div class="muted">Note: Sending the signup email to the admin is optional — the app will only prefill an email for you if you choose to send it.</div>
+        <div><button class="link-btn" onclick="continueReadOnly()">Continue read-only (Rulebooks only)</button></div>
+      </div>
+    </div>
+  </div>
 
-function checkAdmin() {
-    let pw = document.getElementById("adminPass").value;
-    if (pw === ADMIN_PASSWORD) {
-        document.getElementById("loginModal").style.display = "none";
-        document.getElementById("mainUI").style.display = "block";
-        refreshLS();
-    } else {
-        document.getElementById("loginMsg").innerText = "Wrong password";
+  <!-- SPA Content -->
+  <div class="content" id="mainUI">
+    <!-- LocalStorage (JSON only) -->
+    <section id="spa-ls" class="grid">
+      <div class="panel">
+        <h2><i class="fa-solid fa-code"></i> LocalStorage (JSON View)</h2>
+        <p class="small">The editor shows and accepts only JSON. Use Update to write the JSON back into localStorage.</p>
+        <label>Data (JSON):</label>
+        <pre id="editorPrism" class="codeblock language-json" contenteditable="true" spellcheck="false"></pre>
+        <div class="row">
+          <button class="btn" onclick="guarded(updateLS)">Update</button>
+          <button class="btn" onclick="guarded(refreshLS)">Refresh</button>
+          <button class="btn" onclick="guarded(exportLS)">Download</button>
+          <span id="editMsg"></span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2><i class="fa-solid fa-recycle"></i> Recycle Bin & Undo (30 Days)</h2>
+        <table id="recycle-bin-table" style="width:100%;border-collapse:collapse">
+          <thead><tr><th style="text-align:left;padding:6px;border-bottom:1px solid #374151">Key</th><th style="padding:6px;border-bottom:1px solid #374151">Type</th><th style="padding:6px;border-bottom:1px solid #374151">Date</th><th style="padding:6px;border-bottom:1px solid #374151">Action</th></tr></thead>
+          <tbody id="recycle-bin-tbody"></tbody>
+        </table>
+        <div style="margin-top:12px">
+          <button class="btn" onclick="guarded(exportRecycleBin)">Export Undo_Recovery_json</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2><i class="fa-solid fa-bug"></i> Inspection & Debugging</h2>
+        <div class="row" style="margin-bottom:10px">
+          <button class="btn" onclick="guarded(showCurrentState)">Current State</button>
+          <button class="btn" onclick="guarded(showHistory)">History</button>
+          <button class="btn" onclick="guarded(clearDebug)">Clear</button>
+        </div>
+        <div id="inspectBlock" class="inspect-block"></div>
+      </div>
+    </section>
+
+    <!-- Rulebook interfaces (detailed) -->
+    <section id="spa-rule1" style="display:none">
+      <div class="panel">
+        <h2>Rulebook — Interface 1: Quick Usage</h2>
+        <div class="guide-panel">
+          <strong>Purpose</strong>
+          <p class="rule-note">Practical checklist for day-to-day operations with the LocalStorage Manager.</p>
+          <strong>Quick Operations</strong>
+          <ul class="rule-list">
+            <li><strong>View:</strong> Click "Refresh".</li>
+            <li><strong>Edit:</strong> Modify JSON, then "Update".</li>
+            <li><strong>Create/Delete:</strong> Add/remove top-level properties and Update.</li>
+            <li><strong>Export:</strong> Use "Download".</li>
+          </ul>
+          <strong>Example</strong>
+          <div class="example-box">{"userSettings":{"theme":"vscode"}} </div>
+          <strong>Best Practices</strong>
+          <ul class="rule-list">
+            <li>Always Refresh before editing.</li>
+            <li>Back up before major changes.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="spa-rule2" style="display:none">
+      <div class="panel">
+        <h2>Rulebook — Interface 2: Security Rules</h2>
+        <div class="guide-panel">
+          <strong>Scope & Limitations</strong>
+          <p class="rule-note">All data is local to the browser. Passwords are hashed client-side (SHA-256) but localStorage is not secure for secrets.</p>
+          <strong>Recommendations</strong>
+          <ul class="rule-list">
+            <li>Use backend for production auth and server-side email notifications.</li>
+            <li>Do not reuse high-value passwords.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="spa-rule3" style="display:none">
+      <div class="panel">
+        <h2>Rulebook — Interface 3: Undo & Retention Rules</h2>
+        <div class="guide-panel">
+          <strong>Behavior</strong>
+          <ul class="rule-list">
+            <li>Changes are stored in <code>__lsm_recycle_bin</code> for 30 days, then archived to <code>Undo_Recovery_json</code>.</li>
+            <li>Recover via Recycle Bin or Manual Recovery in Inspect panel.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="spa-rule4" style="display:none">
+      <div class="panel">
+        <h2>Rulebook — Interface 4: Debugging & Recovery</h2>
+        <div class="guide-panel">
+          <strong>Tools</strong>
+          <ul class="rule-list">
+            <li>Inspect Block / History (session snapshots).</li>
+            <li>Manual Recovery for archived entries.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Account system (Sign up / Login) -->
+    <section id="spa-account" style="display:none">
+      <div class="grid">
+        <div class="panel">
+          <h2><i class="fa-solid fa-user-plus"></i> Sign Up</h2>
+          <label>Name</label>
+          <input id="su-name" placeholder="Full name" />
+          <label>Email</label>
+          <input id="su-email" placeholder="Email address" type="email"/>
+          <label>Contact No.</label>
+          <input id="su-contact" placeholder="Phone or contact number" />
+          <label>Password</label>
+          <input id="su-pass" placeholder="Password" type="password"/>
+          <div class="row">
+            <button class="btn" onclick="signUp()">Sign Up</button>
+            <button class="btn" onclick="clearSignUp()">Clear</button>
+            <span id="su-msg"></span>
+          </div>
+
+          <hr style="margin:12px 0">
+          <p class="small">Signup stores your account locally. Informing the admin by email is optional — the app will prefill an email if you choose to notify.</p>
+          <div class="row" style="margin-top:8px">
+            <button class="btn" id="mailto-btn" style="display:none" onclick="openSignupMail()">Open Email Client (Send to Admin)</button>
+            <button class="btn" id="copy-mail-btn" style="display:none" onclick="copySignupEmailBody()">Copy Email Body</button>
+            <span id="mail-inf" class="small"></span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2><i class="fa-solid fa-right-to-bracket"></i> Login</h2>
+          <label>Email</label>
+          <input id="li-email" placeholder="Email" type="email"/>
+          <label>Password</label>
+          <input id="li-pass" placeholder="Password" type="password"/>
+          <div class="row">
+            <button class="btn" onclick="login()">Login</button>
+            <button class="btn" onclick="logout()">Logout</button>
+            <span id="li-msg"></span>
+          </div>
+
+          <hr style="margin:12px 0">
+          <div id="account-info" style="display:none">
+            <h3>Logged in as</h3>
+            <pre id="acct-json" class="codeblock" style="min-height:80px"></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Admin Login Modal -->
+  <div id="loginModal" style="display:none;position:fixed;left:0;top:0;width:100vw;height:100vh;background:#000a;z-index:60">
+    <div style="max-width:420px;margin:80px auto;background:var(--panel);padding:28px;border-radius:10px">
+      <h2 style="margin:0;color:var(--accent)"><i class="fa-solid fa-lock"></i> Admin Login</h2>
+      <label style="display:block;margin-top:12px">Password: <input id="adminPass" type="password" /></label>
+      <div style="margin-top:12px">
+        <button class="btn" onclick="checkAdmin()">Login</button>
+        <button class="btn" onclick="closeAdminLogin()">Close</button>
+      </div>
+      <div id="loginMsg" style="margin-top:12px;color:#ef5350"></div>
+    </div>
+  </div>
+
+  <!-- Prism and helpers -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-sha256@0.9.0/src/sha256.min.js"></script>
+  <script>
+    // --- Auth / gating logic ---
+    let ADMIN_SESSION = false;
+    const ADMIN_PASSWORD = 'admin123';
+    const ADMIN_EMAIL = "akshatpsd2005@gmail.com";
+
+    function isAuthenticated(){
+      try {
+        const user = localStorage.getItem("__lsm_current_user");
+        return ADMIN_SESSION || !!user;
+      } catch(e){ return ADMIN_SESSION; }
     }
-}
 
-// ------------------------------
-// LOCALSTORAGE HELPERS
-// ------------------------------
-function getLSObject() {
-    let obj = {};
-    for (let i = 0; i < localStorage.length; i++) {
-        let k = localStorage.key(i);
-        if (k.startsWith("__lsm")) continue;
-        let v = localStorage.getItem(k);
-        try { v = JSON.parse(v); } catch {}
-        obj[k] = v;
+    // Guard wrapper: runs fn only if authenticated; otherwise shows gate modal
+    function guarded(fn){
+      if(isAuthenticated()){
+        try { fn(); } catch(e){ console.error(e); alert('Error: '+e.message); }
+      } else {
+        showAuthGate();
+      }
     }
-    return obj;
-}
 
-function setLSObject(obj) {
-    localStorage.clear();
-    for (let k in obj) {
-        let v = obj[k];
-        localStorage.setItem(k, typeof v === "string" ? v : JSON.stringify(v));
+    function showAuthGate(){
+      document.getElementById('authGate').style.display = '';
+      // hide main UI interactions visually by leaving main UI visible but gated by overlay
     }
-}
-
-// ------------------------------
-// FORMAT CONVERSION
-// ------------------------------
-function objectToFormat(obj, fmt) {
-    switch (fmt) {
-        case "json": return JSON.stringify(obj, null, 2);
-        case "yaml": return jsyaml.dump(obj);
-        case "xml": return xmljs.js2xml(obj, {compact:true, spaces:2});
-        case "csv":
-            return Papa.unparse(Object.entries(obj).map(([k,v]) => ({
-                key:k,
-                value:typeof v==="object"?JSON.stringify(v):v
-            })));
+    function closeAuthGateIfAuthenticated(){
+      if(isAuthenticated()){
+        closeAuthGate();
+      } else {
+        // allow user to go to account panel so they can sign up/login
+        spaShow('account');
+      }
     }
-}
-
-function formatToObject(text, fmt) {
-    switch (fmt) {
-        case "json": return JSON.parse(text);
-        case "yaml": return jsyaml.load(text);
-        case "xml": 
-             return xmljs.xml2js(text, {compact:true})._declaration || xmljs.xml2js(text, {compact:true});
-        case "csv":
-            let parsed = Papa.parse(text, {header:true}).data;
-            let obj = {};
-            parsed.forEach(r => obj[r.key] = r.value);
-            return obj;
+    function closeAuthGate(){
+      document.getElementById('authGate').style.display = 'none';
+      refreshLS();
+      showRecycleBin();
+      showAccountInfo();
     }
-}
+    // allow read-only browsing of rulebooks
+    function continueReadOnly(){
+      // hide gate but disable all guarded actions still require auth
+      document.getElementById('authGate').style.display = 'none';
+      spaShow('rule1');
+    }
+    function showRulebooks(){ document.getElementById('authGate').style.display=''; spaShow('rule1'); }
 
-// ------------------------------
-// EDITOR OPERATIONS
-// ------------------------------
-function refreshLS() {
-    let obj = getLSObject();
-    let fmt = document.getElementById("format").value;
+    // SPA helpers
+    function spaShow(name){
+      const all = document.querySelectorAll('[id^="spa-"]');
+      all.forEach(s=>s.style.display='none');
+      document.getElementById('ruleMenu').classList.remove('active');
+      const el = document.getElementById('spa-' + name);
+      if(el) el.style.display = '';
+      document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+      if(name === 'ls') document.getElementById('nav-ls').classList.add('active');
+      if(name === 'account') document.getElementById('nav-account').classList.add('active');
+    }
+    function toggleRuleMenu(){ document.getElementById('ruleMenu').classList.toggle('active'); }
 
-    document.getElementById("editor").innerText = objectToFormat(obj, fmt);
+    // Themes
+    function setTheme(theme, prismTheme){
+      document.body.className = theme;
+      const p = document.getElementById('prism-theme');
+      if(prismTheme) p.href = "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/" + prismTheme + ".min.css";
+      try{ localStorage.setItem("__lsm_theme", theme); localStorage.setItem("__lsm_prism", prismTheme); }catch(e){}
+      // do not refresh LS here without auth
+      if(isAuthenticated()) refreshLS();
+    }
+    (function(){ const t = localStorage.getItem("__lsm_theme"), pt = localStorage.getItem("__lsm_prism"); if(t) setTheme(t, pt); })();
 
-    updateKeyList();
-}
+    // --- Admin login functions ---
+    function showAdminLogin(){ document.getElementById('loginModal').style.display=''; }
+    function closeAdminLogin(){ document.getElementById('loginModal').style.display='none'; }
+    function checkAdmin(){
+      const pw = document.getElementById('adminPass').value;
+      if(pw === ADMIN_PASSWORD){
+        ADMIN_SESSION = true;
+        closeAdminLogin();
+        closeAuthGate();
+        alert('Admin access granted');
+      } else {
+        document.getElementById('loginMsg').innerText = 'Wrong password!';
+      }
+    }
 
-function updateLS() {
-    let fmt = document.getElementById("format").value;
-    let txt = document.getElementById("editor").innerText;
+    // --- Recycle bin / undo logic ---
+    function nowStr(){ return (new Date()).toISOString(); }
+    function getRecycleBin(){ try{ return JSON.parse(localStorage.getItem("__lsm_recycle_bin")||"[]"); }catch(e){return []} }
+    function setRecycleBin(arr){ localStorage.setItem("__lsm_recycle_bin", JSON.stringify(arr)); }
+    function addToRecycleBin(key,value,type){ const arr=getRecycleBin(); arr.push({key,value,type,date:nowStr()}); setRecycleBin(arr); }
+    function cleanOldRecycleBin(){
+      const arr = getRecycleBin(); const cutoff = Date.now() - 30*24*60*60*1000;
+      let keep = [], old = [];
+      arr.forEach(rec => { if(new Date(rec.date).getTime() < cutoff) old.push(rec); else keep.push(rec); });
+      setRecycleBin(keep);
+      if(old.length){ let prev=[]; try{ prev=JSON.parse(localStorage.getItem('Undo_Recovery_json')||"[]"); }catch(e){} prev = prev.concat(old); localStorage.setItem('Undo_Recovery_json', JSON.stringify(prev)); }
+    }
+    function showRecycleBin(){
+      // requires auth to view details -- guard already handles calls
+      cleanOldRecycleBin();
+      const arr = getRecycleBin();
+      const tbody = document.getElementById('recycle-bin-tbody');
+      tbody.innerHTML='';
+      arr.forEach((r,i)=>{ const tr=document.createElement('tr'); tr.innerHTML = `<td style="padding:6px">${r.key}</td><td style="padding:6px">${r.type}</td><td style="padding:6px">${r.date.replace('T',' ').slice(0,19)}</td><td style="padding:6px"><button class="btn" onclick="guarded(()=>recoverRecycleBin(${i}))">Undo</button></td>`; tbody.appendChild(tr); });
+    }
+    function recoverRecycleBin(idx){
+      const arr = getRecycleBin(); const rec = arr[idx]; if(!rec) return;
+      localStorage.setItem(rec.key, rec.value);
+      arr.splice(idx,1); setRecycleBin(arr);
+      refreshLS(); showRecycleBin();
+    }
+    function exportRecycleBin(){ const arr = getRecycleBin(); const b = new Blob([JSON.stringify(arr,null,2)],{type:'application/json'}); const a = document.createElement('a'); a.href=URL.createObjectURL(b); a.download='Undo_Recovery_json'; document.body.appendChild(a); a.click(); document.body.removeChild(a); }
 
-    try {
-        let obj = formatToObject(txt, fmt);
+    // --- LocalStorage CRUD & Editor (JSON only) ---
+    function getLSObject(){
+      const obj={};
+      for(let i=0;i<localStorage.length;i++){
+        const k = localStorage.key(i);
+        if(k.startsWith("__lsm_") || k==="Undo_Recovery_json") continue;
+        const v = localStorage.getItem(k);
+        try{ obj[k] = JSON.parse(v); }catch(e){ obj[k] = v; }
+      }
+      return obj;
+    }
+    function setLSObject(obj){
+      const old = getLSObject();
+      for(const k in old){ if(!(k in obj)){ addToRecycleBin(k, JSON.stringify(old[k]), "delete"); localStorage.removeItem(k); } }
+      for(const k in obj){
+        const v = obj[k];
+        const prev = localStorage.getItem(k);
+        const serialized = (typeof v === 'string') ? v : JSON.stringify(v);
+        if(prev !== null && prev !== serialized) addToRecycleBin(k, prev, "change");
+        localStorage.setItem(k, serialized);
+      }
+    }
+
+    function objectToJSON(obj){ return JSON.stringify(obj,null,2); }
+    function refreshLS(){
+      // only callable when authenticated (guarded)
+      const obj = getLSObject();
+      document.getElementById('editorPrism').textContent = objectToJSON(obj);
+      Prism.highlightElement(document.getElementById('editorPrism'));
+      showRecycleBin();
+      document.getElementById('editMsg').textContent = "";
+    }
+    function updateLS(){
+      const txt = document.getElementById('editorPrism').innerText;
+      try{
+        const obj = JSON.parse(txt);
         setLSObject(obj);
-        document.getElementById("editMsg").innerText = "Updated!";
-    } catch (e) {
-        document.getElementById("editMsg").innerText = "Error: " + e.message;
+        document.getElementById('editMsg').textContent = "Updated!";
+        document.getElementById('editMsg').className = "success";
+        refreshLS();
+      }catch(e){
+        document.getElementById('editMsg').textContent = "Error: "+e.message;
+        document.getElementById('editMsg').className="error";
+      }
     }
-}
-
-function exportLS() {
-    let fmt = document.getElementById("format").value;
-    let obj = getLSObject();
-    let content = objectToFormat(obj, fmt);
-
-    let blob = new Blob([content], {type:"text/plain"});
-    let a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "localstorage_export." + fmt;
-    a.click();
-}
-
-// ------------------------------
-// KEY CRUD
-// ------------------------------
-function writeLS() {
-    let k = document.getElementById("key").value;
-    let v = document.getElementById("value").value;
-    localStorage.setItem(k, v);
-    refreshLS();
-}
-
-function deleteLS() {
-    let k = document.getElementById("key").value;
-    localStorage.removeItem(k);
-    refreshLS();
-}
-
-function updateKeyList() {
-    let ul = document.getElementById("keyList");
-    ul.innerHTML = "";
-    for (let i = 0; i < localStorage.length; i++) {
-        let k = localStorage.key(i);
-        let li = document.createElement("li");
-        li.innerText = k;
-        ul.appendChild(li);
+    function exportLS(){
+      const obj = getLSObject();
+      const content = objectToJSON(obj);
+      const blob = new Blob([content],{type:'application/json'});
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'localstorage_export.json'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
     }
-}
-</script>
 
+    // --- Account System ---
+    function suResetUI(){ document.getElementById('su-msg').textContent=''; document.getElementById('mailto-btn').style.display='none'; document.getElementById('copy-mail-btn').style.display='none'; document.getElementById('mail-inf').textContent=''; }
+    function clearSignUp(){ document.getElementById('su-name').value=''; document.getElementById('su-email').value=''; document.getElementById('su-contact').value=''; document.getElementById('su-pass').value=''; suResetUI(); }
+    function sha256hex(str){ return sha256(str); }
+
+    function signUp(){
+      suResetUI();
+      const name = document.getElementById('su-name').value.trim();
+      const email = document.getElementById('su-email').value.trim().toLowerCase();
+      const contact = document.getElementById('su-contact').value.trim();
+      const pass = document.getElementById('su-pass').value;
+      if(!name || !email || !pass){ document.getElementById('su-msg').textContent='Name, email and password required'; document.getElementById('su-msg').className='error'; return; }
+      const passHash = sha256hex(pass);
+      const user = { name, email, contact, passHash, createdAt: nowStr() };
+      try{
+        const key = "__lsm_user_"+btoa(email);
+        localStorage.setItem(key, JSON.stringify(user));
+        localStorage.setItem("__lsm_current_user", JSON.stringify({email,name}));
+        document.getElementById('su-msg').textContent = "Signed up locally!";
+        document.getElementById('su-msg').className = "success";
+
+        const subject = encodeURIComponent("New Sign Up — " + name);
+        const bodyLines = [
+          "New sign up details (please keep secure):",
+          "",
+          "Name: " + name,
+          "Email: " + email,
+          "Contact: " + contact,
+          "CreatedAt: " + user.createdAt,
+          "",
+          "(This email was pre-filled by the LocalStorage Manager app. The user must send it from their mail client.)"
+        ];
+        const body = encodeURIComponent(bodyLines.join("\n"));
+        const mailto = `mailto:${ADMIN_EMAIL}?subject=${subject}&body=${body}`;
+        const mb = document.getElementById('mailto-btn');
+        mb.style.display='';
+        mb.setAttribute('data-mailto', mailto);
+        document.getElementById('copy-mail-btn').style.display='';
+        document.getElementById('mail-inf').textContent='Click "Open Email Client" to notify admin (optional).';
+
+        // close gate because user is now authenticated
+        closeAuthGate();
+      }catch(e){
+        document.getElementById('su-msg').textContent = "Error saving account: "+e.message;
+        document.getElementById('su-msg').className = "error";
+      }
+    }
+
+    function openSignupMail(){
+      const mb = document.getElementById('mailto-btn');
+      const mailto = mb.getAttribute('data-mailto');
+      window.location.href = mailto;
+    }
+    function copySignupEmailBody(){
+      const mb = document.getElementById('mailto-btn');
+      const mailto = mb.getAttribute('data-mailto') || '';
+      const match = mailto.match(/body=(.*)/);
+      const body = match ? decodeURIComponent(match[1]) : '';
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(body).then(()=>{ document.getElementById('mail-inf').textContent = "Email body copied to clipboard."; });
+      } else {
+        document.getElementById('mail-inf').textContent = "Copy not supported in this browser.";
+      }
+    }
+
+    function login(){
+      const email = (document.getElementById('li-email').value || '').trim().toLowerCase();
+      const pass = document.getElementById('li-pass').value || '';
+      if(!email || !pass){ document.getElementById('li-msg').textContent = "Email and password required"; document.getElementById('li-msg').className='error'; return; }
+      const key = "__lsm_user_"+btoa(email);
+      const raw = localStorage.getItem(key);
+      if(!raw){ document.getElementById('li-msg').textContent="User not found (please sign up)"; document.getElementById('li-msg').className='error'; return; }
+      try{
+        const user = JSON.parse(raw);
+        const hash = sha256hex(pass);
+        if(hash === user.passHash){
+          localStorage.setItem("__lsm_current_user", JSON.stringify({email:user.email,name:user.name}));
+          document.getElementById('li-msg').textContent = "Logged in!";
+          document.getElementById('li-msg').className='success';
+          closeAuthGate();
+        } else {
+          document.getElementById('li-msg').textContent = "Wrong password";
+          document.getElementById('li-msg').className='error';
+        }
+      }catch(e){ document.getElementById('li-msg').textContent = "Error reading user"; document.getElementById('li-msg').className='error'; }
+    }
+    function logout(){ localStorage.removeItem("__lsm_current_user"); document.getElementById('li-msg').textContent='Logged out'; document.getElementById('li-msg').className='small'; document.getElementById('account-info').style.display='none'; showAuthGate(); }
+
+    function showAccountInfo(){
+      const cur = localStorage.getItem("__lsm_current_user");
+      if(!cur){ document.getElementById('account-info').style.display='none'; return; }
+      const data = JSON.parse(cur);
+      document.getElementById('acct-json').textContent = JSON.stringify(data, null, 2);
+      document.getElementById('account-info').style.display='';
+    }
+
+    // --- Inspection / Debugging ---
+    let debugHistory = [];
+    function showCurrentState(){ const obj = getLSObject(); const txt = JSON.stringify(obj,null,2); document.getElementById('inspectBlock').innerText = txt; debugHistory.push({date:nowStr(),state:txt}); }
+    function showHistory(){ const txt = debugHistory.map((h,i)=>`[${h.date}] #${i+1}\n${h.state}\n`).join('\n\n'); document.getElementById('inspectBlock').innerText = txt || "No history yet."; }
+    function clearDebug(){ debugHistory = []; document.getElementById('inspectBlock').innerText = "Debug history cleared."; }
+
+    // Autobackup before unload
+    window.addEventListener('beforeunload', function(){ try{ localStorage.setItem("__lsm_autobackup", JSON.stringify(getLSObject())); }catch(e){} });
+
+    (function(){
+      try{
+        if(localStorage.length === 1 && localStorage.getItem("__lsm_autobackup")){
+          const obj = JSON.parse(localStorage.getItem("__lsm_autobackup")||"{}");
+          setLSObject(obj);
+        }
+      }catch(e){}
+    })();
+
+    // Manual recovery UI
+    (function init(){
+      // add manual recovery UI into inspectBlock
+      const ib = document.getElementById('inspectBlock');
+      if(ib){
+        ib.insertAdjacentHTML('beforeend', `<hr><b>Manual Recovery (Expert):</b><br><textarea id="manualRecovery" rows="5" placeholder="Paste Undo_Recovery_json entry here"></textarea><button class="btn" onclick="guarded(manualRecover)">Apply</button><span id="manualRecoverMsg"></span>`);
+      }
+      // initial gate: show auth gate if not authenticated
+      if(!isAuthenticated()){
+        showAuthGate();
+      } else {
+        // authenticated: hide gate and initialize UI
+        closeAuthGate();
+      }
+    })();
+
+    // Manual recover function
+    function manualRecover(){
+      const txt = document.getElementById('manualRecovery').value;
+      const msg = document.getElementById('manualRecoverMsg');
+      try{
+        const arr = JSON.parse(txt);
+        arr.forEach(rec => { if(rec.value) localStorage.setItem(rec.key, rec.value); });
+        msg.textContent = "Recovered!"; msg.className='success'; refreshLS();
+      }catch(e){ msg.textContent = "Error: "+e.message; msg.className='error'; }
+    }
+
+    // Helper: getLSObject & setLSObject used above (re-declare here for scoping)
+    function getLSObject(){
+      const obj={};
+      for(let i=0;i<localStorage.length;i++){
+        const k = localStorage.key(i);
+        if(k.startsWith("__lsm_") || k==="Undo_Recovery_json") continue;
+        const v = localStorage.getItem(k);
+        try{ obj[k] = JSON.parse(v); }catch(e){ obj[k] = v; }
+      }
+      return obj;
+    }
+    function setLSObject(obj){
+      const old = getLSObject();
+      for(const k in old){ if(!(k in obj)){ addToRecycleBin(k, JSON.stringify(old[k]), "delete"); localStorage.removeItem(k); } }
+      for(const k in obj){
+        const v = obj[k];
+        const prev = localStorage.getItem(k);
+        const serialized = (typeof v === 'string') ? v : JSON.stringify(v);
+        if(prev !== null && prev !== serialized) addToRecycleBin(k, prev, "change");
+        localStorage.setItem(k, serialized);
+      }
+    }
+
+    // Hotkeys
+    window.addEventListener('keydown', function(e){
+      if(e.ctrlKey && e.key==='s'){ e.preventDefault(); guarded(updateLS); }
+      if(e.key === 'Escape'){ document.getElementById('ruleMenu').classList.remove('active'); document.getElementById('themeMenu').classList.remove('active'); }
+    });
+  </script>
 </body>
 </html>
