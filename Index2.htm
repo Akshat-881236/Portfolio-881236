@@ -1,0 +1,1016 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Personal Website Manager (LocalStorage SPA)</title>
+<style>
+  :root{
+    --bg:#0f1720; --card:#0b1320; --muted:#9aa4b2;
+    --accent:#6ee7b7; --accent-2:#60a5fa; --danger:#ff6b6b;
+    --glass: rgba(255,255,255,0.03);
+    --radius:12px;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+    color-scheme: dark;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg,#071424 0%, #071a1f 100%);
+    color: #e6eef6; -webkit-font-smoothing:antialiased; min-height:100vh;
+  }
+
+  /* App container */
+  .app {
+    max-width:1100px; margin:28px auto; padding:20px;
+    border-radius:18px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+    display:grid; grid-template-columns: 1fr; gap:18px;
+  }
+
+  header.titlebar{
+    display:flex; align-items:center; gap:14px; justify-content:space-between;
+  }
+  .brand { display:flex; align-items:center; gap:12px; }
+  .logo {
+    width:56px; height:56px; border-radius:11px; background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:flex; align-items:center; justify-content:center; font-weight:700; color:#062a1f; font-family:var(--mono);
+    box-shadow: 0 6px 20px rgba(96,165,250,0.08), inset 0 -6px 18px rgba(0,0,0,0.12);
+  }
+  h1{font-size:18px;margin:0}
+  p.lead{margin:0;color:var(--muted);font-size:13px}
+
+  /* Main layout */
+  .main {
+    display:grid; grid-template-columns: 260px 1fr; gap:18px;
+  }
+
+  /* Sidebar / Quick nav */
+  .sidebar {
+    background: var(--card); padding:14px; border-radius:14px; min-height:420px;
+  }
+  .user-card { display:flex; gap:12px; align-items:center; margin-bottom:14px; }
+  .avatar{
+    width:56px;height:56px;border-radius:10px;background:linear-gradient(180deg,#062a1f,#063b2a);display:flex;align-items:center;justify-content:center;font-weight:700;
+    color:var(--accent); overflow:hidden;
+  }
+  .u-meta small{display:block;color:var(--muted);font-size:12px}
+  .nav { display:flex; flex-direction:column; gap:8px; margin-top:10px; }
+  .btn {
+    padding:10px 12px; background:transparent; border-radius:10px; color:inherit; border:1px solid rgba(255,255,255,0.03);
+    display:inline-flex; gap:8px; align-items:center; cursor:pointer; font-weight:600; font-size:13px;
+  }
+  .btn.primary{ background: linear-gradient(90deg,var(--accent),var(--accent-2)); color:#04201a; border:none; box-shadow:0 6px 18px rgba(96,165,250,0.06); }
+  .btn.ghost{ background:transparent; border:1px dashed rgba(255,255,255,0.03); }
+
+  /* Workspace */
+  .workspace {
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00)); padding:14px; border-radius:14px; min-height:420px;
+    display:flex; flex-direction:column; gap:12px;
+  }
+
+  .controls { display:flex; gap:8px; align-items:center; justify-content:space-between; }
+  .search { flex:1; display:flex; gap:8px; align-items:center; }
+  .search input{ width:100%; padding:10px 12px; border-radius:10px; background:var(--glass); border:1px solid rgba(255,255,255,0.03); color:inherit }
+
+  .grid { display:grid; gap:12px; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); }
+  .card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02)); padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,0.02);
+  }
+  .card h3{ margin:0 0 8px 0; font-size:15px }
+  .small{ color:var(--muted); font-size:13px; }
+
+  .folder-actions { display:flex; gap:8px; margin-top:8px }
+
+  /* List of links */
+  .link-row { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px; border-radius:10px; background:rgba(255,255,255,0.01) }
+  .link-left { display:flex; gap:10px; align-items:center; }
+  .favicon { width:40px; height:40px; border-radius:8px; background:linear-gradient(135deg,#111827,#0b1220); display:flex;align-items:center; justify-content:center; color:var(--accent); font-weight:700 }
+  .link-meta h4{ margin:0; font-size:14px }
+  .link-meta p{ margin:2px 0 0 0; color:var(--muted); font-size:12px }
+
+  /* Modals/forms */
+  .modal {
+    position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:3000;
+    background: linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.6));
+    padding:20px;
+  }
+  .modal .panel { width:100%; max-width:720px; background:linear-gradient(180deg,#071923,#0f1e2b); padding:18px; border-radius:14px; border:1px solid rgba(255,255,255,0.03); }
+  .form-row { display:flex; gap:10px; margin-bottom:10px; }
+  .form-row .col { flex:1; }
+  label{ display:block; font-size:12px; color:var(--muted); margin-bottom:6px }
+  input[type=text], input[type=email], input[type=password], input[type=date], textarea, select {
+    width:100%; padding:10px 12px; border-radius:10px; background:transparent; border:1px solid rgba(255,255,255,0.04); color:inherit;
+  }
+  textarea { min-height:90px; resize:vertical; }
+
+  .small-muted{ font-size:12px; color:var(--muted) }
+
+  footer { display:flex; gap:8px; align-items:center; justify-content:space-between; color:var(--muted); font-size:13px }
+
+  .topnav { display:flex; gap:8px; align-items:center; flex-wrap:wrap }
+  .pill { padding:8px 10px; border-radius:999px; background:rgba(255,255,255,0.02); color:var(--muted); font-size:13px }
+
+  /* responsive */
+  @media (max-width:920px){
+    .main{ grid-template-columns: 1fr; }
+    .sidebar{ order:2 }
+  }
+
+  /* tiny helpers */
+  .muted{ color:var(--muted) }
+  .danger{ color:var(--danger) }
+  .hidden{ display:none !important }
+  a.linkish{ color:var(--accent-2); text-decoration:none; }
+</style>
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="titlebar">
+      <div class="brand">
+        <div class="logo">W</div>
+        <div>
+          <h1>Website Manager — Local</h1>
+          <p class="lead">Organize website links/pages inside folders. Data stored in your browser.</p>
+        </div>
+      </div>
+      <div id="topActions" class="topnav">
+        <span id="greeting" class="pill">Not signed in</span>
+        <div id="authButtons">
+          <button class="btn" id="btnOpenLogin">Sign In</button>
+          <button class="btn primary" id="btnOpenRegister">Register</button>
+        </div>
+        <div id="userActions" style="display:none">
+          <button class="btn ghost" id="btnSignOut">Sign Out</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="main">
+      <aside class="sidebar" id="sidebar">
+        <div class="user-card" id="sidebarUser">
+          <div class="avatar" id="sidebarAvatar">?</div>
+          <div class="u-meta">
+            <div id="sidebarName" style="font-weight:700">Guest</div>
+            <small id="sidebarEmail" class="small-muted">Not signed in</small>
+          </div>
+        </div>
+
+        <div class="nav">
+          <button class="btn" id="navDashboard">Dashboard</button>
+          <button class="btn" id="navNewFolder">+ New Folder</button>
+          <button class="btn" id="navExport">Export User JSON</button>
+          <button class="btn" id="navImport">Import User JSON</button>
+        </div>
+
+        <hr style="border:none;height:1px;background:rgba(255,255,255,0.02); margin:12px 0">
+
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div class="small-muted">Folders</div>
+            <small id="countFolders" class="small-muted">0</small>
+          </div>
+          <div id="foldersList" style="margin-top:8px; display:flex; flex-direction:column; gap:8px"></div>
+        </div>
+      </aside>
+
+      <section class="workspace" id="workspace">
+        <!-- dashboard content or dynamic UI -->
+        <div id="dashboardView">
+          <div class="controls">
+            <div class="search">
+              <input id="globalSearch" placeholder="Search folders, links, descriptions..." />
+            </div>
+            <div style="display:flex;gap:8px">
+              <button class="btn" id="btnQuickAddFolder">Add Folder</button>
+              <button class="btn primary" id="btnQuickAddLink">Add Link</button>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px">
+            <div class="pill" id="quickStats">Folders: 0 • Links: 0</div>
+            <div class="small-muted">Tip: Click a folder on the left or quick-add to get started.</div>
+          </div>
+
+          <div style="margin-top:12px">
+            <div class="grid" id="folderCards"></div>
+          </div>
+        </div>
+
+        <div id="folderView" style="display:none">
+          <div style="display:flex; align-items:center; justify-content:space-between">
+            <div>
+              <h2 id="folderTitle">Folder</h2>
+              <div class="small-muted" id="folderDesc">folder description</div>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button class="btn" id="btnFolderBack">← Back</button>
+              <button class="btn" id="btnAddPage">+ Page</button>
+              <button class="btn danger" id="btnDeleteFolder">Delete Folder</button>
+            </div>
+          </div>
+
+          <div style="margin-top:12px">
+            <div id="pagesList" style="display:flex;flex-direction:column;gap:8px"></div>
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    <footer>
+      <div class="small-muted">Local-only • No servers • All data stored in browser (localStorage)</div>
+      <div>
+        <small class="small-muted">Built with ♥︎ — Use responsibly</small>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modals -->
+  <div id="modal" class="modal" role="dialog" aria-hidden="true">
+    <div class="panel" id="modalPanel"></div>
+  </div>
+
+<script>
+/*
+ Personal Website Manager SPA (single-file)
+ - Uses localStorage for persistence
+ - Users stored under key "pwm_users" as object { userId: userObj }
+ - Current session stored under key "pwm_session" = userId or null
+ - Each userObj: {
+      id, name, email, contact, dob, photoDataUrl, passwordHash, createdAt,
+      folders: [ { id, name, description, pages: [ pageNode ] } ]
+   }
+ - pageNode: { id, title, url, description, children: [pageNode], createdAt, updatedAt }
+ - Authentication: on register generate userId. Login accepts name OR email OR id + password.
+ - Forgot password: supply identifier and DOB to reset password.
+*/
+
+(function appInit(){
+  // Utilities
+  const LS_USERS = 'pwm_users_v1';
+  const LS_SESSION = 'pwm_session_v1';
+
+  function uid(prefix='id'){
+    return prefix + '_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2,9);
+  }
+
+  async function hashPassword(text){
+    const enc = new TextEncoder();
+    const data = enc.encode(text);
+    const hashBuf = await crypto.subtle.digest('SHA-256', data);
+    const hashArr = Array.from(new Uint8Array(hashBuf));
+    return hashArr.map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+
+  function readLS(){
+    try{
+      return JSON.parse(localStorage.getItem(LS_USERS) || '{}');
+    }catch(e){ return {}; }
+  }
+  function writeLS(obj){
+    localStorage.setItem(LS_USERS, JSON.stringify(obj));
+  }
+  function saveUser(user){
+    const all = readLS();
+    all[user.id] = user;
+    writeLS(all);
+  }
+  function removeUser(userId){
+    const all = readLS();
+    delete all[userId];
+    writeLS(all);
+  }
+  function getUser(userId){
+    return readLS()[userId] || null;
+  }
+  function findUserByIdentifier(identifier){
+    const all = readLS();
+    identifier = (identifier||'').toLowerCase();
+    for(const id in all){
+      const u = all[id];
+      if(u.id.toLowerCase() === identifier || (u.email||'').toLowerCase() === identifier || (u.name||'').toLowerCase() === identifier){
+        return u;
+      }
+    }
+    return null;
+  }
+  function setSession(userId){
+    if(userId) localStorage.setItem(LS_SESSION, userId);
+    else localStorage.removeItem(LS_SESSION);
+  }
+  function getSession(){
+    return localStorage.getItem(LS_SESSION);
+  }
+
+  // DOM references
+  const btnOpenLogin = document.getElementById('btnOpenLogin');
+  const btnOpenRegister = document.getElementById('btnOpenRegister');
+  const btnSignOut = document.getElementById('btnSignOut');
+  const greeting = document.getElementById('greeting');
+  const authButtons = document.getElementById('authButtons');
+  const userActions = document.getElementById('userActions');
+  const sidebarAvatar = document.getElementById('sidebarAvatar');
+  const sidebarName = document.getElementById('sidebarName');
+  const sidebarEmail = document.getElementById('sidebarEmail');
+  const foldersList = document.getElementById('foldersList');
+  const countFolders = document.getElementById('countFolders');
+  const folderCards = document.getElementById('folderCards');
+  const quickStats = document.getElementById('quickStats');
+  const globalSearch = document.getElementById('globalSearch');
+
+  const dashboardView = document.getElementById('dashboardView');
+  const folderView = document.getElementById('folderView');
+  const folderTitle = document.getElementById('folderTitle');
+  const folderDesc = document.getElementById('folderDesc');
+  const pagesList = document.getElementById('pagesList');
+  const btnFolderBack = document.getElementById('btnFolderBack');
+  const btnAddPage = document.getElementById('btnAddPage');
+  const btnDeleteFolder = document.getElementById('btnDeleteFolder');
+
+  const btnQuickAddFolder = document.getElementById('btnQuickAddFolder');
+  const btnQuickAddLink = document.getElementById('btnQuickAddLink');
+
+  const navDashboard = document.getElementById('navDashboard');
+  const navNewFolder = document.getElementById('navNewFolder');
+  const navExport = document.getElementById('navExport');
+  const navImport = document.getElementById('navImport');
+  const btnOpenRegister2 = document.getElementById('btnOpenRegister');
+
+  const btnOpenModal = document.getElementById('btnOpenModal');
+  const modal = document.getElementById('modal');
+  const modalPanel = document.getElementById('modalPanel');
+
+  let currentUser = null;
+  let currentFolderId = null;
+
+  // --- UI helpers ---
+  function showModal(html){
+    modalPanel.innerHTML = html;
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden', 'false');
+    // attach common close handlers
+    modal.querySelectorAll('[data-close]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{ closeModal(); });
+    });
+    // return panel for further hooking
+    return modalPanel;
+  }
+  function closeModal(){
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+    modalPanel.innerHTML = '';
+  }
+  modal.addEventListener('click', (e)=>{
+    if(e.target === modal) closeModal();
+  });
+
+  function updateHeader(){
+    if(currentUser){
+      greeting.textContent = `Hi, ${currentUser.name.split(' ')[0] || currentUser.name}`;
+      authButtons.style.display = 'none';
+      userActions.style.display = '';
+      sidebarAvatar.innerHTML = currentUser.photoDataUrl ? `<img src="${currentUser.photoDataUrl}" alt="avatar" style="width:56px;height:56px;object-fit:cover">` : (currentUser.name ? currentUser.name.slice(0,1).toUpperCase() : '?');
+      sidebarName.textContent = currentUser.name || currentUser.email || 'User';
+      sidebarEmail.textContent = currentUser.email || '—';
+    } else {
+      greeting.textContent = 'Not signed in';
+      authButtons.style.display = '';
+      userActions.style.display = 'none';
+      sidebarAvatar.textContent = '?';
+      sidebarName.textContent = 'Guest';
+      sidebarEmail.textContent = 'Not signed in';
+    }
+    refreshSidebarFolders();
+    refreshDashboard();
+  }
+
+  // --- Registration / Login UI ---
+  btnOpenRegister.addEventListener('click', openRegisterModal);
+  btnOpenLogin.addEventListener('click', openLoginModal);
+  btnSignOut.addEventListener('click', ()=>{
+    setSession(null);
+    currentUser = null;
+    currentFolderId = null;
+    updateHeader();
+    showDashboard();
+  });
+
+  function openRegisterModal(){
+    const html = `
+      <div style="display:flex;gap:14px;flex-direction:column">
+        <h2>Create account</h2>
+        <div class="form-row"><div class="col"><label>Name</label><input id="reg_name" /></div><div class="col"><label>Email</label><input id="reg_email" type="email" /></div></div>
+        <div class="form-row"><div class="col"><label>Contact number</label><input id="reg_contact" /></div><div class="col"><label>D.O.B</label><input id="reg_dob" type="date" /></div></div>
+        <div class="form-row"><div class="col"><label>Password</label><input id="reg_password" type="password" /></div><div class="col"><label>Confirm password</label><input id="reg_password2" type="password" /></div></div>
+        <div><label>Upload Photo (optional)</label><input id="reg_photo" type="file" accept="image/*" /></div>
+        <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px">
+          <button class="btn" data-close>Cancel</button>
+          <button class="btn primary" id="doRegister">Create Account</button>
+        </div>
+        <div class="small-muted" style="margin-top:8px">By registering you create local-only account saved in this browser.</div>
+      </div>
+    `;
+    const panel = showModal(html);
+    panel.querySelector('#doRegister').addEventListener('click', async ()=>{
+      const name = panel.querySelector('#reg_name').value.trim();
+      const email = panel.querySelector('#reg_email').value.trim();
+      const contact = panel.querySelector('#reg_contact').value.trim();
+      const dob = panel.querySelector('#reg_dob').value;
+      const pw = panel.querySelector('#reg_password').value;
+      const pw2 = panel.querySelector('#reg_password2').value;
+      const photoFile = panel.querySelector('#reg_photo').files[0];
+
+      if(!name || !email || !pw){ alert('Name, email and password are required'); return; }
+      if(pw !== pw2){ alert('Passwords do not match'); return; }
+      if(findUserByIdentifier(email)){ alert('A user with that email already exists'); return; }
+
+      let photoDataUrl = null;
+      if(photoFile){
+        photoDataUrl = await readFileAsDataURL(photoFile);
+      }
+      const id = uid('user');
+      const passHash = await hashPassword(pw);
+
+      const newUser = {
+        id, name, email, contact, dob, photoDataUrl, passwordHash: passHash, createdAt: new Date().toISOString(),
+        folders: []
+      };
+      saveUser(newUser);
+      setSession(id);
+      currentUser = newUser;
+      closeModal();
+      updateHeader();
+      showDashboard();
+      alert('Account created — your user ID: ' + id + '\n(You can sign in using Name, Email or this ID.)');
+    });
+  }
+
+  function readFileAsDataURL(file){
+    return new Promise((res,rej)=>{
+      const fr = new FileReader();
+      fr.onload = ()=>res(fr.result);
+      fr.onerror = rej;
+      fr.readAsDataURL(file);
+    });
+  }
+
+  function openLoginModal(){
+    const html = `
+      <div style="display:flex;gap:14px;flex-direction:column">
+        <h2>Sign In</h2>
+        <div class="form-row"><div class="col"><label>Name, Email or ID</label><input id="login_identifier" /></div><div class="col"><label>Password</label><input id="login_password" type="password" /></div></div>
+        <div style="display:flex;gap:8px;align-items:center;justify-content:space-between">
+          <div><a href="#" id="linkForgot" class="linkish">Forgot password?</a></div>
+          <div style="display:flex;gap:8px"><button class="btn" data-close>Cancel</button><button class="btn primary" id="doLogin">Sign In</button></div>
+        </div>
+        <div class="small-muted" style="margin-top:10px">Tip: You can also sign in with the user ID generated during registration.</div>
+      </div>
+    `;
+    const panel = showModal(html);
+    panel.querySelector('#doLogin').addEventListener('click', async ()=>{
+      const identifier = panel.querySelector('#login_identifier').value.trim();
+      const pw = panel.querySelector('#login_password').value;
+      if(!identifier || !pw){ alert('Enter identifier and password'); return; }
+      const user = findUserByIdentifier(identifier);
+      if(!user){ alert('No user found with that identifier'); return; }
+      const pwHash = await hashPassword(pw);
+      if(pwHash !== user.passwordHash){ alert('Incorrect password'); return; }
+      setSession(user.id);
+      currentUser = user;
+      closeModal();
+      updateHeader();
+      showDashboard();
+    });
+
+    panel.querySelector('#linkForgot').addEventListener('click', (e)=>{
+      e.preventDefault();
+      closeModal();
+      openForgotModal();
+    });
+  }
+
+  function openForgotModal(){
+    const html = `
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <h2>Recover / Reset Password</h2>
+        <div class="form-row"><div class="col"><label>Provide Name / Email / ID</label><input id="fp_id" /></div></div>
+        <div class="form-row"><div class="col"><label>D.O.B (to verify)</label><input id="fp_dob" type="date" /></div></div>
+        <div class="form-row"><div class="col"><label>New Password</label><input id="fp_newpw" type="password" /></div><div class="col"><label>Confirm</label><input id="fp_newpw2" type="password" /></div></div>
+        <div style="display:flex;justify-content:flex-end;gap:8px">
+          <button class="btn" data-close>Cancel</button>
+          <button class="btn primary" id="doReset">Reset Password</button>
+        </div>
+      </div>
+    `;
+    const panel = showModal(html);
+    panel.querySelector('#doReset').addEventListener('click', async ()=>{
+      const iden = panel.querySelector('#fp_id').value.trim();
+      const dob = panel.querySelector('#fp_dob').value;
+      const npw = panel.querySelector('#fp_newpw').value;
+      const npw2 = panel.querySelector('#fp_newpw2').value;
+      if(!iden || !dob || !npw){ alert('All fields are required'); return; }
+      const user = findUserByIdentifier(iden);
+      if(!user){ alert('No account found.'); return; }
+      if(user.dob !== dob){ alert('DOB does not match our record.'); return; }
+      if(npw !== npw2){ alert('Passwords do not match'); return; }
+      user.passwordHash = await hashPassword(npw);
+      saveUser(user);
+      alert('Password reset. You can now sign in.');
+      closeModal();
+      openLoginModal();
+    });
+  }
+
+  // --- Folder & Pages operations ---
+  function refreshSidebarFolders(){
+    foldersList.innerHTML = '';
+    if(!currentUser){ countFolders.textContent = '0'; return; }
+    const frags = currentUser.folders || [];
+    countFolders.textContent = frags.length;
+    frags.forEach(f=>{
+      const btn = document.createElement('button');
+      btn.className = 'btn';
+      btn.style.justifyContent = 'space-between';
+      btn.innerHTML = `<span style="text-align:left"><strong>${escapeHtml(f.name)}</strong><div class="small-muted">${(f.pages||[]).length} pages</div></span><span class="small-muted">→</span>`;
+      btn.addEventListener('click', ()=> openFolderView(f.id));
+      foldersList.appendChild(btn);
+    });
+  }
+
+  function refreshDashboard(){
+    folderCards.innerHTML = '';
+    if(!currentUser){
+      folderCards.innerHTML = `<div class="card"><h3>Welcome</h3><p class="small-muted">Please sign in or register to create folders and pages.</p></div>`;
+      quickStats.textContent = 'Folders: 0 • Links: 0';
+      return;
+    }
+    const folders = currentUser.folders || [];
+    let totalLinks = 0;
+    folders.forEach(f=>{
+      totalLinks += countPagesRecursive(f.pages || []);
+      const el = document.createElement('div');
+      el.className = 'card';
+      el.innerHTML = `<h3>${escapeHtml(f.name)}</h3><div class="small-muted">${escapeHtml(f.description || '')}</div>
+        <div style="margin-top:8px" class="folder-actions">
+          <button class="btn" data-id="${f.id}" data-action="open">Open</button>
+          <button class="btn" data-id="${f.id}" data-action="inspect">Inspect</button>
+          <button class="btn" data-id="${f.id}" data-action="rename">Rename</button>
+          <button class="btn danger" data-id="${f.id}" data-action="delete">Delete</button>
+        </div>`;
+      el.querySelectorAll('button').forEach(b=>{
+        b.addEventListener('click', ()=> {
+          const aid = b.getAttribute('data-action');
+          const fid = b.getAttribute('data-id');
+          if(aid === 'open') openFolderView(fid);
+          if(aid === 'inspect') openFolderInspectModal(fid);
+          if(aid === 'rename') openRenameFolderModal(fid);
+          if(aid === 'delete') doDeleteFolder(fid);
+        });
+      });
+      folderCards.appendChild(el);
+    });
+    quickStats.textContent = `Folders: ${folders.length} • Links: ${totalLinks}`;
+  }
+
+  function countPagesRecursive(pages){
+    let c = 0;
+    (pages||[]).forEach(p=>{ c += 1; if(p.children) c += countPagesRecursive(p.children); });
+    return c;
+  }
+
+  function showDashboard(){
+    dashboardView.style.display = '';
+    folderView.style.display = 'none';
+  }
+
+  function openFolderView(folderId){
+    const f = (currentUser && currentUser.folders || []).find(x=>x.id === folderId);
+    if(!f){ alert('Folder not found'); return; }
+    currentFolderId = f.id;
+    folderTitle.textContent = f.name;
+    folderDesc.textContent = f.description || '';
+    renderPagesList(f.pages || []);
+    dashboardView.style.display = 'none';
+    folderView.style.display = '';
+  }
+
+  btnFolderBack.addEventListener('click', ()=> {
+    currentFolderId = null;
+    showDashboard();
+  });
+
+  function renderPagesList(pages){
+    pagesList.innerHTML = '';
+    if(!pages || pages.length === 0){
+      pagesList.innerHTML = '<div class="small-muted">This folder has no pages. Add one to get started.</div>';
+      btnDeleteFolder.style.display = '';
+      return;
+    }
+    function makeRow(page, parentPages){
+      const row = document.createElement('div');
+      row.className = 'link-row';
+      row.innerHTML = `
+        <div class="link-left">
+          <div class="favicon">${escapeHtml(page.title ? page.title.slice(0,1).toUpperCase() : 'P')}</div>
+          <div class="link-meta">
+            <h4>${escapeHtml(page.title)}</h4>
+            <p>${escapeHtml(page.url || '')}</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="btn" data-action="open">Open</button>
+          <button class="btn" data-action="read">Read</button>
+          <button class="btn" data-action="inspect">Inspect</button>
+          <button class="btn" data-action="addchild">+Child</button>
+          <button class="btn danger" data-action="delete">Delete</button>
+        </div>
+      `;
+      row.querySelectorAll('button').forEach(b=>{
+        b.addEventListener('click', ()=>{
+          const action = b.getAttribute('data-action');
+          if(action === 'open') window.open(page.url || '#', '_blank');
+          if(action === 'read') openReadModal(page);
+          if(action === 'inspect') openInspectModal(page, parentPages);
+          if(action === 'addchild') openAddPageModal(currentFolderId, page.id);
+          if(action === 'delete') {
+            if(confirm('Delete this page and all its children?')) {
+              deletePage(currentFolderId, page.id);
+            }
+          }
+        });
+      });
+      pagesList.appendChild(row);
+      if(page.children && page.children.length){
+        page.children.forEach(child => {
+          const indent = document.createElement('div');
+          indent.style.marginLeft = '20px';
+          indent.appendChild(makeRow(child, parentPages.concat([page])));
+          pagesList.appendChild(indent);
+        });
+      }
+      return row;
+    }
+    pages.forEach(p => makeRow(p, []));
+  }
+
+  // CRUD folder
+  navNewFolder.addEventListener('click', ()=> openNewFolderModal());
+  btnQuickAddFolder.addEventListener('click', ()=> openNewFolderModal());
+  function openNewFolderModal(){
+    if(!currentUser){ alert('Please sign in first'); return; }
+    const html = `
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <h2>New Folder</h2>
+        <div><label>Name</label><input id="nf_name" /></div>
+        <div><label>Description (optional)</label><input id="nf_desc" /></div>
+        <div style="display:flex;justify-content:flex-end;gap:8px">
+          <button class="btn" data-close>Cancel</button>
+          <button class="btn primary" id="doNewFolder">Create</button>
+        </div>
+      </div>
+    `;
+    const panel = showModal(html);
+    panel.querySelector('#doNewFolder').addEventListener('click', ()=>{
+      const name = panel.querySelector('#nf_name').value.trim();
+      const desc = panel.querySelector('#nf_desc').value.trim();
+      if(!name){ alert('Name required'); return; }
+      const folder = { id: uid('folder'), name, description: desc, pages: [] };
+      currentUser.folders = currentUser.folders || [];
+      currentUser.folders.push(folder);
+      saveUser(currentUser);
+      closeModal();
+      updateHeader();
+      openFolderView(folder.id);
+    });
+  }
+
+  function openRenameFolderModal(folderId){
+    const f = (currentUser && currentUser.folders || []).find(x=>x.id===folderId);
+    if(!f){ alert('Folder not found'); return; }
+    const html = `<div style="display:flex;flex-direction:column;gap:10px">
+      <h3>Rename Folder</h3>
+      <div><label>Name</label><input id="rn_name" value="${escapeHtmlAttr(f.name)}" /></div>
+      <div><label>Description</label><input id="rn_desc" value="${escapeHtmlAttr(f.description||'')}" /></div>
+      <div style="display:flex;justify-content:flex-end;gap:8px">
+        <button class="btn" data-close>Cancel</button>
+        <button class="btn primary" id="doRename">Save</button>
+      </div>
+    </div>`;
+    const panel = showModal(html);
+    panel.querySelector('#doRename').addEventListener('click', ()=>{
+      f.name = panel.querySelector('#rn_name').value.trim() || f.name;
+      f.description = panel.querySelector('#rn_desc').value.trim();
+      saveUser(currentUser);
+      closeModal();
+      updateHeader();
+      refreshDashboard();
+    });
+  }
+
+  function doDeleteFolder(folderId){
+    if(!currentUser) return;
+    const idx = (currentUser.folders||[]).findIndex(x=>x.id===folderId);
+    if(idx === -1) return alert('Folder not found');
+    if(!confirm('Delete folder and ALL contained pages? This cannot be undone.')) return;
+    currentUser.folders.splice(idx,1);
+    saveUser(currentUser);
+    updateHeader();
+    showDashboard();
+  }
+
+  function openFolderInspectModal(folderId){
+    const f = (currentUser && currentUser.folders || []).find(x=>x.id===folderId);
+    if(!f) return alert('Folder not found');
+    const html = `<div style="display:flex;flex-direction:column;gap:10px">
+      <h3>Inspect Folder</h3>
+      <div><strong>Name:</strong> ${escapeHtml(f.name)}</div>
+      <div><strong>Description:</strong> ${escapeHtml(f.description||'—')}</div>
+      <div><strong>Pages (count):</strong> ${countPagesRecursive(f.pages||[])}</div>
+      <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:8px">
+        <button class="btn" data-close>Close</button>
+      </div>
+    </div>`;
+    showModal(html);
+  }
+
+  // CRUD pages
+  btnQuickAddLink.addEventListener('click', ()=> openAddPageModal());
+  btnAddPage.addEventListener('click', ()=> {
+    if(!currentFolderId){
+      alert('Open a folder first');
+      return;
+    }
+    openAddPageModal(currentFolderId);
+  });
+
+  function openAddPageModal(folderId = null, parentPageId = null){
+    if(!currentUser){ alert('Sign in first'); return; }
+    // if folderId not provided default to choosing one
+    const folders = currentUser.folders || [];
+    if(!folders.length){ alert('No folders exist — create a folder first'); return; }
+    const folderOptions = folders.map(f=>`<option value="${f.id}" ${f.id===folderId?'selected':''}>${escapeHtmlAttr(f.name)}</option>`).join('');
+    const html = `
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <h3>Add Page / Link</h3>
+        <div class="form-row"><div class="col"><label>Folder</label><select id="ap_folder">${folderOptions}</select></div><div class="col"><label>Parent page (optional)</label><input id="ap_parent" placeholder="Paste parent page id or leave blank" /></div></div>
+        <div><label>Title</label><input id="ap_title" /></div>
+        <div><label>URL</label><input id="ap_url" /></div>
+        <div><label>Description (optional)</label><textarea id="ap_desc"></textarea></div>
+        <div style="display:flex;justify-content:flex-end;gap:8px">
+          <button class="btn" data-close>Cancel</button>
+          <button class="btn primary" id="doAddPage">Add Page</button>
+        </div>
+      </div>
+    `;
+    const panel = showModal(html);
+    if(parentPageId) panel.querySelector('#ap_parent').value = parentPageId;
+
+    panel.querySelector('#doAddPage').addEventListener('click', ()=>{
+      const fid = panel.querySelector('#ap_folder').value;
+      const parentId = panel.querySelector('#ap_parent').value.trim() || null;
+      const title = panel.querySelector('#ap_title').value.trim();
+      const url = panel.querySelector('#ap_url').value.trim();
+      const desc = panel.querySelector('#ap_desc').value.trim();
+      if(!title){ alert('Title required'); return; }
+      const page = { id: uid('page'), title, url, description: desc, children: [], createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() };
+      const f = (currentUser.folders||[]).find(x=>x.id===fid);
+      if(!f){ alert('Folder not found'); return; }
+      if(parentId){
+        const parent = findPageById(f.pages || [], parentId);
+        if(!parent){ alert('Parent page id not found in chosen folder'); return; }
+        parent.children = parent.children || [];
+        parent.children.push(page);
+      } else {
+        f.pages = f.pages || [];
+        f.pages.push(page);
+      }
+      saveUser(currentUser);
+      closeModal();
+      if(currentFolderId === f.id) openFolderView(f.id); else updateHeader();
+    });
+  }
+
+  function findPageById(pages, id){
+    if(!pages) return null;
+    for(const p of pages){
+      if(p.id === id) return p;
+      const sub = findPageById(p.children || [], id);
+      if(sub) return sub;
+    }
+    return null;
+  }
+
+  function deletePage(folderId, pageId){
+    const f = (currentUser.folders||[]).find(x=>x.id===folderId);
+    if(!f) return;
+    const deleted = deletePageRecursive(f.pages || [], pageId);
+    if(deleted){
+      saveUser(currentUser);
+      openFolderView(folderId);
+    } else {
+      alert('Page not found');
+    }
+  }
+
+  function deletePageRecursive(pages, pageId){
+    for(let i=0;i<pages.length;i++){
+      if(pages[i].id === pageId){
+        pages.splice(i,1);
+        return true;
+      } else if(pages[i].children && pages[i].children.length){
+        const sub = deletePageRecursive(pages[i].children, pageId);
+        if(sub) return true;
+      }
+    }
+    return false;
+  }
+
+  // Inspect / Read
+  function openReadModal(page){
+    const html = `<div style="display:flex;flex-direction:column;gap:8px">
+      <h3>${escapeHtml(page.title)}</h3>
+      <div class="small-muted">${escapeHtml(page.url || '')}</div>
+      <div style="background:rgba(255,255,255,0.01);padding:10px;border-radius:8px">${escapeHtml(page.description || 'No description')}</div>
+      <div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn" data-close>Close</button><button class="btn primary" onclick="window.open('${escapeForJs(page.url||'#')}', '_blank')">Open Link</button></div>
+    </div>`;
+    showModal(html);
+  }
+
+  function openInspectModal(page, parentPages=[]){
+    const html = `<div style="display:flex;flex-direction:column;gap:8px">
+      <h3>Inspect Page</h3>
+      <div><strong>Title:</strong> ${escapeHtml(page.title)}</div>
+      <div><strong>URL:</strong> <a class="linkish" href="${escapeHtmlAttr(page.url||'#')}" target="_blank">${escapeHtml(page.url||'—')}</a></div>
+      <div><strong>Description:</strong> ${escapeHtml(page.description || '—')}</div>
+      <div><strong>Created:</strong> ${escapeHtml(page.createdAt || '—')}</div>
+      <div><strong>Parent chain:</strong> ${escapeHtml(parentPages.map(p=>p.title).join(' → ') || 'Root')}</div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px">
+        <button class="btn" data-close>Close</button>
+        <button class="btn" id="editPage">Edit</button>
+      </div>
+    </div>`;
+    const panel = showModal(html);
+    panel.querySelector('#editPage').addEventListener('click', ()=>{
+      closeModal();
+      openEditPageModal(currentFolderId, page.id);
+    });
+  }
+
+  function openEditPageModal(folderId, pageId){
+    const f = (currentUser.folders||[]).find(x=>x.id===folderId);
+    if(!f) return alert('Folder not found');
+    const p = findPageById(f.pages||[], pageId);
+    if(!p) return alert('Page not found');
+    const html = `<div style="display:flex;flex-direction:column;gap:10px">
+      <h3>Edit Page</h3>
+      <div><label>Title</label><input id="ep_title" value="${escapeHtmlAttr(p.title)}" /></div>
+      <div><label>URL</label><input id="ep_url" value="${escapeHtmlAttr(p.url||'')}" /></div>
+      <div><label>Description</label><textarea id="ep_desc">${escapeHtml(p.description||'')}</textarea></div>
+      <div style="display:flex;justify-content:flex-end;gap:8px">
+        <button class="btn" data-close>Cancel</button>
+        <button class="btn primary" id="doEditPage">Save</button>
+      </div>
+    </div>`;
+    const panel = showModal(html);
+    panel.querySelector('#doEditPage').addEventListener('click', ()=>{
+      p.title = panel.querySelector('#ep_title').value.trim() || p.title;
+      p.url = panel.querySelector('#ep_url').value.trim();
+      p.description = panel.querySelector('#ep_desc').value.trim();
+      p.updatedAt = new Date().toISOString();
+      saveUser(currentUser);
+      closeModal();
+      openFolderView(folderId);
+    });
+  }
+
+  // open folder inspector in cards
+  function openFolderInspectModal(fid){
+    const f = (currentUser && currentUser.folders || []).find(x=>x.id===fid);
+    if(!f) return;
+    const html = `<div style="display:flex;flex-direction:column;gap:10px">
+      <h3>Folder: ${escapeHtml(f.name)}</h3>
+      <div><strong>ID:</strong> ${escapeHtml(f.id)}</div>
+      <div><strong>Description:</strong> ${escapeHtml(f.description||'—')}</div>
+      <div><strong>Page count:</strong> ${countPagesRecursive(f.pages||[])}</div>
+      <div style="display:flex;gap:8px;justify-content:flex-end">
+        <button class="btn" data-close>Close</button>
+      </div>
+    </div>`;
+    showModal(html);
+  }
+
+  // --- Misc utilities & import/export ---
+  navExport.addEventListener('click', ()=>{
+    if(!currentUser){ alert('Sign in first'); return; }
+    const blob = new Blob([JSON.stringify(currentUser, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url; a.download = `${currentUser.id}_export.json`; a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  navImport.addEventListener('click', ()=>{
+    const html = `<div style="display:flex;flex-direction:column;gap:10px">
+      <h3>Import User JSON</h3>
+      <div><input type="file" id="import_file" accept="application/json" /></div>
+      <div class="small-muted">Importing a user JSON will add the user to local storage. Use with caution.</div>
+      <div style="display:flex;justify-content:flex-end;gap:8px"><button class="btn" data-close>Cancel</button><button class="btn primary" id="doImport">Import</button></div>
+    </div>`;
+    const panel = showModal(html);
+    panel.querySelector('#doImport').addEventListener('click', async ()=>{
+      const f = panel.querySelector('#import_file').files[0];
+      if(!f) return alert('Select file');
+      try {
+        const txt = await readFileAsText(f);
+        const obj = JSON.parse(txt);
+        if(!obj.id) return alert('Invalid user JSON');
+        const existing = getUser(obj.id);
+        if(existing && !confirm('User with same ID exists — overwrite?')) return;
+        const all = readLS();
+        all[obj.id] = obj;
+        writeLS(all);
+        alert('Imported user. You can now sign in with their credentials (if known).');
+        closeModal();
+      }catch(e){ alert('Failed to import: ' + e.message); }
+    });
+  });
+
+  function readFileAsText(file){ return new Promise((res,rej)=>{ const fr=new FileReader(); fr.onload=()=>res(fr.result); fr.onerror=rej; fr.readAsText(file); }); }
+
+  // Search
+  globalSearch.addEventListener('input', (e)=>{
+    const q = e.target.value.trim().toLowerCase();
+    if(!q){ refreshDashboard(); return; }
+    // show matching folders/cards
+    folderCards.innerHTML = '';
+    const folders = (currentUser && currentUser.folders) || [];
+    let total = 0;
+    folders.forEach(f=>{
+      const foundPages = [];
+      function searchPages(pages){
+        for(const p of pages || []){
+          if((p.title||'').toLowerCase().includes(q) || (p.description||'').toLowerCase().includes(q) || (p.url||'').toLowerCase().includes(q)){
+            foundPages.push(p);
+          }
+          if(p.children) searchPages(p.children);
+        }
+      }
+      if((f.name||'').toLowerCase().includes(q) || (f.description||'').toLowerCase().includes(q)){
+        // show folder
+        const el = document.createElement('div'); el.className='card';
+        el.innerHTML = `<h3>${escapeHtml(f.name)}</h3><div class="small-muted">${escapeHtml(f.description||'')}</div><div style="margin-top:8px">${(f.pages||[]).length} pages</div>`;
+        folderCards.appendChild(el);
+      } else {
+        searchPages(f.pages || []);
+        if(foundPages.length){
+          total += foundPages.length;
+          const el = document.createElement('div'); el.className='card';
+          el.innerHTML = `<h3>${escapeHtml(f.name)} <small class="small-muted">(${foundPages.length} matches)</small></h3>`;
+          foundPages.slice(0,6).forEach(p=>{
+            const row = document.createElement('div'); row.className='link-row';
+            row.innerHTML = `<div style="display:flex;gap:8px;align-items:center"><div class="favicon">${escapeHtml(p.title.slice(0,1).toUpperCase())}</div><div><strong>${escapeHtml(p.title)}</strong><div class="small-muted">${escapeHtml(p.url||'')}</div></div></div><div><button class="btn" onclick="window.open('${escapeForJs(p.url||'#')}','_blank')">Open</button></div>`;
+            el.appendChild(row);
+          });
+          folderCards.appendChild(el);
+        }
+      }
+    });
+    if(folderCards.children.length === 0){
+      folderCards.innerHTML = `<div class="card"><div class="small-muted">No results for "${escapeHtml(q)}"</div></div>`;
+    }
+  });
+
+  // helpers to escape
+  function escapeHtml(s=''){ return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+  function escapeHtmlAttr(s=''){ return String(s).replaceAll('"','&quot;').replaceAll("'",'&#39;'); }
+  function escapeForJs(s=''){ return String(s).replaceAll("'", "\\'").replaceAll('"','\\"').replaceAll("\n",'\\n'); }
+
+  // page editing helpers
+  function openEditPageModalFromUI(folderId, pageId){ openEditPageModal(folderId, pageId); }
+
+  // on load: restore session
+  (function bootstrap(){
+    const sid = getSession();
+    if(sid){
+      const u = getUser(sid);
+      if(u) currentUser = u;
+      else setSession(null);
+    }
+    updateHeader();
+    showDashboard();
+  })();
+
+  // small safety: ensure global functions referenced in inline html exist
+  window.openFolderView = openFolderView;
+  window.openAddPageModal = openAddPageModal;
+  window.openReadModal = openReadModal;
+  window.openInspectModal = openInspectModal;
+
+  // expose export for debug (optional)
+  window.__pwm_readLS = readLS;
+
+  // end of app
+})();
+</script>
+</body>
+</html>
