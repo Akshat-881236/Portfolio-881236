@@ -5,55 +5,596 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List in Html</title>
     <style>
-        .Example {
-            display: inline-block;
-            border-color: aquamarine;
-            border: 1px solid aquamarine;
-            padding: 5px;
-            padding-left: 2px;
-            gap: 3px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            margin-top: 2px;
-            border-radius: 2px;
-        }
-        .Example:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 9px 16px rgba(0, 0.30, 0, 0.55);
-        }
-        .program {
-            display: flex;
-            flex-direction: row;
-            gap: 2px;
-        }
-        .code {
-            margin-right: 10px;
-            display: inline-block;
-        }
-        .program .code {
-            background-color: #f4f4f4;
-            padding: 10px;
-            border: 1px solid #ddd;
-            width: 300px;
-            font-family: 'Courier New', Courier, monospace;
-            white-space: pre-wrap;
-        }
-        .output {
-            display: inline-block;
-            padding: 10px;
-            border: 1px solid #ddd;
-            width: 300px;
-            background-color: #f9f9f9;
-        }
-        .logo {
-            display: block;
-            margin: 20px auto;
-        }
-        ul, ol {
-            margin-left: 20px;
-        }
-        ul li, ol li {
-            margin-bottom: 5px;
-        }
+        /* -------------------------------------------------------
+   BASE STYLE (applies to all screens)
+------------------------------------------------------- */
+.Example {
+    display: inline-block;
+    border: 1px solid aquamarine;
+    padding: 5px 2px;
+    gap: 3px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-top: 2px;
+    border-radius: 4px;
+}
+
+.Example:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 9px 16px rgba(0, 0, 0, 0.35);
+}
+
+.program {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.code {
+    display: inline-block;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border: 1px solid #ddd;
+    width: 300px;
+    font-family: 'Courier New', Courier, monospace;
+    white-space: pre-wrap;
+}
+
+.output {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #ddd;
+    width: 300px;
+    background-color: #f9f9f9;
+}
+
+.logo {
+    display: block;
+    margin: 20px auto;
+}
+
+ul, ol { margin-left: 20px; }
+
+ul li, ol li { margin-bottom: 5px; }
+
+
+        /* APPLE THEME — iPhone Experience */
+@media (max-width:480px) {
+    .Example {
+        border: 1px solid #d1d1d6;
+        background:#fafafa;
+        padding:8px;
+        font-family: "SF Pro Display", Arial;
+        border-radius:10px;
+        transition:0.3s ease;
+    }
+    .Example:hover {
+        transform:scale(1.03);
+        box-shadow:0 6px 14px rgba(0,0,0,0.12);
+    }
+
+    .program {
+        flex-direction:column;
+        gap:12px;
+    }
+
+    .code {
+        width:100%;
+        font-family:"SF Mono", monospace;
+        background:#f2f2f7;
+        border-radius:12px;
+        border:1px solid #e1e1e6;
+        padding:14px;
+        font-size:15px;
+    }
+    .output {
+        width:100%;
+        background:#ffffff;
+        border-radius:12px;
+        border:1px solid #e1e1e6;
+        padding:14px;
+    }
+
+    .logo { opacity:0.85; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.15)); }
+}
+
+/* GOOGLE THEME — Pixel Experience */
+@media (min-width:481px) and (max-width:768px) {
+    .Example {
+        border:2px solid #4285f4;
+        background:#e8f0fe;
+        padding:10px;
+        border-radius:8px;
+        font-family:"Roboto", sans-serif;
+        transition:0.25s;
+    }
+    .Example:hover {
+        transform:translateY(-4px);
+        box-shadow:0 10px 20px rgba(66,133,244,0.25);
+    }
+
+    .program { flex-direction:column; gap:14px; }
+
+    .code {
+        width:90%;
+        background:#f1f3f4;
+        border-left:4px solid #4285f4;
+        border-radius:10px;
+        padding:16px;
+        font-family:"Roboto Mono", monospace;
+        font-size:15px;
+    }
+    .output {
+        width:90%;
+        background:#ffffff;
+        border-radius:10px;
+        padding:14px;
+        border:1px solid #dadce0;
+    }
+
+    .logo { filter:hue-rotate(20deg) brightness(1.1); }
+}
+
+/* MICROSOFT THEME — Fluent Desktop */
+@media (min-width:769px) and (max-width:1200px) {
+
+    .Example {
+        border:1px solid #c7e0f4;
+        background:linear-gradient(145deg,#ffffff,#f2f9ff);
+        padding:10px 6px;
+        border-radius:6px;
+        font-family:"Segoe UI", sans-serif;
+        transition:0.25s;
+    }
+    .Example:hover {
+        transform:translateY(-6px);
+        box-shadow:0 12px 24px rgba(0,120,212,0.25);
+    }
+
+    .program { flex-direction:row; gap:18px; }
+
+    .code {
+        width:320px;
+        border-radius:8px;
+        background:#f6fafd;
+        border:1px solid #c7e0f4;
+        padding:16px;
+        font-family:"Cascadia Code", monospace;
+        font-size:15px;
+        box-shadow:inset 0 0 6px rgba(0,0,0,0.05);
+    }
+    .output {
+        width:320px;
+        background:#ffffff;
+        border-radius:8px;
+        padding:16px;
+        border:1px solid #e1e1e1;
+    }
+
+    .logo { opacity:0.9; filter:drop-shadow(0 3px 6px rgba(0,0,0,0.15)); }
+}
+
+/* SAMSUNG THEME — One UI Desktop */
+@media (min-width:1201px) {
+
+    .Example {
+        border:1px solid #dbe7ff;
+        background:#f7faff;
+        padding:12px;
+        border-radius:14px;
+        font-family:"SamsungOne", sans-serif;
+        transition:0.25s;
+        display: inline-block;
+    }
+    .Example:hover {
+        transform:translateY(-8px) scale(1.02);
+        box-shadow:0 14px 28px rgba(0,102,255,0.25);
+    }
+
+    .program { flex-direction:row; gap:20px; }
+
+    .code {
+        width:380px;
+        padding:18px;
+        background:#ffffff;
+        border-radius:16px;
+        border:1px solid #dbe7ff;
+        font-family:"JetBrains Mono", monospace;
+        font-size:16px;
+    }
+    .output {
+        width:380px;
+        background:#fafcff;
+        border-radius:16px;
+        padding:18px;
+        border:1px solid #dbe7ff;
+    }
+
+    .logo { filter:brightness(1.1) drop-shadow(0 3px 8px rgba(0,0,0,0.2)); }
+}
+
+/* -------------------------
+   5) META / FACEBOOK THEME
+   ------------------------- */
+@media (max-width:480px) {
+  /* small phone */
+  .meta-Example{ border:2px solid #1877f2; background:#f0f6ff; padding:8px; border-radius:10px; font-family:"Helvetica Neue",Arial; transition:.22s; }
+  .meta-Example:hover{ transform:translateY(-3px); box-shadow:0 8px 18px rgba(24,119,242,0.12); }
+  .meta-program{ flex-direction:column; gap:10px; }
+  .meta-code,.meta-output{ width:100%; padding:12px; font-size:14px; border-radius:8px; }
+  .meta-code{ background:#fff; border:1px solid #e6f0ff; font-family:"Roboto Mono",monospace; }
+  .meta-output{ background:#f8fbff; border:1px solid #e8f4ff; color:#1c2b45; }
+  .meta-logo{ display:block; margin:12px auto; filter:grayscale(.05); }
+}
+@media (min-width:481px) and (max-width:768px) {
+  .meta-Example{ border:2px solid #1a73e8; background:#eaf3ff; padding:10px; border-radius:10px; font-family:"Roboto",sans-serif; }
+  .meta-program{ flex-direction:column; gap:12px; }
+  .meta-code{ width:92%; padding:14px; background:#fff; border-left:4px solid #1a73e8; font-family:"Roboto Mono",monospace; font-size:15px; }
+  .meta-output{ width:92%; padding:14px; background:#fbfdff; color:#16406a; border-radius:10px; }
+}
+@media (min-width:769px) and (max-width:1200px) {
+  .meta-Example{ border:1px solid #cfe8ff; background:linear-gradient(180deg,#ffffff,#f3fbff); padding:12px; border-radius:8px; font-family:"Segoe UI",sans-serif; display: inline-block;}
+  .meta-program{ flex-direction:row; gap:16px; align-items:flex-start; }
+  .meta-code{ width:320px; padding:16px; background:#fbfeff; border:1px solid #e6f2ff; box-shadow:inset 0 1px 0 rgba(255,255,255,0.6); font-family:"Cascadia Code",monospace; }
+  .meta-output{ width:320px; padding:16px; background:#fff; border:1px solid #e9f4ff; color:#0f2a4a; }
+}
+@media (min-width:1201px) {
+  .meta-Example{ border:1px solid #d9eeff; background:#fff; padding:14px; border-radius:12px; font-family:"Helvetica Neue",sans-serif; display: inline-block; }
+  .meta-program{ flex-direction:row; gap:20px; }
+  .meta-code,.meta-output{ width:380px; padding:18px; font-size:16px; border-radius:12px; }
+  .meta-code{ background:#ffffff; border:1px solid #e6f4ff; }
+  .meta-output{ background:#fafcff; color:#08314e; box-shadow:0 8px 28px rgba(24,119,242,0.06); }
+}
+
+/* -------------------------
+   6) INSTAGRAM THEME
+   ------------------------- */
+@media (max-width:480px) {
+  .ig-Example{ border:1px solid rgba(129,52,175,0.12); background:linear-gradient(135deg,#fff0f6,#fffaf0); padding:8px; border-radius:12px; font-family:"Poppins",sans-serif; }
+  .ig-Example:hover{ transform:scale(1.02); box-shadow:0 8px 20px rgba(129,52,175,0.12); }
+  .ig-program{ flex-direction:column; gap:10px; }
+  .ig-code,.ig-output{ width:100%; padding:12px; font-size:14px; border-radius:10px; }
+  .ig-code{ background:#fff; border:1px solid #f0e9f8; font-family:"JetBrains Mono",monospace; }
+  .ig-output{ background:#fff8fb; border:1px solid #f4e7f5; color:#3a2b3a; }
+}
+@media (min-width:481px) and (max-width:768px) {
+  .ig-Example{ border:2px solid #8134af; background:linear-gradient(135deg,#fff,#fff6ff); padding:10px; border-radius:14px; }
+  .ig-program{ flex-direction:column; gap:14px; }
+  .ig-code{ width:90%; padding:16px; font-family:"Fira Code",monospace; background:#fff; border-radius:12px; box-shadow:0 6px 18px rgba(129,52,175,0.06); }
+  .ig-output{ width:90%; padding:14px; background:#fff6fb; }
+}
+@media (min-width:769px) and (max-width:1200px) {
+  .ig-Example{ background:linear-gradient(135deg,#fff,#fff8ff); border-radius:14px; padding:14px; border:1px solid rgba(129,52,175,0.06); display: inline-block;}
+  .ig-program{ flex-direction:row; gap:16px; }
+  .ig-code{ width:320px; background:#fff; padding:18px; border-radius:14px; font-size:15px; font-family:"Cascadia Code",monospace; }
+  .ig-output{ width:320px; background:#fff8fb; padding:18px; }
+}
+@media (min-width:1201px) {
+  .ig-Example{ padding:18px; border-radius:16px; background:linear-gradient(135deg,#fff,#fff9ff); border:1px solid rgba(129,52,175,0.08); display: inline-block; }
+  .ig-program{ gap:20px; }
+  .ig-code,.ig-output{ width:380px; padding:20px; border-radius:16px; font-size:16px; }
+  .ig-code{ box-shadow:0 10px 34px rgba(129,52,175,0.08); }
+}
+
+/* -------------------------
+   7) TWITTER / X THEME
+   ------------------------- */
+@media (max-width:480px) {
+  .x-Example{ border:1px solid rgba(29,161,242,0.14); background:#f2fbff; padding:8px; border-radius:8px; font-family:"Inter",sans-serif; }
+  .x-Example:hover{ transform:translateY(-3px); box-shadow:0 8px 18px rgba(29,161,242,0.12); }
+  .x-program{ flex-direction:column; gap:8px; }
+  .x-code,.x-output{ width:100%; padding:12px; font-size:14px; }
+  .x-code{ background:#f7fbff; border:1px solid #e6f7ff; font-family:"Source Code Pro",monospace; }
+  .x-output{ background:#fff; color:#042033; }
+}
+@media (min-width:481px) and (max-width:768px) {
+  .x-Example{ border:2px solid #1da1f2; background:linear-gradient(180deg,#f8fdff,#ffffff); padding:12px; border-radius:10px; }
+  .x-program{ flex-direction:column; gap:12px; }
+  .x-code{ width:92%; padding:14px; font-size:15px; border-radius:10px; box-shadow:inset 0 1px 0 rgba(0,0,0,0.02); }
+  .x-output{ width:92%; padding:14px; background:#ffffff; border:1px solid #e6f5fc; }
+}
+@media (min-width:769px) and (max-width:1200px) {
+  .x-Example{ padding:14px; border-radius:12px; background:#ffffff; border:1px solid #eaf6ff; display: inline-block; }
+  .x-program{ flex-direction:row; gap:16px; }
+  .x-code{ width:320px; padding:16px; background:#f6fbff; font-family:"Cascadia Code",monospace; }
+  .x-output{ width:320px; padding:16px; background:#fff; }
+}
+@media (min-width:1201px) {
+  .x-Example{ padding:18px; border-radius:14px; background:#ffffff; box-shadow:0 10px 36px rgba(29,161,242,0.06); display: inline-block; }
+  .x-program{ gap:20px; }
+  .x-code,.x-output{ width:380px; padding:18px; font-size:16px; }
+}
+
+/* -------------------------
+   8) AMAZON THEME
+   ------------------------- */
+@media (max-width:480px) {
+  .amz-Example{ border:1px solid rgba(255,153,0,0.16); background:#fffaf6; padding:8px; border-radius:10px; font-family:Arial,Helvetica; }
+  .amz-Example:hover{ transform:translateY(-3px); box-shadow:0 8px 18px rgba(255,153,0,0.12); }
+  .amz-program{ flex-direction:column; gap:8px; }
+  .amz-code,.amz-output{ width:100%; padding:12px; font-size:14px; }
+  .amz-code{ background:#fff; border:1px solid #f5e9d6; font-family:"Roboto Mono",monospace; }
+  .amz-output{ background:#fff7ef; color:#2b2b2b; }
+}
+@media (min-width:481px) and (max-width:768px) {
+  .amz-Example{ border:2px solid #ff9900; background:linear-gradient(180deg,#fffaf0,#fff); padding:10px; border-radius:12px; }
+  .amz-program{ gap:12px; }
+  .amz-code{ width:90%; padding:14px; border-left:4px solid #ff9900; font-size:15px; }
+  .amz-output{ width:90%; padding:14px; background:#fff7ef; }
+}
+@media (min-width:769px) and (max-width:1200px) {
+  .amz-Example{ padding:14px; border-radius:12px; background:#fff; border:1px solid #fff0e6; display: inline-block;}
+  .amz-program{ flex-direction:row; gap:16px; }
+  .amz-code{ width:320px; padding:16px; background:#fff; border:1px solid #f3e7d0; }
+  .amz-output{ width:320px; padding:16px; background:#fff7f0; }
+}
+@media (min-width:1201px) {
+  .amz-Example{ padding:18px; border-radius:14px; display: inline-block; }
+  .amz-program{ gap:20px; }
+  .amz-code,.amz-output{ width:380px; padding:18px; font-size:16px; }
+}
+
+/* -------------------------
+   9) NETFLIX THEME
+   ------------------------- */
+@media (max-width:480px) {
+  .nf-Example{ border:1px solid rgba(229,9,20,0.12); background:#fff6f6; padding:8px; border-radius:8px; font-family:"Montserrat",sans-serif; }
+  .nf-Example:hover{ transform:scale(1.02); box-shadow:0 8px 18px rgba(229,9,20,0.12); }
+  .nf-program{ flex-direction:column; gap:8px; }
+  .nf-code,.nf-output{ width:100%; padding:12px; }
+  .nf-code{ background:#fff; border:1px solid #ffeaea; font-family:"Courier New",monospace; }
+  .nf-output{ background:#fff9f9; color:#2b2b2b; }
+}
+@media (min-width:481px) and (max-width:768px) {
+  .nf-Example{ border:2px solid #e50914; background:linear-gradient(180deg,#fff,#fff6f6); padding:10px; border-radius:10px; }
+  .nf-program{ gap:12px; }
+  .nf-code{ width:90%; padding:14px; font-size:15px; background:#fff; border-left:4px solid #e50914; }
+  .nf-output{ width:90%; padding:14px; background:#fff6f6; }
+}
+@media (min-width:769px) and (max-width:1200px) {
+  .nf-Example{ padding:14px; border-radius:12px; background:#0f0f0f; color:#fff; border:1px solid #2a2a2a; display: inline-block;}
+  .nf-program{ flex-direction:row; gap:16px; }
+  .nf-code{ width:320px; padding:16px; background:#111; color:#ffdede; border-radius:8px; }
+  .nf-output{ width:320px; padding:16px; background:#121212; color:#fff; }
+}
+@media (min-width:1201px) {
+  .nf-Example{ padding:18px; border-radius:14px; background:#0f0f0f; box-shadow:0 12px 44px rgba(229,9,20,0.06); display: inline-block;}
+  .nf-program{ gap:20px; }
+  .nf-code,.nf-output{ width:380px; padding:18px; font-size:16px; }
+}
+
+/* -------------------------
+   10) SPOTIFY THEME
+   ------------------------- */
+@media (max-width:480px) {
+  .sp-Example{ border:1px solid rgba(29,185,84,0.12); background:#f3fff6; padding:8px; border-radius:10px; font-family:"Circular",Arial; }
+  .sp-Example:hover{ transform:translateY(-3px); box-shadow:0 8px 18px rgba(29,185,84,0.12); }
+  .sp-program{ flex-direction:column; gap:8px; }
+  .sp-code,.sp-output{ width:100%; padding:12px; }
+  .sp-code{ background:#f8fff9; border:1px solid #e6f9ea; font-family:"Monaco",monospace; }
+  .sp-output{ background:#f0fff4; color:#052414; }
+}
+@media (min-width:481px) and (max-width:768px) {
+  .sp-Example{ border:2px solid #1db954; background:linear-gradient(180deg,#f6fff5,#fff); padding:10px; border-radius:12px; }
+  .sp-program{ gap:12px; }
+  .sp-code{ width:92%; padding:14px; font-size:15px; border-left:4px solid #1db954; }
+  .sp-output{ width:92%; padding:14px; background:#f7fff7; }
+}
+@media (min-width:769px) and (max-width:1200px) {
+  .sp-Example{ padding:14px; border-radius:12px; background:#07100a; color:#c8f7d2; display: inline-block; }
+  .sp-program{ flex-direction:row; gap:16px; }
+  .sp-code{ width:320px; padding:16px; background:#08110b; color:#bff0c9; border-radius:10px; }
+  .sp-output{ width:320px; padding:16px; background:#07100a; color:#d1f7d6; }
+}
+@media (min-width:1201px) {
+  .sp-Example{ padding:18px; border-radius:14px; background:#0b0b0b; box-shadow:0 12px 40px rgba(29,185,84,0.06); display: inline-block; }
+  .sp-program{ gap:20px; }
+  .sp-code,.sp-output{ width:380px; padding:18px; font-size:16px; }
+}
+
+/* -------------------------
+   11) ADOBE THEME
+   ------------------------- */
+@media (max-width:480px) {
+  .ad-Example{ border:1px solid rgba(255,0,0,0.12); background:#fff7f7; padding:8px; border-radius:8px; font-family:"Source Sans Pro",Arial; }
+  .ad-Example:hover{ transform:scale(1.02); box-shadow:0 8px 18px rgba(255,0,0,0.12); }
+  .ad-program{ flex-direction:column; gap:8px; }
+  .ad-code,.ad-output{ width:100%; padding:12px; }
+  .ad-code{ background:#fff; border:1px solid #fbecec; font-family:"Courier New",monospace; }
+  .ad-output{ background:#fff7f7; color:#2b2b2b; }
+}
+@media (min-width:481px) and (max-width:768px) {
+  .ad-Example{ border:2px solid #ff0000; background:linear-gradient(180deg,#fff6f6,#fff); padding:10px; border-radius:10px; }
+  .ad-program{ gap:12px; }
+  .ad-code{ width:92%; padding:14px; border-left:4px solid #ff0000; }
+  .ad-output{ width:92%; padding:14px; }
+}
+@media (min-width:769px) and (max-width:1200px) {
+  .ad-Example{ padding:14px; border-radius:12px; background:#fff; display: inline-block;}
+  .ad-program{ flex-direction:row; gap:16px; }
+  .ad-code{ width:320px; padding:16px; background:#111; color:#ffdede; border-radius:10px; }
+  .ad-output{ width:320px; padding:16px; background:#fff; color:#2b2b2b; }
+}
+@media (min-width:1201px) {
+  .ad-Example{ padding:18px; border-radius:14px; display: inline-block; }
+  .ad-program{ gap:20px; }
+  .ad-code,.ad-output{ width:380px; padding:18px; font-size:16px; }
+}
+
+/* -------------------------
+   12) TESLA THEME
+   ------------------------- */
+@media (max-width:480px) {
+  .ts-Example{ border:1px solid rgba(232,33,39,0.12); background:#fff6f6; padding:8px; border-radius:10px; font-family:"Gotham",Arial; }
+  .ts-Example:hover{ transform:translateY(-3px); box-shadow:0 8px 18px rgba(232,33,39,0.12); }
+  .ts-program{ flex-direction:column; gap:8px; }
+  .ts-code,.ts-output{ width:100%; padding:12px; }
+  .ts-code{ background:#fff; border:1px solid #fdecec; font-family:"Cascadia Code",monospace; }
+  .ts-output{ background:#fff6f6; color:#2b2b2b; }
+}
+@media (min-width:481px) and (max-width:768px) {
+  .ts-Example{ border:2px solid #e82127; background:linear-gradient(180deg,#fff,#fff6f6); padding:10px; border-radius:12px; }
+  .ts-program{ gap:12px; }
+  .ts-code{ width:92%; padding:14px; border-left:4px solid #e82127; }
+  .ts-output{ width:92%; padding:14px; }
+}
+@media (min-width:769px) and (max-width:1200px) {
+  .ts-Example{ padding:14px; border-radius:12px; background:#0b0b0b; color:#fff; display: inline-block; }
+  .ts-program{ flex-direction:row; gap:16px; }
+  .ts-code{ width:320px; padding:16px; background:#111; color:#ffddd5; border-radius:10px; }
+  .ts-output{ width:320px; padding:16px; background:#0f0f0f; }
+}
+@media (min-width:1201px) {
+  .ts-Example{ padding:18px; border-radius:14px; background:#0b0b0b; box-shadow:0 12px 44px rgba(232,33,39,0.06); display: inline-block; }
+  .ts-program{ gap:20px; }
+  .ts-code,.ts-output{ width:380px; padding:18px; font-size:16px; }
+}
+
+/* -------------------------
+   13) COCA-COLA THEME
+   ------------------------- */
+@media (max-width:480px) {
+  .cc-Example{ border:1px solid rgba(225,16,0,0.12); background:#fff6f6; padding:8px; border-radius:8px; font-family:"Lato",Arial; }
+  .cc-Example:hover{ transform:scale(1.02); box-shadow:0 8px 18px rgba(225,16,0,0.12); }
+  .cc-program{ flex-direction:column; gap:8px; }
+  .cc-code,.cc-output{ width:100%; padding:12px; }
+  .cc-code{ background:#fff; border:1px solid #fdecec; font-family:"Courier New",monospace; }
+  .cc-output{ background:#fff7f7; }
+}
+@media (min-width:481px) and (max-width:768px) {
+  .cc-Example{ border:2px solid #e10600; padding:10px; border-radius:10px; background:linear-gradient(180deg,#fff,#fff6f6); }
+  .cc-program{ gap:12px; }
+  .cc-code{ width:92%; padding:14px; border-left:4px solid #e10600; }
+  .cc-output{ width:92%; padding:14px; }
+}
+@media (min-width:769px) and (max-width:1200px) {
+  .cc-Example{ padding:14px; border-radius:12px; background:#fff; display: inline-block; }
+  .cc-program{ flex-direction:row; gap:16px; }
+  .cc-code{ width:320px; padding:16px; background:#111; color:#ffdede; border-radius:10px; }
+  .cc-output{ width:320px; padding:16px; }
+}
+@media (min-width:1201px) {
+  .cc-Example{ padding:18px; border-radius:14px; display: inline-block; }
+  .cc-program{ gap:20px; }
+  .cc-code,.cc-output{ width:380px; padding:18px; font-size:16px; }
+}
+
+/* -------------------------
+   14) NIKE THEME
+   ------------------------- */
+@media (max-width:480px) {
+  .nk-Example{ border:1px solid rgba(0,0,0,0.12); background:#ffffff; padding:8px; border-radius:8px; font-family:"Helvetica Neue",Arial; }
+  .nk-Example:hover{ transform:translateY(-3px); box-shadow:0 8px 18px rgba(0,0,0,0.12); }
+  .nk-program{ flex-direction:column; gap:8px; }
+  .nk-code,.nk-output{ width:100%; padding:12px; }
+  .nk-code{ background:#fcfcfc; border:1px solid #efefef; font-family:"Roboto Mono",monospace; }
+  .nk-output{ background:#fff; color:#111; }
+}
+@media (min-width:481px) and (max-width:768px) {
+  .nk-Example{ border:2px solid #111; padding:10px; border-radius:10px; }
+  .nk-program{ gap:12px; }
+  .nk-code{ width:92%; padding:14px; border-left:4px solid #111; }
+  .nk-output{ width:92%; padding:14px; }
+}
+@media (min-width:769px) and (max-width:1200px) {
+  .nk-Example{ padding:14px; border-radius:12px; background:#fff; display: inline-block; }
+  .nk-program{ flex-direction:row; gap:16px; }
+  .nk-code{ width:320px; padding:16px; background:#f5f5f5; border-radius:8px; }
+  .nk-output{ width:320px; padding:16px; }
+}
+@media (min-width:1201px) {
+  .nk-Example{ padding:18px; border-radius:14px; display: inline-block;}
+  .nk-program{ gap:20px; }
+  .nk-code,.nk-output{ width:380px; padding:18px; font-size:16px; }
+}
+
+/* -------------------------
+   15) BMW THEME
+   ------------------------- */
+@media (max-width:480px) {
+  .bm-Example{ border:1px solid rgba(46,139,255,0.12); background:#f3f7ff; padding:8px; border-radius:10px; font-family:"Inter",Arial; }
+  .bm-program{ flex-direction:column; gap:8px; }
+  .bm-code,.bm-output{ width:100%; padding:12px; }
+  .bm-code{ background:#fff; border:1px solid #eaf3ff; font-family:"Fira Code",monospace; }
+  .bm-output{ background:#f7fbff; color:#04233f; }
+}
+@media (min-width:481px) and (max-width:768px) {
+  .bm-Example{ border:2px solid #2e8bff; padding:10px; border-radius:12px; background:linear-gradient(180deg,#fff,#f4fbff); }
+  .bm-program{ gap:12px; }
+  .bm-code{ width:92%; padding:14px; }
+  .bm-output{ width:92%; padding:14px; }
+}
+@media (min-width:769px) and (max-width:1200px) {
+  .bm-Example{ padding:14px; background:#07102a; color:#eaf2ff; border-radius:12px; display: inline-block; }
+  .bm-program{ flex-direction:row; gap:16px; }
+  .bm-code{ width:320px; padding:16px; background:#081424; color:#cfe6ff; border-radius:10px; }
+  .bm-output{ width:320px; padding:16px; background:#0b253a; color:#eaf2ff; }
+}
+@media (min-width:1201px) {
+  .bm-Example{ padding:18px; border-radius:14px; display: inline-block; }
+  .bm-program{ gap:20px; }
+  .bm-code,.bm-output{ width:380px; padding:18px; font-size:16px; }
+}
+
+/* -------------------------
+   16) LG THEME
+   ------------------------- */
+@media (max-width:480px) {
+  .lg-Example{ border:1px solid rgba(194,24,91,0.12); background:#fff6f9; padding:8px; border-radius:10px; font-family:"Noto Sans",Arial; }
+  .lg-program{ flex-direction:column; gap:8px; }
+  .lg-code,.lg-output{ width:100%; padding:12px; }
+  .lg-code{ background:#fff; border:1px solid #fde6ef; font-family:"Inconsolata",monospace; }
+  .lg-output{ background:#fff7f8; color:#4a2130; }
+}
+@media (min-width:481px) and (max-width:768px) {
+  .lg-Example{ border:2px solid #c2185b; padding:10px; border-radius:12px; }
+  .lg-program{ gap:12px; }
+  .lg-code{ width:92%; padding:14px; }
+  .lg-output{ width:92%; padding:14px; }
+}
+@media (min-width:769px) and (max-width:1200px) {
+  .lg-Example{ padding:14px; border-radius:12px; background:#fff; display: inline-block;}
+  .lg-program{ flex-direction:row; gap:16px; }
+  .lg-code{ width:320px; padding:16px; background:#fff7f5; color:#4a2130; border-radius:10px; }
+  .lg-output{ width:320px; padding:16px; }
+}
+@media (min-width:1201px) {
+  .lg-Example{ padding:18px; border-radius:14px; display: inline-block; }
+  .lg-program{ gap:20px; }
+  .lg-code,.lg-output{ width:380px; padding:18px; font-size:16px; }
+}
+
+/* -------------------------
+   17) PEPSI THEME
+   ------------------------- */
+@media (max-width:480px) {
+  .pe-Example{ border:1px solid rgba(0,75,147,0.12); background:#f3f8ff; padding:8px; border-radius:10px; font-family:"Poppins",Arial; }
+  .pe-program{ flex-direction:column; gap:8px; }
+  .pe-code,.pe-output{ width:100%; padding:12px; }
+  .pe-code{ background:#fff; border:1px solid #e6f2ff; font-family:"JetBrains Mono",monospace; }
+  .pe-output{ background:#fff; color:#0b233d; }
+}
+@media (min-width:481px) and (max-width:768px) {
+  .pe-Example{ border:2px solid #004b93; padding:10px; border-radius:12px; background:linear-gradient(180deg,#f7fbff,#fff); }
+  .pe-program{ gap:12px; }
+  .pe-code{ width:92%; padding:14px; border-left:4px solid #004b93; }
+  .pe-output{ width:92%; padding:14px; }
+}
+@media (min-width:769px) and (max-width:1200px) {
+  .pe-Example{ padding:14px; border-radius:12px; background:linear-gradient(135deg,#004b93,#d9222a); color:#fff; display: inline-block; }
+  .pe-program{ flex-direction:row; gap:16px; }
+  .pe-code{ width:320px; padding:16px; background:#0b2440; color:#e6f4ff; border-radius:10px; }
+  .pe-output{ width:320px; padding:16px; background:#fff; color:#0b233d; }
+}
+@media (min-width:1201px) {
+  .pe-Example{ padding:18px; border-radius:14px; background:linear-gradient(135deg,#004b93,#d9222a); color:#fff; box-shadow:0 12px 40px rgba(0,75,147,0.09); display: inline-block; }
+  .pe-program{ gap:20px; }
+  .pe-code{ width:380px; padding:18px; font-size:16px; background:#0b2440; color:#e6f4ff; border-radius:12px; }
+  .pe-output{ width:380px; padding:18px; font-size:16px; background:#ffffff; color:#0b233d; border-radius:12px; }
+}
+[class$="-Example"] ul, [class$="-Example"] ol { margin-left:18px; }
+[class$="-Example"] ul li, [class$="-Example"] ol li { margin-bottom:6px; }
+[class$="-Example"] .logo { display:block; margin:18px auto; }
+
     </style>
     <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -70,10 +611,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
     <h3>Write a program in HTML to demonstrate Order List</h3>
     <p><b>&lt;ol&gt;</b> tag is used to show order list follow by numeric list (i.e., 1. / i. / A. ) . The closing tag is <b>&lt;/ol&gt;</b> .</p>
-    <div class="Example">
+    <div class="meta-Example">
         <h3>Order List using 1 , 2 , 3 , ....</h3>
-        <div class="program">
-            <div class="code">
+        <div class="meta-program">
+            <div class="meta-code">
                 <pre>
 Code :
 &lt;ol&gt; 
@@ -83,7 +624,7 @@ Code :
 &lt;/ol&gt; 
                 </pre>
             </div>
-            <div class="output">
+            <div class="meta-output">
                 <p>Output :</p>
                     <ol> 
                       <li> Item 1 </li>
@@ -93,10 +634,10 @@ Code :
             </div>
         </div>
     </div>
-    <div class="Example">
+    <div class="meta-Example">
         <h3>Order List using i , ii , iii , ....</h3>
-        <div class="program">
-            <div class="code">
+        <div class="meta-program">
+            <div class="meta-code">
                 <pre>
 Code :
 &lt;ol type="i"&gt; 
@@ -106,7 +647,7 @@ Code :
 &lt;/ol&gt; 
                 </pre>
             </div>
-            <div class="output">
+            <div class="meta-output">
                 <p>Output :</p>
                     <ol type="i"> 
                       <li> Item 1 </li>
@@ -116,10 +657,10 @@ Code :
             </div>
         </div>
     </div>
-    <div class="Example">
+    <div class="meta-Example">
         <h3>Order List using A , B , C , ....</h3>
-        <div class="program">
-            <div class="code">
+        <div class="meta-program">
+            <div class="meta-code">
                 <pre>
 Code :
 &lt;ol type="A"&gt; 
@@ -129,7 +670,7 @@ Code :
 &lt;/ol&gt; 
                 </pre>
             </div>
-            <div class="output">
+            <div class="meta-output">
                 <p>Output :</p>
                     <ol type="A"> 
                       <li> Item 1 </li>
@@ -139,10 +680,10 @@ Code :
             </div>
         </div>
     </div>
-    <div class="Example">
+    <div class="meta-Example">
         <h3>Order List using I , II , III , ....</h3>
-        <div class="program">
-            <div class="code">
+        <div class="meta-program">
+            <div class="meta-code">
                 <pre>
 Code :
 &lt;ol type="I"&gt; 
@@ -152,7 +693,7 @@ Code :
 &lt;/ol&gt; 
                 </pre>
             </div>
-            <div class="output">
+            <div class="meta-output">
                 <p>Output :</p>
                     <ol type="I"> 
                       <li> Item 1 </li>
@@ -162,10 +703,10 @@ Code :
             </div>
         </div>
     </div>
-    <div class="Example">
+    <div class="meta-Example">
         <h3>Order List using a , b , c , ....</h3>
-        <div class="program">
-            <div class="code">
+        <div class="meta-program">
+            <div class="meta-code">
                 <pre>
 Code :
 &lt;ol type="a"&gt; 
@@ -175,7 +716,7 @@ Code :
 &lt;/ol&gt; 
                 </pre>
             </div>
-            <div class="output">
+            <div class="meta-output">
                 <p>Output :</p>
                     <ol type="a"> 
                       <li> Item 1 </li>
@@ -185,10 +726,10 @@ Code :
             </div>
         </div>
     </div>
-    <div class="Example">
+    <div class="meta-Example">
         <h3>Order List using Custom Start Value</h3>
-        <div class="program">
-            <div class="code">
+        <div class="meta-program">
+            <div class="meta-code">
                 <pre>
 Code :
 &lt;ol start="5"&gt; 
@@ -198,7 +739,7 @@ Code :
 &lt;/ol&gt; 
                 </pre>
             </div>
-            <div class="output">
+            <div class="meta-output">
                 <p>Output :</p>
                     <ol start="5"> 
                       <li> Item 1 </li>
@@ -208,10 +749,10 @@ Code :
             </div>
         </div>  
     </div>
-    <div class="Example">
+    <div class="meta-Example">
         <h3>Order List using Nested List</h3>
-        <div class="program">
-            <div class="code">
+        <div class="meta-program">
+            <div class="meta-code">
                 <pre>
 Code :
 &lt;ol&gt; 
@@ -226,7 +767,7 @@ Code :
 &lt;/ol&gt;
                 </pre>
             </div>
-            <div class="output">
+            <div class="meta-output">
                 <p>Output :</p>
                     <ol> 
                       <li> Item 1
@@ -241,10 +782,10 @@ Code :
             </div>
         </div>  
     </div>
-    <div class="Example">
+    <div class="meta-Example">
         <h3>Order List using Custom Values</h3>
-        <div class="program">
-            <div class="code">
+        <div class="meta-program">
+            <div class="meta-code">
                 <pre>
 Code :
 &lt;ol&gt; 
@@ -254,7 +795,7 @@ Code :
 &lt;/ol&gt;
                 </pre>
             </div>
-            <div class="output">
+            <div class="meta-output">
                 <p>Output :</p>
                     <ol> 
                       <li value="10"> Item 1 </li>
@@ -266,10 +807,10 @@ Code :
     </div>
     <h3> Write a program in HTML to demonstrate Unordered List</h3>
     <p><b>&lt;ul&gt;</b> tag is used to show unordered list follow by bullet points. The closing tag is <b>&lt;/ul&gt;</b> .</p>
-    <div class="Example">
+    <div class="meta-Example">
         <h3>Unordered List using Bullet Points</h3>
-        <div class="program">
-            <div class="code">
+        <div class="meta-program">
+            <div class="meta-code">
                 <pre>
 Code :
 &lt;ul&gt; 
@@ -279,7 +820,7 @@ Code :
 &lt;/ul&gt; 
                 </pre>
             </div>
-            <div class="output">
+            <div class="meta-output">
                 <p>Output :</p>
                     <ul> 
                       <li> Item 1 </li>
@@ -289,10 +830,10 @@ Code :
             </div>
         </div>
     </div>
-    <div class="Example">
+    <div class="meta-Example">
         <h3>Unordered List using Different Bullet Styles</h3>
-        <div class="program">
-            <div class="code">
+        <div class="meta-program">
+            <div class="meta-code">
                 <pre>
 Code :
 &lt;ul style="list-style-type:circle;"&gt; 
@@ -302,7 +843,7 @@ Code :
 &lt;/ul&gt; 
                 </pre>
             </div>
-            <div class="output">
+            <div class="meta-output">
                 <p>Output :</p>
                     <ul style="list-style-type:circle;"> 
                       <li> Item 1 </li>
@@ -312,10 +853,10 @@ Code :
             </div>
         </div>
     </div>
-    <div class="Example">
+    <div class="meta-Example">
         <h3>Unordered List using Nested List</h3>
-        <div class="program">
-            <div class="code">
+        <div class="meta-program">
+            <div class="meta-code">
                 <pre>
 Code :
 &lt;ul&gt; 
@@ -330,7 +871,7 @@ Code :
 &lt;/ul&gt;
                 </pre>
             </div>
-            <div class="output">
+            <div class="meta-output">
                 <p>Output :</p>
                     <ul> 
                       <li> Item 1
@@ -345,22 +886,22 @@ Code :
             </div>
         </div>
     </div>
-    <div class="Example">
+    <div class="meta-Example">
         <h3>Unordered List using Custom Bullet Images</h3>
-        <div class="program">
-            <div class="code">
+        <div class="meta-program">
+            <div class="meta-code">
                 <pre>
 Code :
-&lt;ul style="list-style-image:url('bullet.png');"&gt; 
+&lt;ul style="list-style-image:url('');"&gt; 
     &lt;li&gt; Item 1 &lt;/li&gt;
     &lt;li&gt; Item 2 &lt;/li&gt;
     &lt;li&gt; Item 3 &lt;/li&gt;
 &lt;/ul&gt; 
                 </pre>
             </div>
-            <div class="output">
+            <div class="meta-output">
                 <p>Output :</p>
-                    <ul style="list-style-image:url('https://upload.wikimedia.org/wikipedia/commons/7/72/Smiley_face.png');">
+                    <ul style="list-style-image:url('');">
                       <li> Item 1 </li>
                       <li> Item 2 </li>
                       <li> Item 3 </li>
@@ -368,10 +909,10 @@ Code :
             </div>
         </div>
     </div>
-    <div class="Example">
+    <div class="meta-Example">
         <h3>Unordered List using Different Bullet Styles</h3>
-        <div class="program">
-            <div class="code">
+        <div class="meta-program">
+            <div class="meta-code">
                 <pre>
 Code :
 &lt;ul style="list-style-type:square;"&gt;
@@ -381,7 +922,7 @@ Code :
 &lt;/ul&gt; 
                 </pre>
             </div>
-            <div class="output">
+            <div class="meta-output">
                 <p>Output :</p>
                     <ul style="list-style-type:square;"> 
                       <li> Item 1 </li>
@@ -391,10 +932,10 @@ Code :
             </div>
         </div>
     </div>
-    <div class="Example">
+    <div class="meta-Example">
         <h3>Unordered List using Custom Start Value</h3>
-        <div class="program">
-            <div class="code">
+        <div class="meta-program">
+            <div class="meta-code">
                 <pre>
 Code :
 &lt;ul type="A"&gt; 
@@ -404,7 +945,7 @@ Code :
 &lt;/ul&gt; 
                 </pre>
             </div>
-            <div class="output">
+            <div class="meta-output">
                 <p>Output :</p>
                     <ul type="A"> 
                       <li> Item 1 </li>
@@ -414,10 +955,10 @@ Code :
             </div>
         </div>  
     </div>
-    <div class="Example">
+    <div class="meta-Example">
         <h3>Unordered List using Custom Values</h3>
-        <div class="program">
-            <div class="code">
+        <div class="meta-program">
+            <div class="meta-code">
                 <pre>
 Code :
 &lt;ul&gt; 
@@ -427,7 +968,7 @@ Code :
 &lt;/ul&gt;
                 </pre>
             </div>
-            <div class="output">
+            <div class="meta-output">
                 <p>Output :</p>
                     <ul> 
                       <li value="10"> Item 1 </li>
@@ -437,10 +978,10 @@ Code :
             </div>
         </div>
     </div>
-    <div class="Example">
+    <div class="meta-Example">
         <h3>Combination of Ordered and Unordered List</h3>
-        <div class="program">
-            <div class="code">
+        <div class="meta-program">
+            <div class="meta-code">
                 <pre>
 Code :
 &lt;ol&gt; 
@@ -455,7 +996,7 @@ Code :
 &lt;/ol&gt;
                 </pre>
             </div>
-            <div class="output">
+            <div class="meta-output">
                 <p>Output :</p>
                     <ol> 
                       <li> Item 1
