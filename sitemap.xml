@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- Portfolio Website -->
+  <url>
+    <loc>https://akshat-881236.github.io/Portfolio-881236/</loc>
+    <priority>1.00</priority>
+  </url>
 
-<url>
-  <loc>https://akshat-881236.github.io/Portfolio-881236/</loc>
-  <lastmod>2025-12-01T14:30:10+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://akshat-881236.github.io/Portfolio-881236/feedback.htm</loc>
-  <lastmod>2025-12-01T14:30:10+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
+  <!-- GitHub Repository (static reference) -->
+  <url>
+    <loc>https://github.com/Akshat-881236/Key-of-Success</loc>
+    <priority>0.80</priority>
+  </url>
 
+  <!-- Quizzone App -->
+  <url>
+    <loc>https://akshat-881236.github.io/Quizzone/</loc>
+    <priority>0.90</priority>
+  </url>
 
 </urlset>
