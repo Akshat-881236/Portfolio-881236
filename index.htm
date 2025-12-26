@@ -18,7 +18,22 @@
     <meta name="theme-color" content="#007bff" />
     <meta name="student-ID" content="881238" />
     <meta name="google-site-verification" content="Kp1gscirNuecI5_9R4LDkE5ql4w4zt0NmneiPktuMu4" />
+    <link rel="canonical" href="https://akshat-881236.github.io/sitemapjs/" />
+    <!-- ===== AUTHOR & NETWORK AUTHORITY ===== -->
+<meta name="author" content="Akshat Prasad">
+<meta name="creator" content="Akshat Prasad">
+<meta name="publisher" content="Akshat Prasad">
 
+<link rel="canonical" href="https://akshat-881236.github.io/Portfolio-881236/">
+<link rel="index" href="https://akshat-881236.github.io/sitemapjs/">
+
+<link rel="me" href="https://github.com/Akshat-881236">
+<link rel="me" href="https://akshat-881236.github.io/sitemapjs/">
+<link rel="me" href="mailto:akshatpsd2005@gmail.com">
+<!-- Sitemap.xml Link-->
+<link rel="sitemap" type="application/xml" title="Sitemap" href="https://akshat-881236.github.io/sitemapjs/sitemap.xml">
+<meta name="robots" content="index, follow">
+<script src="https://akshat-881236.github.io/sitemapjs/sitemap.min.js"></script>
     <title>Akshat Prasad — Portfolio Dashboard</title>
     <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -453,268 +468,123 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   #readmeViewer{ background:#0b0b0b; padding:16px; border-radius:12px; border:1px solid #121212; max-height:600px; overflow:auto; }
   pre{ background:#07100a; color:#c8f7d2; padding:14px; border-radius:10px; }
 }
-
-/* 11) ADOBE — Creative Red (1021–1080px) */
-@media (min-width:1021px) and (max-width:1080px) {
-  :root{ --bg:#fff9f9; --text:#2b2b2b; --accent:#ff0000; --muted:#ffffff; }
-  body{ margin:0; font-family:"Source Sans Pro", Arial, sans-serif; background:var(--bg); color:var(--text); display:flex; min-height:100vh; transition:.25s; }
-  .sidebar{ width:300px; background:var(--muted); padding:24px; left:-300px; transition:.28s; box-shadow:0 20px 70px rgba(0,0,0,0.06); }
-  body.sidebar-open .sidebar{ left:0; }
-  .main{ flex:1; padding:24px; margin-left:300px; transition:.28s; }
-  body:not(.sidebar-open) .main{ margin-left:0; width:100%; }
-  .header-box{ background:#fff; padding:14px; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.06); }
-  .menu-btn{ background:var(--accent); color:#fff; padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:700; }
-  .profile img{ width:140px; height:140px; border-radius:12px; border:3px solid rgba(255,0,0,0.08); }
-  .sidebar li{ padding:14px; border-radius:12px; transition:.18s; }
-  .sidebar li:hover{ background:rgba(255,0,0,0.06); transform:translateX(8px); }
-  .section-title{ border-left:4px solid var(--accent); padding-left:16px; margin-top:28px; font-size:20px; font-weight:700; }
-  .info-block{ background:#fff; padding:16px; border-radius:12px; border:1px solid rgba(255,0,0,0.03); }
-  #readmeViewer{ background:#fff; padding:16px; border-radius:12px; border:1px solid #fdecec; max-height:620px; overflow:auto; }
-  pre{ background:#1b1b1b; color:#ffdede; padding:14px; border-radius:10px; }
+/* DASHBOARD BASE */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding: 1.5rem;
 }
 
-/* 12) TESLA — Premium Dark (1081–1140px) */
-@media (min-width:1081px) and (max-width:1140px) {
-  :root{ --bg:#0b0b0b; --text:#eee; --accent:#e82127; --muted:#111; }
-  body{ margin:0; font-family:"Gotham", Arial, sans-serif; background:var(--bg); color:var(--text); display:flex; min-height:100vh; transition:.25s; }
-  .sidebar{ width:320px; background:linear-gradient(180deg,#0f0f0f,#0b0b0b); padding:26px; left:-320px; transition:.22s; box-shadow:0 24px 90px rgba(0,0,0,0.8); }
-  body.sidebar-open .sidebar{ left:0; }
-  .main{ flex:1; padding:26px; margin-left:320px; transition:.22s; }
-  body:not(.sidebar-open) .main{ margin-left:0; width:100%; }
-  .header-box{ padding:14px; background:transparent; }
-  .menu-btn{ background:var(--accent); color:#fff; padding:10px 16px; border-radius:10px; cursor:pointer; font-weight:700; box-shadow:0 14px 40px rgba(232,33,39,0.18); }
-  .profile img{ width:150px; height:150px; border-radius:12px; border:3px solid rgba(232,33,39,0.08); }
-  .sidebar li{ padding:14px; border-radius:12px; transition:.18s; font-weight:600; }
-  .sidebar li:hover{ background:rgba(232,33,39,0.06); transform:translateX(10px); }
-  .section-title{ border-left:4px solid var(--accent); padding-left:18px; margin-top:30px; font-size:20px; font-weight:800; }
-  .info-block{ background:#111; padding:18px; border-radius:12px; border:1px solid rgba(255,255,255,0.03); }
-  #readmeViewer{ background:#0f0f0f; padding:18px; border-radius:12px; border:1px solid #1a1a1a; max-height:640px; overflow:auto; }
-  pre{ background:#121212; color:#ffddd5; padding:16px; border-radius:12px; font-size:14px; }
+/* COMMON SECTION */
+.dash-section {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 1.5rem 1.8rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
 }
 
-/* 13) COCA-COLA — Friendly Red (1141–1200px) */
-@media (min-width:1141px) and (max-width:1200px) {
-  :root{ --bg:#fff2f2; --text:#222; --accent:#e10600; --muted:#ffffff; }
-  body{ margin:0; font-family:"Lato", Arial, sans-serif; background:var(--bg); color:var(--text); display:flex; min-height:100vh; transition:.25s; }
-  .sidebar{ width:300px; background:var(--muted); padding:22px; left:-300px; transition:.28s; box-shadow:0 18px 60px rgba(225,16,0,0.06); }
-  body.sidebar-open .sidebar{ left:0; }
-  .main{ flex:1; padding:22px; margin-left:300px; transition:.28s; }
-  body:not(.sidebar-open) .main{ margin-left:0; width:100%; }
-  .header-box{ background:#fff; padding:14px; border-radius:10px; box-shadow:0 6px 20px rgba(225,16,0,0.04); }
-  .menu-btn{ background:var(--accent); color:#fff; padding:10px 14px; border-radius:8px; cursor:pointer; font-weight:700; }
-  .profile img{ width:140px; height:140px; border-radius:12px; border:3px solid rgba(225,16,0,0.08); }
-  .sidebar li{ padding:14px; border-radius:12px; transition:.18s; }
-  .sidebar li:hover{ background:rgba(225,16,0,0.06); transform:translateX(8px); }
-  .section-title{ border-left:4px solid var(--accent); padding-left:16px; margin-top:26px; font-size:20px; font-weight:700; }
-  .info-block{ background:#fff; padding:16px; border-radius:12px; border:1px solid rgba(225,16,0,0.03); }
-  #readmeViewer{ background:#fff; padding:16px; border-radius:12px; border:1px solid #f8e7e7; max-height:620px; overflow:auto; }
-  pre{ background:#1b1b1b; color:#ffdede; padding:14px; border-radius:10px; }
+.section-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
 }
 
-/* 14) NIKE — Sporty Minimal (1201–1280px) */
-@media (min-width:1201px) and (max-width:1280px) {
-  :root{ --bg:#ffffff; --text:#111; --accent:#000; --muted:#fafafa; }
-  body{ margin:0; font-family:"Helvetica Neue", Arial, sans-serif; background:var(--bg); color:var(--text); display:flex; min-height:100vh; transition:.25s; }
-  .sidebar{ width:280px; background:var(--muted); padding:20px; left:-280px; transition:.22s; box-shadow:0 20px 70px rgba(0,0,0,0.06); }
-  body.sidebar-open .sidebar{ left:0; }
-  .main{ flex:1; padding:20px; margin-left:280px; transition:.22s; }
-  body:not(.sidebar-open) .main{ margin-left:0; width:100%; }
-  .header-box{ background:transparent; padding:12px; border-radius:8px; }
-  .menu-btn{ background:var(--accent); color:#fff; padding:10px 16px; border-radius:8px; cursor:pointer; font-weight:800; }
-  .profile img{ width:130px; height:130px; border-radius:10px; border:2px solid rgba(0,0,0,0.06); }
-  .sidebar li{ padding:12px; border-radius:8px; transition:.14s; text-transform:uppercase; letter-spacing:0.6px; }
-  .sidebar li:hover{ background:rgba(0,0,0,0.04); transform:translateX(6px); }
-  .section-title{ border-left:4px solid var(--accent); padding-left:12px; margin-top:24px; font-size:18px; font-weight:800; }
-  .info-block{ background:#fff; padding:14px; border-radius:10px; border:1px solid rgba(0,0,0,0.04); }
-  #readmeViewer{ background:#fff; padding:14px; border-radius:10px; border:1px solid #efefef; max-height:640px; overflow:auto; }
-  pre{ background:#f5f5f5; color:#111; padding:14px; border-radius:8px; }
+.section-subtitle {
+  margin-top: 0.3rem;
+  color: #666;
+  font-size: 0.9rem;
 }
 
-/* 15) BMW — Luxury Automotive (1281–1360px) */
-@media (min-width:1281px) and (max-width:1360px) {
-  :root{ --bg:linear-gradient(180deg,#07102a,#081837); --text:#eaf2ff; --accent:#2e8bff; --muted:#0f2440; }
-  body{ margin:0; font-family:"Inter", Arial, sans-serif; background:var(--bg); color:var(--text); display:flex; min-height:100vh; transition:.25s; }
-  .sidebar{ width:320px; background:var(--muted); padding:28px; left:-320px; transition:.22s; box-shadow:0 28px 120px rgba(0,0,0,0.7); }
-  body.sidebar-open .sidebar{ left:0; }
-  .main{ flex:1; padding:28px; margin-left:320px; transition:.22s; }
-  body:not(.sidebar-open) .main{ margin-left:0; width:100%; }
-  .header-box{ background:rgba(255,255,255,0.02); padding:14px; border-radius:12px; }
-  .menu-btn{ background:var(--accent); color:#041a2b; padding:10px 16px; border-radius:10px; cursor:pointer; font-weight:700; box-shadow:0 14px 50px rgba(46,139,255,0.12); }
-  .profile img{ width:160px; height:160px; border-radius:12px; border:3px solid rgba(46,139,255,0.08); }
-  .sidebar li{ padding:14px; border-radius:12px; transition:.18s; font-weight:600; }
-  .sidebar li:hover{ background:rgba(46,139,255,0.06); transform:translateX(10px); }
-  .section-title{ border-left:4px solid var(--accent); padding-left:18px; margin-top:30px; font-size:20px; font-weight:800; }
-  .info-block{ background:#0a2236; padding:18px; border-radius:12px; border:1px solid rgba(255,255,255,0.02); }
-  #readmeViewer{ background:#0b253a; padding:18px; border-radius:12px; border:1px solid #12374f; max-height:680px; overflow:auto; }
-  pre{ background:#081424; color:#cfe6ff; padding:16px; border-radius:12px; font-size:14px; }
+/* INFO GRID */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.2rem;
 }
 
-/* 16) LG — Soft Consumer Electronics (1361–1440px) */
-@media (min-width:1361px) and (max-width:1440px) {
-  :root{ --bg:#fff4f8; --text:#3a2130; --accent:#c2185b; --muted:#ffffff; }
-  body{ margin:0; font-family:"Noto Sans", Arial, sans-serif; background:var(--bg); color:var(--text); display:flex; min-height:100vh; transition:.25s; }
-  .sidebar{ width:300px; background:var(--muted); padding:24px; left:-300px; transition:.28s; box-shadow:0 20px 70px rgba(58,33,48,0.06); }
-  body.sidebar-open .sidebar{ left:0; }
-  .main{ flex:1; padding:24px; margin-left:300px; transition:.28s; }
-  body:not(.sidebar-open) .main{ margin-left:0; width:100%; }
-  .header-box{ background:transparent; padding:14px; border-radius:12px; }
-  .menu-btn{ background:var(--accent); color:#fff; padding:10px 14px; border-radius:12px; cursor:pointer; font-weight:700; box-shadow:0 12px 36px rgba(194,24,91,0.12); }
-  .profile img{ width:140px; height:140px; border-radius:14px; border:3px solid rgba(194,24,91,0.08); }
-  .sidebar li{ padding:14px; border-radius:12px; transition:.16s; }
-  .sidebar li:hover{ background:rgba(194,24,91,0.06); transform:translateX(8px); }
-  .section-title{ border-left:4px solid var(--accent); padding-left:16px; margin-top:26px; font-size:20px; font-weight:700; }
-  .info-block{ background:#fff; padding:16px; border-radius:12px; border:1px solid rgba(194,24,91,0.03); }
-  #readmeViewer{ background:#fff; padding:16px; border-radius:12px; border:1px solid #fde6ef; max-height:680px; overflow:auto; }
-  pre{ background:#f7eaf0; color:#4a2130; padding:14px; border-radius:10px; }
+.info-item {
+  background: #f7f9fc;
+  border-radius: 10px;
+  padding: 1rem;
 }
 
-/* 17) PEPSI — Bold Blue-Red (1441px and up) */
-@media (min-width:1441px) {
-
-  /* High contrast theme variables */
-  :root{
-    --bg: linear-gradient(135deg, #004b93, #d9222a);
-    --text: #ffffff;          /* white text ON background */
-    --accent: #004b93;
-    --muted: #ffffff;
-  }
-
-  body{
-    margin:0;
-    font-family:"Segoe UI", "Poppins", Arial, sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    display:flex;
-    min-height:100vh;
-    transition:.25s;
-    background-attachment:fixed;
-  }
-
-  /* Sidebar (white surface → dark readable text) */
-  .sidebar{
-    width:340px;
-    background:#ffffff;                        /* pure white */
-    color:#0b233d;                             /* deep navy text for strong contrast */
-    padding:28px;
-    left:-340px;
-    transition:.28s;
-    border-radius:0 18px 18px 0;
-    box-shadow:0 28px 120px rgba(0,0,0,0.18);
-  }
-
-  body.sidebar-open .sidebar{ left:0; }
-
-  /* Main content */
-  .main{
-    flex:1;
-    padding:28px;
-    margin-left:340px;
-    transition:.28s;
-    color:#ffffff;                             /* readable over blue-red gradient */
-  }
-
-  body:not(.sidebar-open) .main{
-    margin-left:0;
-    width:100%;
-  }
-
-  /* Header (light surface → dark text) */
-  .header-box{
-    background:rgba(255,255,255,0.95);
-    color:#0b233d;
-    padding:16px;
-    border-radius:12px;
-    backdrop-filter: blur(6px);
-    font-weight:600;
-  }
-
-  /* Button */
-  .menu-btn{
-    background:#004b93;
-    color:#fff;
-    padding:12px 16px;
-    border-radius:12px;
-    cursor:pointer;
-    font-weight:800;
-    box-shadow:0 16px 48px rgba(0,75,147,0.14);
-  }
-
-  /* Profile Image */
-  .profile img{
-    width:160px;
-    height:160px;
-    border-radius:14px;
-    border:3px solid rgba(0,75,147,0.08);
-  }
-
-  /* SIDEBAR LIST ITEMS */
-  .sidebar li{
-    padding:16px;
-    border-radius:14px;
-    transition:.2s;
-    font-weight:600;
-    color:#0b233d;                             /* deep readable text */
-  }
-
-  .sidebar li:hover{
-    background:rgba(0,75,147,0.06);
-    transform:translateX(10px);
-  }
-
-  /* Section title (on main gradient background → white text) */
-  .section-title{
-    border-left:6px solid #ffffff;             /* WHITE for maximum visibility */
-    padding-left:18px;
-    margin-top:30px;
-    font-size:22px;
-    font-weight:800;
-    color:#ffffff;
-  }
-
-  /* Info block (white surface → dark text) */
-  .info-block{
-    background:#ffffff;
-    color:#0b233d;
-    padding:20px;
-    border-radius:14px;
-    border:1px solid rgba(0,0,0,0.04);
-  }
-
-  /* Social Links (inside white box → dark text) */
-  .social-box a{
-    color:#0b233d;
-    text-decoration:none;
-    transition:.22s;
-  }
-  .social-box a:hover{
-    color:#d9222a;   /* Pepsi red accent */
-    transform:translateX(6px);
-  }
-
-  /* README VIEWER */
-  #readmeViewer{
-    background:#ffffff;
-    color:#0b233d;
-    padding:20px;
-    border-radius:14px;
-    border:1px solid #e8eef8;
-    max-height:720px;
-    overflow:auto;
-    line-height:1.5;
-  }
-
-  /* Code Block — improved contrast */
-  pre{
-    background:#081a33;        /* deep blue */
-    color:#e6f4ff;             /* soft cyan-white */
-    padding:16px;
-    border-radius:12px;
-    font-size:15px;
-    border:1px solid rgba(255,255,255,0.12);
-  }
+.info-item h4 {
+  margin: 0 0 0.3rem;
+  font-size: 0.85rem;
+  color: #555;
 }
 
+.info-item p {
+  margin: 0;
+  font-weight: 600;
+}
 
+/* EDUCATION LIST */
+.education-list {
+  margin-top: 1rem;
+  padding-left: 1.2rem;
+}
+
+.education-list li {
+  margin-bottom: 0.6rem;
+}
+
+/* PROJECTS */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.4rem;
+  margin-top: 1.2rem;
+}
+
+.project-card {
+  border-radius: 12px;
+  padding: 1.2rem;
+  background: linear-gradient(135deg, #f8faff, #eef3ff);
+}
+
+.project-card h3 {
+  margin-top: 0;
+}
+
+.project-card p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.project-btn {
+  display: inline-block;
+  margin-top: 0.8rem;
+  padding: 0.45rem 1rem;
+  border-radius: 20px;
+  background: #2563eb;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.project-btn:hover {
+  background: #1d4ed8;
+}
+
+/* SOCIAL LINKS */
+.social-links {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.social-links a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #2563eb;
+}
+
+.social-links a:hover {
+  text-decoration: underline;
+}
     </style>
 </head>
 
@@ -1028,35 +898,165 @@ function loadLicense() {
         }
 
         /* HOME CONTENT */
-        function loadHomeContent() {
-            readmeViewer.innerHTML = "";
-            contentArea.innerHTML = `
-                <h2 class="section-title">👤 Personal Information</h2>
-                <div class="info-block"><b>Name:</b> Akshat Prasad</div>
-                <div class="info-block"><b>Student ID:</b> 881238</div>
-                <div class="info-block"><b>Address:</b> Gurugram</div>
+function loadHomeContent() {
+  readmeViewer.innerHTML = "";
 
-                <h2 class="section-title">🎓 Education</h2>
-                <div class="info-block"><b>High School:</b> CBSE 78.5%</div>
-                <div class="info-block"><b>Senior Secondary:</b> 74.4%</div>
-                <div class="info-block"><b>Semester 1:</b> 8.82 SGPA</div>
+  contentArea.innerHTML = `
+    <section class="dashboard">
 
-                <h2 class="section-title">🏫 Course & University</h2>
-                <div class="info-block"><b>Course:</b> BCA</div>
-                <div class="info-block"><b>College:</b> DPG Degree College</div>
-                <div class="info-block"><b>University:</b> MDU Rohtak</div>
+      <!-- PROFILE SECTION -->
+      <section class="dash-section profile-section">
+        <header class="section-header">
+          <h2>👤 Personal Information</h2>
+          <p class="section-subtitle">
+            Basic identity and contact-related information.
+          </p>
+        </header>
 
-                <h2 class="section-title">🔗 Social Links</h2>
-                <div class="info-block social-box">
-                    <a href="https://github.com/akshat-881236" target="_blank"><i class="bi bi-github"></i> GitHub</a>
-                    <a href="https://www.linkedin.com/in/akshat-prasad-b53936379" target="_blank"><i class="bi bi-linkedin"></i> LinkedIn</a>
-                    <a href="mailto:akshatpsd2005@gmail.com"><i class="bi bi-envelope"></i> Email</a>
-                </div>
-            `;
+        <div class="info-grid">
+          <div class="info-item">
+            <h4>Name</h4>
+            <p>Akshat Prasad</p>
+          </div>
 
-            updateMeta("Akshat — Dashboard", "Personal portfolio dashboard for Akshat Prasad");
-        }
-        loadHomeContent();
+          <div class="info-item">
+            <h4>University Student ID</h4>
+            <p>881238</p>
+          </div>
+
+          <div class="info-item">
+            <h4>Address</h4>
+            <p>Kherki Daula , Gurugram</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- EDUCATION SECTION -->
+      <section class="dash-section education-section">
+        <header class="section-header">
+          <h2>🎓 Education</h2>
+          <p class="section-subtitle">
+            Academic background and performance overview.
+          </p>
+        </header>
+
+        <ul class="education-list">
+          <li>
+            <strong>Matriculation (CBSE):</strong>
+            <span>78.5%</span>
+          </li>
+          <li>
+            <strong>Intermediate (BSEH):</strong>
+            <span>74.4%</span>
+          </li>
+          <li>
+            <strong>BCA Semester 1:</strong>
+            <span>8.82 SGPA</span>
+          </li>
+          <li>
+            <strong>BCA Semester 2:</strong>
+            <span>9.00 SGPA</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- COURSE & UNIVERSITY -->
+      <section class="dash-section course-section">
+        <header class="section-header">
+          <h2>🏫 Course & University</h2>
+          <p class="section-subtitle">
+            Current academic program and institution details.
+          </p>
+        </header>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <h4>Course</h4>
+            <p>BCA</p>
+          </div>
+
+          <div class="info-item">
+            <h4>College</h4>
+            <p>DPG Degree College</p>
+          </div>
+
+          <div class="info-item">
+            <h4>University</h4>
+            <p>Maharshi Dayanand University, Rohtak</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS SECTION -->
+      <section class="dash-section projects-section">
+        <header class="section-header">
+          <h2>🧩 Projects</h2>
+          <p class="section-subtitle">
+            Live academic and personal development projects.
+          </p>
+        </header>
+
+        <div class="projects-grid">
+
+          <div class="project-card">
+            <h3>Key of Success</h3>
+            <p>
+              Academic record and fee management portal with result dashboards.
+            </p>
+            <a class="project-btn" 
+               href="https://akshat-881236.github.io/Key-of-Success/" 
+               target="_blank">
+              Visit Project
+            </a>
+          </div>
+
+          <div class="project-card">
+            <h3>Akshat Project Hub</h3>
+            <p>
+              A centralized network of all the projects under the authority of Akshat Prasad.
+            </p>
+            <a class="project-btn" 
+               href="https://akshat-881236.github.io/sitemapjs/" 
+               target="_blank">
+              Visit Project
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SOCIAL LINKS -->
+      <section class="dash-section social-section">
+        <header class="section-header">
+          <h2>🔗 Social Links</h2>
+          <p class="section-subtitle">
+            Connect professionally and explore work.
+          </p>
+        </header>
+
+        <div class="social-links">
+          <a href="https://github.com/akshat-881236" target="_blank">
+            <i class="bi bi-github"></i> GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/akshat-prasad-b53936379" target="_blank">
+            <i class="bi bi-linkedin"></i> LinkedIn
+          </a>
+          <a href="mailto:akshatpsd2005@gmail.com">
+            <i class="bi bi-envelope"></i> Email
+          </a>
+        </div>
+      </section>
+
+    </section>
+  `;
+
+  updateMeta(
+    "Akshat — Dashboard",
+    "Personal portfolio dashboard for Akshat Prasad"
+  );
+}
+
+loadHomeContent();
 
         /* ADMIN SHORTCUT */
         document.addEventListener('keydown', (e) => {
@@ -1071,5 +1071,4 @@ function loadLicense() {
     </script>
 
 </body>
-
 </html>
