@@ -31,6 +31,6 @@ You can copy this as a referal and modify it to your needs.</p>
 </li>
 </ol>
 <hr>
-<p>Please fill the <a href="/Portfolio-881236/feedback.htm"> Feedback Form</a> and give your valuable insights and suggestion for the improvement of the site and make me built a user friendly webpages and projects.</p>
+<p>Please fill the <a href="https://akshat-881236.github.io/Portfolio-881236/feedback.htm?title=Akshat%20Prasad%20Portfolio&description=Portfolio%20of%20Akshat%20Prasad%20—%20BCA%20Student%20at%20DPG%20Degree%20College%20(MDU%20Rohtak).&url=https://akshat-881236.github.io/Portfolio-881236/"> Feedback Form</a> and give your valuable insights and suggestion for the improvement of the site and make me built a user friendly webpages and projects.</p>
 <hr>
 Author Name - Akshat Prasad (DPG STM)

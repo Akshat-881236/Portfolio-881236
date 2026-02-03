@@ -1,257 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="author" content="Akshat Prasad" />
-<meta name="description" content="Feedback form for Akshat's portfolio. Tell us about navigation, project changes and areas of improvement." />
-<link rel="canonical" href="https://akshat-881236.github.io/Portfolio-881236/feedback.htm" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="author" content="Akshat Prasad" />
-<meta name="description" content="Portfolio of Akshat Prasad — BCA Student at DPG Degree College (MDU Rohtak). Dashboard with projects, README and feedback." />
-<meta name="keywords" content="Akshat Prasad, Portfolio, BCA, DPG, MDU Rohtak, student portfolio" />
-<link rel="canonical" href="https://akshat-881236.github.io/Portfolio-881236/" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Akshat Prasad — Portfolio Dashboard" />
-<meta property="og:description" content="Portfolio of Akshat Prasad — BCA Student at DPG Degree College (MDU Rohtak)." />
-<meta property="og:url" content="https://akshat-881236.github.io/Portfolio-881236/" />
-<meta name="twitter:card" content="summary" />
-<meta name="theme-color" content="#007bff" />
-<meta name="student-ID" content="881238" />
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Akshat Prasad",
-  "url": "https://akshat-881236.github.io/Portfolio-881236/",
-  "jobTitle": "BCA Student",
-  "affiliation": {
-    "@type":"CollegeOrUniversity",
-    "name":"DPG Degree College",
-    "sameAs":"https://mdu.ac.in/"
-  }
-}
-</script>
-<title>Feedback — Akshat Prasad Portfolio</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+<meta charset="UTF-8">
+<title>Feedback & Improvement | Akshat Network Hub</title>
+
+<!-- SEO -->
+<meta name="description" content="Submit structured feedback or improvement suggestions for Akshat Network Hub pages. No personal data required.">
+<meta name="keywords" content="Akshat Network Hub Feedback, Website Improvement, Report Issue">
+<meta name="robots" content="index, follow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
 <style>
-  body{font-family:Arial,sans-serif;margin:0;background:#fff;color:#111;padding:18px}
-  .box{max-width:980px;margin:18px auto;padding:16px;border-radius:8px;border:1px solid #e6e6e6;background:#fafafa}
-  h1{margin-top:0}
-  label{display:block;margin-top:12px;font-weight:600}
-  textarea, input[type="text"], input[type="url"]{width:100%;padding:10px;border-radius:6px;border:1px solid #ddd;box-sizing:border-box}
-  .small{font-size:13px;color:#666}
-  .projects{margin-top:12px}
-  .project-item{display:flex;gap:8px;margin-top:8px}
-  .project-item input{flex:1}
-  .btn{display:inline-block;padding:8px 12px;background:#007bff;color:#fff;border-radius:6px;border:none;cursor:pointer;margin-top:12px}
-  .btn-ghost{background:#fff;color:#007bff;border:1px solid #007bff}
-  .improvements{margin-top:12px}
-  .libox{display:flex;gap:8px;align-items:flex-start;margin-top:8px}
-  .libox input{flex:1}
-  .site-links{margin-top:12px}
-  .footer-note{font-size:13px;color:#666;margin-top:10px}
-  .email-preview{white-space:pre-wrap;background:#fff;border:1px solid #e6e6e6;padding:10px;border-radius:6px;margin-top:12px}
+:root{
+  --primary:#0b4f6c;
+  --danger:#c0392b;
+  --ok:#2ecc71;
+  --bg:#f4f6f8;
+}
+body{
+  margin:0;
+  font-family:system-ui, sans-serif;
+  background:var(--bg);
+  color:#1b1b1b;
+}
+header,footer{
+  background:#fff;
+  padding:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+main{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+section{
+  background:#fff;
+  padding:20px;
+  border-radius:10px;
+  margin-bottom:20px;
+}
+h1,h2{
+  margin-top:0;
+}
+label{
+  font-weight:600;
+  margin-top:12px;
+  display:block;
+}
+input,textarea{
+  width:100%;
+  padding:10px;
+  margin-top:6px;
+  border:1px solid #ccc;
+  border-radius:6px;
+  font-size:15px;
+}
+textarea{resize:vertical}
+button{
+  padding:12px 18px;
+  border:none;
+  border-radius:8px;
+  background:var(--primary);
+  color:#fff;
+  cursor:pointer;
+  font-size:15px;
+}
+button.secondary{background:#555}
+button:disabled{opacity:.6;cursor:not-allowed}
+.note{
+  font-size:14px;
+  color:#555;
+  margin-top:10px;
+}
+.error{
+  color:var(--danger);
+  font-size:14px;
+}
+.ok{
+  color:var(--ok);
+  font-size:14px;
+}
+footer a{
+  margin:0 6px;
+  font-size:22px;
+  color:#333;
+}
+footer a:hover{color:var(--primary)}
+.counter{
+  font-size:13px;
+  text-align:right;
+}
+.invalid{
+  border-color:var(--danger);
+  animation:shake .2s linear 2;
+}
+@keyframes shake{
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-3px)}
+  50%{transform:translateX(3px)}
+  75%{transform:translateX(-3px)}
+  100%{transform:translateX(0)}
+}
 </style>
 </head>
-<script src="https://akshat-881236.github.io/TrackerJS/MITLicense-Term-of-Use--Privacy.min.js"></script>
-<script src="https://akshat-881236.github.io/sitemapjs/breadcrumb.js"></script>
-<script src="https://akshat-881236.github.io/TrackerJS/redirect.js"></script>
-<script src="https://akshat-881236.github.io/TrackerJS/akshatnetworkhub.min.js"></script>
-<script src="https://akshat-881236.github.io/TrackerJS/tracker.js"></script>
-<script src="https://akshat-881236.github.io/TrackerJS/trackermeta.js"></script>
-<script src="https://akshat-881236.github.io/TrackerJS/ui.js"></script>
-<script src="https://akshat-881236.github.io/TrackerJS/index.js"></script>
-<script src="https://akshat-881236.github.io/TrackerJS/akshat-add-nav.js"></script>
-<body onload="pushData()">
-<div class="box">
-  <h1>Feedback — Portfolio</h1>
-  <p class="small">Please fill the form. When you press <strong>Send Email</strong>, your default mail client will open with a pre-filled message addressed to <code>akshatpsd2005@gmail.com</code>.</p>
 
-  <!-- Section A: Navigation Features -->
-  <label for="navFeatures">Tell me about the Navigation features</label>
-  <textarea id="navFeatures" rows="4" placeholder="Describe navigation features, what's good / confusing..."></textarea>
+<body>
 
-  <!-- Section B: Project Modification Requirements -->
-  <label>Modification requirement in which project? (Add as many as needed)</label>
-  <div class="projects" id="projectsContainer">
-    <!-- one project box template -->
-    <div class="project-item">
-      <input type="url" placeholder="Paste Project URL (https://...)" class="project-url" />
-      <input type="text" placeholder="Describe modification required" class="project-mod" />
-      <button class="btn-ghost" type="button" onclick="removeProject(this)">Remove</button>
-    </div>
-  </div>
-  <button class="btn" type="button" id="addProjectBtn">Add Project</button>
+<header>
+  <h1>Feedback & Improvement</h1>
+</header>
 
-  <!-- Section C: Areas of Improvement -->
-  <label>Areas of Improvement (short points — 150 characters max each)</label>
-  <div class="improvements" id="improvements">
-    <div class="libox">
-      <input maxlength="150" placeholder="Point 1 (max 150 chars)" class="libox-input"/>
-      <button class="btn-ghost" type="button" onclick="removeLibox(this)">Remove</button>
-    </div>
-  </div>
-  <button class="btn" id="addLiboxBtn" type="button">Add Improvement Point</button>
+<main>
 
-  <!-- Section D: Where you found us & Site links for update -->
-  <label for="foundWhere">Where did you get the link or how did you reach this site?</label>
-  <input id="foundWhere" placeholder="Example: GitHub, LinkedIn, Google, Friend, etc." />
+<section aria-label="Source Page">
+<h2>Page Information</h2>
 
-  <label for="siteLinks">Paste other site links you want us to update or reference (comma separated)</label>
-  <input id="siteLinks" placeholder="https://example.com, https://another.example" />
+<label>Title</label>
+<input id="pTitle" readonly>
 
-  <!-- Name -->
-  <label for="senderName">Name</label>
-  <input id="senderName" placeholder="Your name" />
+<label>Description</label>
+<textarea id="pDesc" readonly></textarea>
 
-  <!-- Email preview & send -->
-  <div style="margin-top:12px">
-    <button class="btn" id="previewBtn">Preview Email</button>
-    <button class="btn" id="sendBtn">Send Email</button>
-    <button class="btn btn-ghost" id="clearBtn">Clear</button>
-  </div>
+<label>URL</label>
+<input id="pUrl" readonly>
+</section>
 
-  <div class="footer-note">Email will be composed using mailto: with properly formatted subject and body. Please review the preview before sending.</div>
+<section aria-label="Suggestion">
+<h2>Improvement Suggestion</h2>
 
-  <h3 style="margin-top:18px">Email Preview</h3>
-  <div class="email-preview" id="emailPreview">No preview yet. Click "Preview Email".</div>
+<label>Target URL (Home / Sub Page)</label>
+<input id="targetUrl" placeholder="https://akshat-881236.github.io/...">
+
+<div id="lines">
+  <label>Suggestion (30–45 words)</label>
+  <textarea class="line" rows="3"></textarea>
+  <div class="counter">0 words</div>
 </div>
 
+<button id="addLine" class="secondary" type="button">➕ Add More Lines</button>
+
+<p class="note">
+No personal details are collected.  
+Abusive, sexual, harmful, spammy or malformed content is strictly blocked.
+</p>
+
+<p id="msg" class="error"></p>
+
+<button id="submit">Submit Feedback</button>
+</section>
+
+</main>
+
+<footer>
+<a href="https://linkedin.com" target="_blank"><i class="bi bi-linkedin"></i></a>
+<a href="https://twitter.com" target="_blank"><i class="bi bi-twitter-x"></i></a>
+<a href="https://t.me" target="_blank"><i class="bi bi-telegram"></i></a>
+<a href="https://github.com/Akshat-881236" target="_blank"><i class="bi bi-github"></i></a>
+<a href="https://wa.me/917838250289" target="_blank"><i class="bi bi-whatsapp"></i></a>
+<a href="https://instagram.com/its_akshat_881236" target="_blank"><i class="bi bi-instagram"></i></a>
+</footer>
+
 <script>
-(function(){
-  // DOM handles
-  const projectsContainer = document.getElementById('projectsContainer');
-  const addProjectBtn = document.getElementById('addProjectBtn');
-  const improvements = document.getElementById('improvements');
-  const addLiboxBtn = document.getElementById('addLiboxBtn');
-  const previewBtn = document.getElementById('previewBtn');
-  const sendBtn = document.getElementById('sendBtn');
-  const clearBtn = document.getElementById('clearBtn');
-  const emailPreview = document.getElementById('emailPreview');
+/* ================= PARAM BIND ================= */
+const qp = new URLSearchParams(location.search);
+pTitle.value = qp.get("title") || "";
+pDesc.value = qp.get("description") || "";
+pUrl.value = qp.get("url") || "";
 
-  // add project box
-  addProjectBtn.addEventListener('click', ()=> {
-    const div = document.createElement('div');
-    div.className = 'project-item';
-    div.innerHTML = `
-      <input type="url" placeholder="Paste Project URL (https://...)" class="project-url" />
-      <input type="text" placeholder="Describe modification required" class="project-mod" />
-      <button class="btn-ghost" type="button" onclick="removeProject(this)">Remove</button>
-    `;
-    projectsContainer.appendChild(div);
-  });
+/* ================= ABUSE ENGINE ================= */
+const patterns = [
+ /s[e3][xх]/gi,/p[o0]rn/gi,/n[u*]de/gi,/xxx+/gi,
+ /(fuck|rape|bitch|boobs|nipple|asshole)/gi
+];
 
-  // allow remove via global function called from inline onclick
-  window.removeProject = function(btn){
-    const p = btn.closest('.project-item');
-    if(p) p.remove();
-  };
+function cleanText(t){
+ return t.normalize("NFKD")
+ .replace(/[\u0300-\u036f]/g,"")
+ .toLowerCase();
+}
 
-  // add improvement libox
-  addLiboxBtn.addEventListener('click', ()=>{
-    const div = document.createElement('div');
-    div.className = 'libox';
-    div.innerHTML = `<input maxlength="150" placeholder="Short improvement (max 150 chars)" class="libox-input" />
-                     <button class="btn-ghost" type="button" onclick="removeLibox(this)">Remove</button>`;
-    improvements.appendChild(div);
-  });
-  window.removeLibox = function(btn){ const p = btn.closest('.libox'); if(p) p.remove(); };
+function deepCheck(t){
+ const c = cleanText(t);
+ if(/(.)\1{4,}/.test(c)) return false;
+ for(const p of patterns){ if(p.test(c)) return false; }
+ return true;
+}
 
-  // Preview email
-  previewBtn.addEventListener('click', ()=> {
-    const data = collectData();
-    const body = buildEmailBody(data);
-    emailPreview.textContent = body;
-  });
+/* ================= WORD COUNT ================= */
+function updateCounter(el){
+ const w = el.value.trim().split(/\s+/).filter(Boolean).length;
+ el.nextElementSibling.textContent = w + " words";
+ return w;
+}
 
-  // Clear all fields (careful)
-  clearBtn.addEventListener('click', ()=>{
-    if(!confirm("Clear form?")) return;
-    document.getElementById('navFeatures').value = '';
-    document.getElementById('foundWhere').value = '';
-    document.getElementById('siteLinks').value = '';
-    document.getElementById('senderName').value = '';
-    // remove extra project boxes except first
-    const items = projectsContainer.querySelectorAll('.project-item');
-    items.forEach((it, idx) => { if(idx>0) it.remove(); else { it.querySelector('.project-url').value=''; it.querySelector('.project-mod').value=''; }});
-    // improvements reset to one
-    const liboxs = improvements.querySelectorAll('.libox');
-    liboxs.forEach((it, idx)=> { if(idx>0) it.remove(); else it.querySelector('.libox-input').value=''; });
-    emailPreview.textContent = 'No preview yet. Click "Preview Email".';
-  });
+/* ================= ADD MORE LINES ================= */
+let maxLines = 5;
+addLine.onclick = ()=>{
+ const count = document.querySelectorAll(".line").length;
+ if(count>=maxLines){alert("Maximum lines reached");return;}
+ const ta = document.createElement("textarea");
+ ta.className="line";
+ ta.rows=3;
+ const c = document.createElement("div");
+ c.className="counter";
+ c.textContent="0 words";
+ lines.appendChild(ta);
+ lines.appendChild(c);
+ ta.oninput=()=>updateCounter(ta);
+};
 
-  // Send email (mailto) - opens default mail client with subject & body
-  sendBtn.addEventListener('click', ()=> {
-    const data = collectData();
-    const body = buildEmailBody(data);
-    const subject = encodeURIComponent("Portfolio Feedback from " + (data.name || "Anonymous"));
-    // prepare mailto - include body and subject
-    const mailto = `mailto:akshatpsd2005@gmail.com?subject=${subject}&body=${encodeURIComponent(body)}`;
-    // open mailto
-    window.location.href = mailto;
-  });
+/* ================= VALIDATION ================= */
+submit.onclick = ()=>{
+ msg.textContent="";
+ let body="", ok=true;
 
-  // helper to collect fields
-  function collectData(){
-    // nav features
-    const navFeatures = document.getElementById('navFeatures').value.trim();
-    const foundWhere = document.getElementById('foundWhere').value.trim();
-    const siteLinksRaw = document.getElementById('siteLinks').value.trim();
-    const siteLinks = siteLinksRaw.split(',').map(s=>s.trim()).filter(Boolean);
-    const name = document.getElementById('senderName').value.trim();
-
-    // projects
-    const projects = [];
-    const projItems = projectsContainer.querySelectorAll('.project-item');
-    projItems.forEach(it=>{
-      const url = it.querySelector('.project-url').value.trim();
-      const mod = it.querySelector('.project-mod').value.trim();
-      if(url || mod) projects.push({url,mod});
-    });
-
-    // improvements
-    const improvementPoints = [];
-    const liboxs = improvements.querySelectorAll('.libox-input');
-    liboxs.forEach(it => { const v = it.value.trim(); if(v) improvementPoints.push(v); });
-
-    return { navFeatures, projects, improvementPoints, foundWhere, siteLinks, name };
+ document.querySelectorAll(".line").forEach((el,i)=>{
+  el.classList.remove("invalid");
+  const wc = updateCounter(el);
+  if(wc<30 || wc>45 || !deepCheck(el.value)){
+    el.classList.add("invalid");
+    ok=false;
   }
+  body+=`Suggestion ${i+1}:\n${el.value}\n\n`;
+ });
 
-  // build email body text (readable & include links)
-  function buildEmailBody(data){
-    const lines = [];
-    lines.push(`Hello Akshat,`);
-    lines.push('');
-    lines.push(`Feedback submitted by: ${data.name || 'Anonymous'}`);
-    if(data.foundWhere) lines.push(`Found via: ${data.foundWhere}`);
-    lines.push('');
-    lines.push('--- Navigation Review ---');
-    lines.push(data.navFeatures || '(no comment)');
-    lines.push('');
-    lines.push('--- Project Modification Requests ---');
-    if(data.projects.length===0) lines.push('(none)');
-    data.projects.forEach((p, i) => {
-      lines.push(`${i+1}. URL: ${p.url || '(no url)'}\n   Modification: ${p.mod || '(no description)'}`);
-    });
-    lines.push('');
-    lines.push('--- Areas of Improvement ---');
-    if(data.improvementPoints.length===0) lines.push('(none)');
-    data.improvementPoints.forEach((pt, i) => lines.push(`- ${pt}`));
-    lines.push('');
-    if(data.siteLinks && data.siteLinks.length){
-      lines.push('--- Other links provided by sender ---');
-      data.siteLinks.forEach((l) => lines.push(`- ${l}`));
-      lines.push('');
-    }
-    lines.push('Thanks & Regards,');
-    lines.push(data.name || 'Anonymous');
-    lines.push('');
-    lines.push('---- End of message ----');
-    return lines.join('\n');
-  }
-})();
+ if(!ok){
+  msg.textContent="Each line must be 30–45 words and free from abusive or harmful content.";
+  return;
+ }
+
+ if(!/^https?:\/\//i.test(targetUrl.value)){
+  msg.textContent="Target URL must be a valid http/https address.";
+  return;
+ }
+
+ const mail =
+`Page Title: ${pTitle.value}
+Description: ${pDesc.value}
+Page URL: ${pUrl.value}
+Target URL: ${targetUrl.value}
+
+${body}`;
+
+ if(confirm("OK = Email | Cancel = WhatsApp")){
+  location.href="mailto:akshatpsd2005@gmail.com?subject=ANH Feedback&body="+encodeURIComponent(mail);
+ }else{
+  window.open("https://wa.me/917838250289?text="+encodeURIComponent(mail));
+ }
+};
 </script>
 </body>
 </html>
