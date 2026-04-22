@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>Smart File Manager - Local Demo Version</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script class="Scripto">
 
-  <!-- Required metadata -->
-  <meta name="author" content="Akshat Prasad"> 
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-  <meta name="robots" content="index, follow"> 
-  <meta name="language" content="English"> 
-  <meta name="revisit-after" content="7 days"> 
-  <meta name="distribution" content="global"> 
-  <meta name="rating" content="general"> 
-  <meta course="BCA"> 
-  <meta college="DPG Degree College"> 
-  <meta university="Maharshi Dayanand University, Rohtak"> 
-  <meta student ID="881238">
+window.ANH_ID="ANH-3R3GKYM"
+
+window.ANH_META={
+url:"https://akshat-881236.github.io/Portfolio-881236/file_manager.htm",
+title:"Smart File Manager - Local Demo Version",
+description:"",
+icon:""
+}
+
+</script>
+
+<script src="https://akshat-145609.github.io/ValidationSystem/scripts/anh-validator.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap CSS -->
   <link
@@ -107,20 +108,12 @@
   </style>
   <meta name="google-site-verification" content="Kp1gscirNuecI5_9R4LDkE5ql4w4zt0NmneiPktuMu4" />
 </head>
-<script src="https://akshat-881236.github.io/TrackerJS/MITLicense-Term-of-Use--Privacy.min.js"></script>
-<script src="https://akshat-881236.github.io/sitemapjs/breadcrumb.js"></script>
-<script src="https://akshat-881236.github.io/TrackerJS/akshatnetworkhub.min.js"></script>
-<script src="https://akshat-881236.github.io/TrackerJS/tracker.js"></script>
-<script src="https://akshat-881236.github.io/TrackerJS/trackermeta.js"></script>
-<script src="https://akshat-881236.github.io/TrackerJS/ui.js"></script>
-<script src="https://akshat-881236.github.io/TrackerJS/index.js"></script>
-<script src="https://akshat-881236.github.io/TrackerJS/akshat-add-nav.js"></script>
 <body onload="pushData()" class="theme-dark">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">💾 Smart Manager</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#mainNav">
+            data-bs-target="#mainNav" title="Toogle your Navbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div id="mainNav" class="collapse navbar-collapse">
@@ -179,11 +172,11 @@
               </div>
               <div class="mb-2">
                 <label class="form-label form-label-sm">Email or Username</label>
-                <input type="text" class="form-control form-control-sm" id="loginUser">
+                <input type="text" class="form-control form-control-sm" id="loginUser" title="Enter either your Register Email or your Username">
               </div>
               <div class="mb-2">
                 <label class="form-label form-label-sm">Password</label>
-                <input type="password" class="form-control form-control-sm" id="loginPassword">
+                <input type="password" class="form-control form-control-sm" id="loginPassword" title="Enter your secure password">
               </div>
               <button class="btn btn-primary btn-sm" id="btnLogin">Login</button>
               <div id="loginMsg" class="small mt-2 text-warning"></div>
@@ -197,15 +190,15 @@
               </div>
               <div class="mb-2">
                 <label class="form-label form-label-sm">Username</label>
-                <input type="text" class="form-control form-control-sm" id="signupUsername">
+                <input type="text" class="form-control form-control-sm" id="signupUsername" title="Enter your Username">
               </div>
               <div class="mb-2">
                 <label class="form-label form-label-sm">Email</label>
-                <input type="email" class="form-control form-control-sm" id="signupEmail">
+                <input type="email" class="form-control form-control-sm" id="signupEmail" title="Enter Email for Register your Account">
               </div>
               <div class="mb-2">
                 <label class="form-label form-label-sm">Password</label>
-                <input type="password" class="form-control form-control-sm" id="signupPassword">
+                <input type="password" class="form-control form-control-sm" id="signupPassword" title="Enter a strong password to secure your Account">
               </div>
               <button class="btn btn-success btn-sm" id="btnSignup">Create Account</button>
               <div id="signupMsg" class="small mt-2 text-warning"></div>
