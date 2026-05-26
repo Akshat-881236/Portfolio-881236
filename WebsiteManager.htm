@@ -246,21 +246,8 @@ icon:"https://akshat-881236.github.io/Portfolio-881236/Assets/WebsiteManager.png
   <div id="modal" class="modal" role="dialog" aria-hidden="true">
     <div class="panel" id="modalPanel"></div>
   </div>
-
+<script src="https://anh-dashboard-881238.web.app/loader.js"></script>
 <script>
-/*
- Personal Website Manager SPA (single-file)
- - Uses localStorage for persistence
- - Users stored under key "pwm_users" as object { userId: userObj }
- - Current session stored under key "pwm_session" = userId or null
- - Each userObj: {
-      id, name, email, contact, dob, photoDataUrl, passwordHash, createdAt,
-      folders: [ { id, name, description, pages: [ pageNode ] } ]
-   }
- - pageNode: { id, title, url, description, children: [pageNode], createdAt, updatedAt }
- - Authentication: on register generate userId. Login accepts name OR email OR id + password.
- - Forgot password: supply identifier and DOB to reset password.
-*/
 
 (function appInit(){
   // Utilities
