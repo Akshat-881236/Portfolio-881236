@@ -1,1085 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="author" content="Akshat Prasad" />
-    <meta name="google-site-verification" content="Kp1gscirNuecI5_9R4LDkE5ql4w4zt0NmneiPktuMu4" />
-    <meta name="description"
-        content="Portfolio of Akshat Prasad — BCA Student at DPG Degree College (MDU Rohtak)." />
-    <meta name="keywords" content="Akshat Prasad, Portfolio of Akshat Prasad" />
-    <link rel="canonical" href="https://akshat-881236.github.io/Portfolio-881236/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Akshat Prasad — Portfolio Dashboard" />
-    <meta property="og:description" content="Portfolio of Akshat Prasad — BCA Student at DPG Degree College (MDU Rohtak)." />
-    <meta property="og:url" content="https://akshat-881236.github.io/Portfolio-881236/" />
-    <meta name="twitter:card" content="summary" />
-    <link rel="canonical" href="https://akshat-881236.github.io/Portfolio-881236/" />
-    <!-- ===== AUTHOR & NETWORK AUTHORITY ===== -->
-<meta name="author" content="Akshat Prasad">
-<meta name="creator" content="Akshat Prasad">
-<meta name="publisher" content="Akshat Prasad">
-
-<link rel="canonical" href="https://akshat-881236.github.io/Portfolio-881236/">
-<link rel="index" href="https://akshat-881236.github.io/sitemapjs/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Project Gallery | Akshat Prasad</title>
 <meta name="google-site-verification" content="txYZDVZk0riUwZGtitrOPot0C-AdduHrTvLbDDhOPCI" />
-<link rel="me" href="https://github.com/Akshat-881236">
-<link rel="me" href="https://akshat-881236.github.io/sitemapjs/">
-<link rel="me" href="mailto:akshatpsd2005@gmail.com">
-<!-- Sitemap.xml Link-->
-<link rel="sitemap" type="application/xml" title="Sitemap" href="https://akshat-881236.github.io/sitemapjs/sitemap.xml">
-<meta name="robots" content="index, follow">
-<script src="https://akshat-881236.github.io/sitemapjs/sitemap.min.js"></script>
-    <title>Akshat Prasad — Portfolio Dashboard</title>
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NR7VNWXN');</script>
-<!-- End Google Tag Manager -->
-    <meta name="google-site-verification" content="Kp1gscirNuecI5_9R4LDkE5ql4w4zt0NmneiPktuMu4" />
+<meta name="google-site-verification" content="Kp1gscirNuecI5_9R4LDkE5ql4w4zt0NmneiPktuMu4" />
+<meta name="description" content="An interactive gallery of web tools and learning projects by Akshat Prasad. Filter, search and open any project.">
+<meta name="theme-color" content="#F5F4FB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F0F1E" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F4FB;--surface:#fff;--ink:#15152B;--mute:#5E5E7E;--line:#DEDCF0;--brand:#4338FF;--on-brand:#fff;
+--pad:clamp(14px,4vw,40px);--r:20px;
+--display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;--body:"DM Sans","Segoe UI",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#0F0F1E;--surface:#191931;--ink:#F1F0FF;--mute:#A3A2C4;--line:#2B2B4A;--brand:#8B84FF;--on-brand:#0F0F1E}}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{font:16px/1.55 var(--body);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;
+-webkit-tap-highlight-color:transparent;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+button,input,a{font:inherit;color:inherit;touch-action:manipulation}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--pad)}
 
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "Akshat Prasad",
-            "url": "https://akshat-881236.github.io/Portfolio-881236/",
-            "jobTitle": "BCA Student",
-            "affiliation": {
-                "@type": "CollegeOrUniversity",
-                "name": "DPG Degree College",
-                "sameAs": "https://mdu.ac.in/"
-            }
-        }
-    </script>
+/* Header */
+.head{padding-top:clamp(22px,5vw,48px);padding-bottom:14px;display:flex;flex-wrap:wrap;gap:16px;align-items:end;justify-content:space-between}
+h1{font:800 clamp(1.9rem,6vw,3.2rem)/1 var(--display);letter-spacing:-.035em}
+#count{color:var(--mute);margin-top:6px}
+.tools{display:flex;gap:10px;flex:1 1 300px;justify-content:flex-end}
+.search{position:relative;flex:1 1 200px;max-width:380px}
+.search input{width:100%;min-height:46px;padding:0 44px 0 16px;border:1.5px solid var(--line);border-radius:999px;background:var(--surface);outline-offset:2px}
+.search input:focus{border-color:var(--brand)}
+.search kbd{position:absolute;right:14px;top:50%;translate:0 -50%;font-size:.8rem;color:var(--mute);border:1px solid var(--line);border-radius:6px;padding:0 7px;display:none}
+.view{display:flex;border:1.5px solid var(--line);border-radius:999px;background:var(--surface);padding:3px}
+.view button{border:0;background:none;min-height:38px;padding:0 16px;border-radius:999px;font-weight:700;color:var(--mute)}
+.view button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
 
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+/* Sticky filter bar */
+.bar{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding-top:env(safe-area-inset-top)}
+.chips{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;padding:10px var(--pad)}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;scroll-snap-align:start;min-height:42px;padding:0 18px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);font-weight:700;white-space:nowrap}
+.chip small{font-weight:500;color:var(--mute);margin-left:6px}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip[aria-pressed=true] small{color:inherit;opacity:.7}
 
-    <!-- Styles -->
-    <style>
-        :root {
-            --bg: #fff;
-            --text: #111;
-            --accent: #007bff;
-            --muted: #f4f4f4;
-        }
+/* Gallery */
+#grid{--gap:16px;display:grid;gap:var(--gap);grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));list-style:none;padding:12px 0 56px}
+.card{--cat:var(--brand);position:relative;display:flex;flex-direction:column;gap:14px;padding:18px;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);overflow:hidden;transition:transform .2s,border-color .2s}
+.card::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .25s;
+background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--cat) 20%,transparent),transparent 70%)}
+.card[data-cat=tools]{--cat:#4F46E5}.card[data-cat=education]{--cat:#D98A00}.card[data-cat=ai]{--cat:#E0457B}
+.card[data-cat=seo]{--cat:#0E9F76}.card[data-cat=security]{--cat:#7A3FF2}.card[data-cat=platform]{--cat:#0B8FD6}
+.hit{position:absolute;inset:0;z-index:1;border:0;background:none;border-radius:inherit}
+.ico{width:56px;height:56px;border-radius:16px;background:#fff;padding:7px;object-fit:contain;border:1px solid var(--line);flex:none}
+.ph{display:grid;place-items:center;font:800 1.6rem var(--display);color:var(--cat);background:color-mix(in srgb,var(--cat) 14%,var(--surface))}
+.cat{display:inline-block;font-size:.82rem;font-weight:700;color:var(--cat);background:color-mix(in srgb,var(--cat) 13%,transparent);padding:1px 10px;border-radius:999px}
+.card h3{font:800 1.25rem/1.15 var(--display);letter-spacing:-.02em;margin:8px 0 6px}
+.card p{color:var(--mute);font-size:.96rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.go{position:relative;z-index:2;margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;min-height:42px;padding:0 18px;border-radius:999px;border:1.5px solid var(--line);font-weight:700;text-decoration:none}
+.go:hover{background:var(--cat);border-color:var(--cat);color:#fff}
+.empty{grid-column:1/-1;text-align:center;padding:56px 12px;color:var(--mute)}
+.empty button{margin-top:12px;min-height:44px;padding:0 20px;border-radius:999px;border:0;background:var(--brand);color:var(--on-brand);font-weight:700}
 
-        body.theme-dark {
-            --bg: #121216;
-            --text: #eee;
-            --muted: #1a1a1a
-        }
+/* List layout (all screens) */
+#grid[data-view=list]{grid-template-columns:1fr;gap:10px}
+#grid[data-view=list] .card{display:grid;grid-template-columns:56px 1fr auto;align-items:center;gap:14px;padding:14px 16px}
+#grid[data-view=list] .card h3{margin:4px 0 2px}
+#grid[data-view=list] .card p{-webkit-line-clamp:1}
+#grid[data-view=list] .go{margin:0}
 
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            display: flex;
-            min-height: 100vh;
-            transition: .25s
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 260px;
-            background: var(--muted);
-            padding: 18px;
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: -260px;
-            transition: .25s;
-            overflow: auto;
-            box-sizing: border-box
-        }
-
-        body.sidebar-open .sidebar {
-            left: 0
-        }
-
-        /* Main content */
-        .main {
-            flex: 1;
-            padding: 18px;
-            margin-left: 260px;
-            transition: .25s
-        }
-
-        body:not(.sidebar-open) .main {
-            margin-left: 0;
-            width: 100%
-        }
-
-        /* Header */
-        .header-box {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            background: var(--muted);
-            padding: 12px;
-            border-radius: 8px
-        }
-
-        .welcome-box {
-            display: flex;
-            flex-direction: column
-        }
-
-        .menu-btn {
-            background: var(--accent);
-            color: #fff;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 6px;
-            cursor: pointer
-        }
-
-        .menu-location {
-            display: flex;
-            align-items: center;
-            gap: 8px
-        }
-
-        /* Sidebar UI */
-        .sidebar-top-slot {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 8px
-        }
-
-        .profile img {
-            width: 110px;
-            height: 110px;
-            border-radius: 8px;
-            object-fit: cover;
-            border: 3px solid rgba(0, 0, 0, 0.12);
-            cursor: pointer
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin-top: 12px
-        }
-
-        .sidebar li {
-            padding: 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            gap: 10px;
-            align-items: center
-        }
-
-        .sidebar li:hover {
-            background: rgba(0, 0, 0, 0.05)
-        }
-
-        /* Content */
-        .section-title {
-            border-left: 4px solid var(--accent);
-            padding-left: 10px;
-            margin-top: 24px;
-            font-size: 18px
-        }
-
-        .info-block {
-            background: #fafafa;
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 10px;
-            border: 1px solid rgba(0, 0, 0, 0.08)
-        }
-
-        .social-box a {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            padding: 8px 0;
-            text-decoration: none;
-            color: var(--text)
-        }
-
-        .social-box a:hover {
-            color: var(--accent)
-        }
-
-        #readmeViewer {
-            margin-top: 14px;
-            background: #fff;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #e6e6e6;
-            max-height: 480px;
-            overflow: auto
-        }
-
-        pre {
-            background: #1e1e1e;
-            color: #fff;
-            padding: 10px;
-            border-radius: 6px
-        }
-
-        /* Admin Mode */
-        .admin-only {
-            display: none
-        }
-
-        body.is-admin .admin-only {
-            display: inline-block !important
-        }
-
-        /* Responsive */
-        @media (max-width:900px) {
-            .sidebar {
-                left: -260px
-            }
-
-            body.sidebar-open .sidebar {
-                left: 0
-            }
-
-            .main {
-                margin-left: 0
-            }
-        }
-
-        /* ======================================================
-   FULL THEME OVERRIDES — 17 BRAND / PLATFORM VARIANTS
-   Each media query fully overrides visuals & UX hints.
-   ====================================================== */
-
-/* 1) APPLE — Clean Minimal / Focused (max-width:480px) */
-@media (max-width:480px) {
-  :root{ --bg:#f7f7f8; --text:#111; --accent:#000; --muted:#ffffff; }
-  body{ margin:0; font-family:"SF Pro Text", Arial, sans-serif; background:var(--bg); color:var(--text); display:flex; min-height:100vh; transition:.25s; }
-  .sidebar{ width:240px; background:var(--muted); padding:16px; position:fixed; top:0; bottom:0; left:-240px; transition:.28s; overflow:auto; box-sizing:border-box; border-right:1px solid rgba(0,0,0,0.04); }
-  body.sidebar-open .sidebar{ left:0; }
-  .main{ flex:1; padding:14px; margin-left:240px; transition:.25s; }
-  body:not(.sidebar-open) .main{ margin-left:0; width:100%; }
-  .header-box{ display:flex; align-items:center; justify-content:space-between; gap:10px; background:transparent; padding:10px; border-radius:8px; }
-  .menu-btn{ background:var(--accent); color:#fff; border:none; padding:8px 10px; border-radius:8px; cursor:pointer; box-shadow:0 6px 18px rgba(0,0,0,0.06); }
-  .sidebar-top-slot{ display:flex; align-items:center; justify-content:center; margin-bottom:10px; }
-  .profile img{ width:96px; height:96px; border-radius:14px; object-fit:cover; border:2px solid rgba(0,0,0,0.06); cursor:pointer; }
-  .sidebar ul{ list-style:none; padding:0; margin-top:12px; }
-  .sidebar li{ padding:10px; border-radius:10px; cursor:pointer; display:flex; gap:10px; align-items:center; transition:.18s; }
-  .sidebar li:hover{ background:rgba(0,0,0,0.03); transform:translateX(4px); }
-  .section-title{ border-left:4px solid var(--accent); padding-left:10px; margin-top:20px; font-size:16px; font-weight:600; }
-  .info-block{ background:#fff; padding:12px; border-radius:10px; margin-top:10px; border:1px solid rgba(0,0,0,0.04); }
-  .social-box a{ display:flex; gap:10px; align-items:center; padding:8px 0; text-decoration:none; color:var(--text); transition:.15s; }
-  .social-box a:hover{ color:var(--accent); transform:translateX(4px); }
-  #readmeViewer{ margin-top:12px; background:#fff; padding:12px; border-radius:8px; border:1px solid #e9e9e9; max-height:420px; overflow:auto; }
-  pre{ background:#121212; color:#fff; padding:10px; border-radius:6px; font-size:13px; }
-  .admin-only{ display:none; } body.is-admin .admin-only{ display:inline-block!important; }
-  /* subtle scrollbar */
-  .sidebar::-webkit-scrollbar, #readmeViewer::-webkit-scrollbar{ width:8px; height:8px; }
-  .sidebar::-webkit-scrollbar-thumb, #readmeViewer::-webkit-scrollbar-thumb{ background:rgba(0,0,0,0.06); border-radius:8px; }
+/* Desktop only: mouse spotlight and lift */
+@media (hover:hover) and (pointer:fine){
+  .card:hover{transform:translateY(-4px);border-color:var(--cat)}
+  .card:hover::before{opacity:1}
+  .search kbd{display:block}
+  .chip:hover:not([aria-pressed=true]){border-color:var(--ink)}
 }
 
-/* 2) GOOGLE — Material Clarity (481–540px) */
-@media (min-width:481px) and (max-width:540px) {
-  :root{ --bg:#f8fafc; --text:#202124; --accent:#1a73e8; --muted:#ffffff; }
-  body{ margin:0; font-family:"Roboto", Arial, sans-serif; background:var(--bg); color:var(--text); display:flex; min-height:100vh; transition:.25s; }
-  .sidebar{ width:260px; background:var(--muted); padding:18px; position:fixed; top:0; bottom:0; left:-260px; transition:.28s; overflow:auto; box-sizing:border-box; box-shadow:0 6px 18px rgba(60,64,67,0.06); border-right:1px solid rgba(60,64,67,0.04); }
-  body.sidebar-open .sidebar{ left:0; }
-  .main{ flex:1; padding:18px; margin-left:260px; transition:.25s; }
-  body:not(.sidebar-open) .main{ margin-left:0; width:100%; }
-  .header-box{ background:linear-gradient(180deg,#fff,#f6f9fc); padding:12px; border-radius:8px; box-shadow:0 2px 6px rgba(60,64,67,0.04); }
-  .menu-btn{ background:var(--accent); color:#fff; border:none; padding:8px 12px; border-radius:6px; cursor:pointer; box-shadow:0 6px 20px rgba(26,115,232,0.12); }
-  .profile img{ width:110px; height:110px; border-radius:12px; object-fit:cover; border:3px solid rgba(26,115,232,0.08); }
-  .sidebar li{ padding:12px; border-radius:10px; display:flex; gap:12px; align-items:center; transition:.16s; }
-  .sidebar li:hover{ background:rgba(26,115,232,0.06); transform:translateX(6px); }
-  .section-title{ border-left:4px solid var(--accent); padding-left:10px; font-size:18px; margin-top:22px; }
-  .info-block{ background:#fff; padding:14px; border-radius:10px; border:1px solid rgba(26,115,232,0.04); }
-  .social-box a:hover{ color:var(--accent); }
-  #readmeViewer{ background:#fff; border:1px solid #e8eefc; padding:14px; max-height:480px; overflow:auto; border-radius:8px; }
-  pre{ background:#111; color:#fff; padding:12px; border-radius:8px; font-size:13px; }
-  body.is-admin .admin-only{ display:inline-block!important; }
-  /* denser typography for clarity */
-  .logo{ font-size:34px; font-weight:700; color:var(--accent); text-align:center; margin-bottom:6px; }
-}
+/* Detail dialog */
+dialog{border:0;padding:0;background:var(--surface);color:var(--ink);border-radius:26px;width:min(720px,calc(100% - 32px));max-height:min(88dvh,720px);overflow:auto;overscroll-behavior:contain;box-shadow:0 30px 80px rgba(10,10,40,.35)}
+dialog::backdrop{background:rgba(10,10,30,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+dialog[open]{animation:pop .22s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.98)}}
+.m{--cat:var(--brand);display:flex;flex-direction:column;min-height:100%}
+.m[data-cat=tools]{--cat:#4F46E5}.m[data-cat=education]{--cat:#D98A00}.m[data-cat=ai]{--cat:#E0457B}
+.m[data-cat=seo]{--cat:#0E9F76}.m[data-cat=security]{--cat:#7A3FF2}.m[data-cat=platform]{--cat:#0B8FD6}
+.m-top{display:flex;gap:20px;align-items:center;padding:clamp(20px,4vw,36px);padding-right:72px;background:color-mix(in srgb,var(--cat) 12%,var(--surface))}
+.m-top .ico{width:84px;height:84px;border-radius:22px}
+.m h2{font:800 clamp(1.5rem,4.5vw,2.3rem)/1.05 var(--display);letter-spacing:-.03em;margin-top:8px}
+.m-body{padding:clamp(20px,4vw,36px);display:flex;flex-direction:column;gap:18px}
+.m-body p{font-size:1.1rem;max-width:56ch}
+.tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0}
+.tags li{border:1.5px solid var(--line);border-radius:999px;padding:3px 14px;font-weight:500;font-size:.92rem}
+.m-foot{position:sticky;bottom:0;display:flex;align-items:center;gap:10px;padding:14px clamp(20px,4vw,36px) calc(14px + env(safe-area-inset-bottom));background:var(--surface);border-top:1px solid var(--line);margin-top:auto}
+.live{flex:1;display:inline-flex;justify-content:center;align-items:center;min-height:50px;border-radius:999px;background:var(--cat);color:#fff;font-weight:700;text-decoration:none;padding:0 22px}
+.nav{width:50px;height:50px;border-radius:50%;border:1.5px solid var(--line);background:none;font-size:1.25rem}
+.pos{color:var(--mute);font-size:.9rem;min-width:52px;text-align:center}
+.x{position:absolute;top:14px;right:14px;z-index:3;width:46px;height:46px;border-radius:50%;border:0;background:var(--surface);font-size:1.3rem;box-shadow:0 2px 10px rgba(0,0,0,.15)}
 
-/* 3) MICROSOFT FLUENT — Calm & Layered (541–600px) */
-@media (min-width:541px) and (max-width:600px) {
-  :root{ --bg:#eef9ff; --text:#023a5e; --accent:#0078d4; --muted:#ffffff; }
-  body{ margin:0; font-family:"Segoe UI", Arial, sans-serif; background:var(--bg); color:var(--text); display:flex; min-height:100vh; transition:.25s; }
-  .sidebar{ width:280px; background:linear-gradient(180deg,#ffffff,#f2fbff); padding:20px; left:-280px; transition:.28s; box-shadow:0 10px 40px rgba(3,78,162,0.06); }
-  body.sidebar-open .sidebar{ left:0; }
-  .main{ flex:1; padding:20px; margin-left:280px; transition:.25s; }
-  body:not(.sidebar-open) .main{ margin-left:0; width:100%; }
-  .header-box{ background:var(--muted); padding:14px; border-radius:10px; box-shadow:inset 0 -1px 0 rgba(0,0,0,0.02); }
-  .menu-btn{ background:var(--accent); color:#fff; padding:9px 14px; border-radius:8px; border:none; cursor:pointer; }
-  .profile img{ width:120px; height:120px; border-radius:14px; border:3px solid rgba(0,120,212,0.08); }
-  .sidebar li{ padding:12px; border-radius:10px; transition:.18s; }
-  .sidebar li:hover{ background:rgba(0,120,212,0.06); transform:translateX(5px); }
-  .section-title{ border-left:4px solid var(--accent); padding-left:10px; margin-top:24px; font-size:18px; }
-  .info-block{ background:#fff; padding:14px; border-radius:10px; border:1px solid rgba(0,120,212,0.04); }
-  .social-box a:hover{ color:var(--accent); }
-  #readmeViewer{ background:#fff; border:1px solid rgba(0,0,0,0.04); padding:14px; border-radius:8px; max-height:520px; overflow:auto; }
-  pre{ background:#0f1720; color:#e6f7ff; padding:12px; border-radius:8px; }
-  .logo{ font-size:34px; color:var(--accent); text-align:center; margin-bottom:8px; font-weight:700; }
+/* ===== Media responsiveness ===== */
+/* Tablets: bigger touch targets, roomier grid */
+@media (max-width:1024px){
+  #grid{--gap:18px;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr))}
 }
-
-/* 4) SAMSUNG ONE UI — Rounded, roomy (601–660px) */
-@media (min-width:601px) and (max-width:660px) {
-  :root{ --bg:#f4f9ff; --text:#05306b; --accent:#0066ff; --muted:#ffffff; }
-  body{ margin:0; font-family:"SamsungOne", Arial, sans-serif; background:var(--bg); color:var(--text); display:flex; min-height:100vh; transition:.25s; }
-  .sidebar{ width:300px; background:var(--muted); padding:24px; left:-300px; transition:.28s; border-right:1px solid rgba(0,0,0,0.03); box-shadow:0 12px 48px rgba(0,0,0,0.06); border-radius:0 12px 12px 0; }
-  body.sidebar-open .sidebar{ left:0; }
-  .main{ flex:1; padding:24px; margin-left:300px; transition:.25s; }
-  body:not(.sidebar-open) .main{ margin-left:0; width:100%; }
-  .header-box{ background:linear-gradient(180deg,#fff,#f4f9ff); padding:14px; border-radius:10px; }
-  .menu-btn{ background:var(--accent); color:#fff; padding:10px 14px; border-radius:10px; cursor:pointer; box-shadow:0 10px 30px rgba(0,102,255,0.12); }
-  .profile img{ width:124px; height:124px; border-radius:16px; border:3px solid rgba(0,102,255,0.08); }
-  .sidebar li{ padding:12px; border-radius:12px; display:flex; gap:12px; align-items:center; transition:.18s; }
-  .sidebar li:hover{ background:rgba(0,102,255,0.06); transform:translateX(6px); }
-  .section-title{ border-left:4px solid var(--accent); padding-left:12px; margin-top:26px; font-size:18px; font-weight:600; }
-  .info-block{ background:#fff; padding:14px; border-radius:12px; border:1px solid rgba(0,0,0,0.04); }
-  .social-box a{ padding:10px 0; }
-  #readmeViewer{ background:#fff; border:1px solid rgba(0,0,0,0.04); padding:16px; border-radius:10px; max-height:540px; overflow:auto; }
-  pre{ background:#0b1220; color:#d6eaff; padding:12px; border-radius:8px; font-size:13px; }
+@media (pointer:coarse){
+  .chip,.go,.view button{min-height:46px}
+  .nav,.x{width:52px;height:52px}
 }
-
-/* 5) META / FACEBOOK — Social Dashboard (661–720px) */
-@media (min-width:661px) and (max-width:720px) {
-  :root{ --bg:#eef5ff; --text:#162b4a; --accent:#1877f2; --muted:#ffffff; }
-  body{ margin:0; font-family:"Helvetica Neue", Arial, sans-serif; background:var(--bg); color:var(--text); display:flex; min-height:100vh; transition:.25s; }
-  .sidebar{ width:280px; background:var(--muted); padding:20px; left:-280px; transition:.28s; box-shadow:0 12px 40px rgba(16,24,40,0.06); border-right:1px solid rgba(24,39,88,0.04); }
-  body.sidebar-open .sidebar{ left:0; }
-  .main{ flex:1; padding:20px; margin-left:280px; transition:.25s; }
-  body:not(.sidebar-open) .main{ margin-left:0; width:100%; }
-  .header-box{ background:linear-gradient(180deg,#fff,#f1f7ff); padding:14px; border-radius:10px; box-shadow:0 2px 8px rgba(16,24,40,0.04); }
-  .menu-btn{ background:var(--accent); color:#fff; padding:9px 14px; border-radius:8px; border:none; cursor:pointer; box-shadow:0 10px 30px rgba(24,119,242,0.12); }
-  .profile img{ width:120px; height:120px; border-radius:12px; border:3px solid rgba(24,119,242,0.08); }
-  .sidebar li{ padding:12px; border-radius:10px; transition:.16s; }
-  .sidebar li:hover{ background:rgba(24,119,242,0.06); transform:translateX(6px); }
-  .section-title{ border-left:4px solid var(--accent); padding-left:12px; font-size:18px; margin-top:24px; }
-  .info-block{ background:#fff; padding:14px; border-radius:10px; border:1px solid rgba(24,119,242,0.03); }
-  .social-box a:hover{ color:var(--accent); transform:translateX(6px); }
-  #readmeViewer{ background:#fff; padding:14px; border-radius:8px; border:1px solid #e7f0ff; max-height:560px; overflow:auto; }
-  pre{ background:#0b1220; color:#dbeeff; padding:12px; border-radius:8px; }
+/* Phones: 2-up tiles in Grid, one-line rows in List, bottom-sheet dialog */
+@media (max-width:640px){
+  .tools{flex-basis:100%;justify-content:stretch}
+  .search{max-width:none}
+  #grid[data-view=grid]{grid-template-columns:repeat(2,1fr);--gap:12px}
+  #grid[data-view=grid] .card{padding:14px;gap:10px;text-align:left}
+  #grid[data-view=grid] .card p,#grid[data-view=grid] .go{display:none}
+  #grid[data-view=grid] .card h3{font-size:1.05rem}
+  dialog{width:100%;max-width:none;margin:auto 0 0;border-radius:26px 26px 0 0;max-height:90dvh}
+  dialog[open]{animation:sheet .28s cubic-bezier(.2,.8,.2,1)}
+  @keyframes sheet{from{transform:translateY(100%)}}
+  .m-top{padding-bottom:22px}
+  .m-top .ico{width:68px;height:68px}
+  .m-foot{flex-wrap:wrap}
+  .live{order:-1;flex-basis:100%}
+  .nav{flex:1;border-radius:999px}
 }
-
-/* 6) INSTAGRAM — Gradient Creative (721–780px) */
-@media (min-width:721px) and (max-width:780px) {
-  :root{ --bg:linear-gradient(135deg,#f58529,#dd2a7b,#8134af,#515bd4); --text:#222; --accent:#8134af; --muted:#ffffffcc; }
-  body{ margin:0; font-family:"Poppins", Arial, sans-serif; background:var(--bg); color:var(--text); display:flex; min-height:100vh; transition:.25s; background-attachment:fixed; }
-  .sidebar{ width:300px; background:rgba(255,255,255,0.95); padding:22px; left:-300px; transition:.28s; box-shadow:0 18px 60px rgba(0,0,0,0.18); border-radius:0 18px 18px 0; }
-  body.sidebar-open .sidebar{ left:0; }
-  .main{ flex:1; padding:22px; margin-left:300px; transition:.25s; }
-  body:not(.sidebar-open) .main{ margin-left:0; width:100%; }
-  .header-box{ background:rgba(255,255,255,0.9); padding:12px; border-radius:12px; backdrop-filter: blur(6px); }
-  .menu-btn{ background:var(--accent); color:#fff; padding:10px 14px; border-radius:12px; box-shadow:0 12px 40px rgba(129,52,175,0.18); cursor:pointer; }
-  .profile img{ width:128px; height:128px; border-radius:18px; border:3px solid rgba(129,52,175,0.1); }
-  .sidebar li{ padding:12px; border-radius:12px; transition:.18s; }
-  .sidebar li:hover{ background:rgba(129,52,175,0.06); transform:translateX(8px); }
-  .section-title{ border-left:4px solid var(--accent); padding-left:14px; font-size:18px; margin-top:26px; }
-  .info-block{ background:#fff; padding:14px; border-radius:12px; border:1px solid rgba(0,0,0,0.04); }
-  .social-box a:hover{ color:var(--accent); transform:translateX(6px); }
-  #readmeViewer{ background:#fff; padding:16px; border-radius:12px; border:1px solid rgba(0,0,0,0.05); max-height:580px; overflow:auto; }
-  pre{ background:#121212; color:#fff; padding:12px; border-radius:10px; font-size:14px; }
-}
-
-/* 7) TWITTER / X — Fast, Dark (781–840px) */
-@media (min-width:781px) and (max-width:840px) {
-  :root{ --bg:#071024; --text:#e6eef8; --accent:#1da1f2; --muted:#07182b; }
-  body{ margin:0; font-family:"Inter", Arial, sans-serif; background:var(--bg); color:var(--text); display:flex; min-height:100vh; transition:.25s; }
-  .sidebar{ width:260px; background:linear-gradient(180deg,#071220,#07182b); padding:18px; left:-260px; transition:.22s; box-shadow:0 18px 60px rgba(0,0,0,0.6); }
-  body.sidebar-open .sidebar{ left:0; }
-  .main{ flex:1; padding:18px; margin-left:260px; transition:.22s; }
-  body:not(.sidebar-open) .main{ margin-left:0; width:100%; }
-  .header-box{ background:transparent; padding:12px; border-radius:8px; }
-  .menu-btn{ background:var(--accent); color:#071024; padding:8px 12px; border-radius:8px; cursor:pointer; box-shadow:0 10px 30px rgba(29,161,242,0.12); }
-  .profile img{ width:96px; height:96px; border-radius:12px; border:2px solid rgba(29,161,242,0.08); }
-  .sidebar li{ padding:12px; border-radius:10px; transition:.14s; }
-  .sidebar li:hover{ background:rgba(29,161,242,0.05); transform:translateX(6px); }
-  .section-title{ border-left:4px solid var(--accent); padding-left:10px; margin-top:22px; font-size:18px; }
-  .info-block{ background:#061025; padding:12px; border-radius:10px; border:1px solid rgba(29,161,242,0.04); }
-  #readmeViewer{ background:#020417; padding:12px; border-radius:8px; border:1px solid rgba(29,161,242,0.03); max-height:520px; overflow:auto; }
-  pre{ background:#001022; color:#aee9ff; padding:12px; border-radius:8px; }
-}
-
-/* 8) AMAZON — Commerce Utility (841–900px) */
-@media (min-width:841px) and (max-width:900px) {
-  :root{ --bg:#fff8f0; --text:#221f1f; --accent:#ff9900; --muted:#ffffff; }
-  body{ margin:0; font-family:Arial, Helvetica, sans-serif; background:var(--bg); color:var(--text); display:flex; min-height:100vh; transition:.25s; }
-  .sidebar{ width:300px; background:var(--muted); padding:20px; left:-300px; transition:.28s; box-shadow:0 16px 60px rgba(34,31,31,0.06); border-right:1px solid rgba(34,31,31,0.03); }
-  body.sidebar-open .sidebar{ left:0; }
-  .main{ flex:1; padding:20px; margin-left:300px; transition:.25s; }
-  body:not(.sidebar-open) .main{ margin-left:0; width:100%; }
-  .header-box{ background:#fff; padding:14px; border-radius:10px; box-shadow:0 4px 14px rgba(34,31,31,0.04); }
-  .menu-btn{ background:var(--accent); color:#111; padding:10px 14px; border-radius:8px; border:none; cursor:pointer; font-weight:700; }
-  .profile img{ width:120px; height:120px; border-radius:12px; border:3px solid rgba(255,153,0,0.08); }
-  .sidebar li{ padding:12px; border-radius:10px; transition:.16s; }
-  .sidebar li:hover{ background:rgba(255,153,0,0.06); transform:translateX(6px); }
-  .section-title{ border-left:4px solid var(--accent); padding-left:12px; margin-top:24px; font-size:18px; }
-  .info-block{ background:#fff; padding:14px; border-radius:10px; border:1px solid rgba(34,31,31,0.04); }
-  #readmeViewer{ background:#fff; padding:14px; border-radius:10px; border:1px solid #f0e5d7; max-height:560px; overflow:auto; }
-  pre{ background:#111; color:#fff; padding:12px; border-radius:8px; font-size:13px; }
-}
-
-/* 9) NETFLIX — Cinematic (901–960px) */
-@media (min-width:901px) and (max-width:960px) {
-  :root{ --bg:#000; --text:#eee; --accent:#e50914; --muted:#0f0f0f; }
-  body{ margin:0; font-family:"Montserrat", Arial, sans-serif; background:var(--bg); color:var(--text); display:flex; min-height:100vh; transition:.25s; }
-  .sidebar{ width:320px; background:var(--muted); padding:22px; left:-320px; transition:.22s; box-shadow:0 24px 90px rgba(0,0,0,0.8); }
-  body.sidebar-open .sidebar{ left:0; }
-  .main{ flex:1; padding:22px; margin-left:320px; transition:.22s; }
-  body:not(.sidebar-open) .main{ margin-left:0; width:100%; }
-  .header-box{ background:transparent; padding:14px; border-radius:10px; }
-  .menu-btn{ background:var(--accent); color:#fff; padding:10px 16px; border-radius:8px; cursor:pointer; font-weight:700; box-shadow:0 12px 40px rgba(229,9,20,0.18); }
-  .profile img{ width:140px; height:140px; border-radius:12px; border:3px solid rgba(229,9,20,0.08); }
-  .sidebar li{ padding:14px; border-radius:12px; transition:.18s; font-weight:600; }
-  .sidebar li:hover{ background:rgba(229,9,20,0.06); transform:translateX(8px); }
-  .section-title{ border-left:4px solid var(--accent); padding-left:14px; margin-top:28px; font-size:20px; }
-  .info-block{ background:#0b0b0b; padding:16px; border-radius:12px; border:1px solid rgba(255,255,255,0.03); }
-  #readmeViewer{ background:#0f0f0f; padding:16px; border-radius:12px; border:1px solid #222; max-height:600px; overflow:auto; }
-  pre{ background:#111; color:#ffdddd; padding:12px; border-radius:10px; font-size:14px; }
-}
-
-/* 10) SPOTIFY — Dark Music Vibe (961–1020px) */
-@media (min-width:961px) and (max-width:1020px) {
-  :root{ --bg:#0d0d0d; --text:#eaf7e9; --accent:#1db954; --muted:#0f1113; }
-  body{ margin:0; font-family:"Circular", Arial, sans-serif; background:var(--bg); color:var(--text); display:flex; min-height:100vh; transition:.25s; }
-  .sidebar{ width:320px; background:var(--muted); padding:24px; left:-320px; transition:.22s; box-shadow:0 24px 80px rgba(0,0,0,0.8); }
-  body.sidebar-open .sidebar{ left:0; }
-  .main{ flex:1; padding:24px; margin-left:320px; transition:.22s; }
-  body:not(.sidebar-open) .main{ margin-left:0; width:100%; }
-  .header-box{ background:transparent; padding:14px; }
-  .menu-btn{ background:var(--accent); color:#08120a; padding:10px 16px; border-radius:8px; cursor:pointer; font-weight:700; box-shadow:0 12px 36px rgba(29,185,84,0.18); }
-  .profile img{ width:140px; height:140px; border-radius:12px; border:3px solid rgba(29,185,84,0.08); }
-  .sidebar li{ padding:14px; border-radius:12px; transition:.18s; }
-  .sidebar li:hover{ background:rgba(29,185,84,0.06); transform:translateX(8px); }
-  .section-title{ border-left:4px solid var(--accent); padding-left:16px; margin-top:28px; font-size:20px; font-weight:700; }
-  .info-block{ background:#0b0b0b; padding:16px; border-radius:12px; border:1px solid rgba(29,185,84,0.04); }
-  #readmeViewer{ background:#0b0b0b; padding:16px; border-radius:12px; border:1px solid #121212; max-height:600px; overflow:auto; }
-  pre{ background:#07100a; color:#c8f7d2; padding:14px; border-radius:10px; }
-}
-/* DASHBOARD BASE */
-.dashboard {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-  padding: 1.5rem;
-}
-
-/* COMMON SECTION */
-.dash-section {
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 1.5rem 1.8rem;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-}
-
-.section-header h2 {
-  margin: 0;
-  font-size: 1.4rem;
-}
-
-.section-subtitle {
-  margin-top: 0.3rem;
-  color: #666;
-  font-size: 0.9rem;
-}
-
-/* INFO GRID */
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.2rem;
-  margin-top: 1.2rem;
-}
-
-.info-item {
-  background: #f7f9fc;
-  border-radius: 10px;
-  padding: 1rem;
-}
-
-.info-item h4 {
-  margin: 0 0 0.3rem;
-  font-size: 0.85rem;
-  color: #555;
-}
-
-.info-item p {
-  margin: 0;
-  font-weight: 600;
-}
-
-/* EDUCATION LIST */
-.education-list {
-  margin-top: 1rem;
-  padding-left: 1.2rem;
-}
-
-.education-list li {
-  margin-bottom: 0.6rem;
-}
-
-/* PROJECTS */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.4rem;
-  margin-top: 1.2rem;
-}
-
-.project-card {
-  border-radius: 12px;
-  padding: 1.2rem;
-  background: linear-gradient(135deg, #f8faff, #eef3ff);
-}
-
-.project-card h3 {
-  margin-top: 0;
-}
-
-.project-card p {
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.project-btn {
-  display: inline-block;
-  margin-top: 0.8rem;
-  padding: 0.45rem 1rem;
-  border-radius: 20px;
-  background: #2563eb;
-  color: #fff;
-  text-decoration: none;
-  font-size: 0.85rem;
-}
-
-.project-btn:hover {
-  background: #1d4ed8;
-}
-
-/* SOCIAL LINKS */
-.social-links {
-  display: flex;
-  gap: 1.2rem;
-  flex-wrap: wrap;
-  margin-top: 1rem;
-}
-
-.social-links a {
-  text-decoration: none;
-  font-weight: 500;
-  color: #2563eb;
-}
-
-.social-links a:hover {
-  text-decoration: underline;
-}
-    </style>
+@media (max-width:360px){#grid[data-view=grid]{grid-template-columns:1fr}}
+/* Landscape phones: keep the sheet short enough to scroll */
+@media (max-height:480px) and (orientation:landscape){dialog{max-height:94dvh}.m-top .ico{width:56px;height:56px}}
+@media (prefers-reduced-motion:reduce){*,::before,::after{animation:none!important;transition:none!important}}
+</style>
 </head>
-<body onload="updateClock(); updateGreeting();">
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NR7VNWXN"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
-    <!-- SIDEBAR -->
-    <div class="sidebar" id="sidebar">
-
-        <div class="sidebar-top-slot" id="sidebarTopSlot"></div>
-
-        <h2 style="margin:0;font-size:18px">
-            <i class="bi bi-person-badge"></i> Dashboard
-        </h2>
-
-        <div style="text-align:center;margin-top:8px" class="profile">
-            <img id="profilePic"
-                src="https://akshat-881236.github.io/LearningClub-Key-of-Success-Learning-Point/PdfLibrary/PdfFiles/Akshat.png" />
-
-            <input id="fileInput" type="file" accept="image/*" class="admin-only" />
-
-            <button class="admin-only menu-btn" style="margin-top:8px" onclick="triggerFile()">Change Photo</button>
-        </div>
-
-        <ul>
-            <li onclick="loadHomeContent()"><i class="bi bi-house"></i> Home</li>
-            <li onclick="loadPage('/Portfolio-881236/skills.htm')"><i class="bi bi-tools"></i> Skills</li>
-            <li onclick="loadPage('/Portfolio-881236/Education.htm')"><i class="bi bi-mortarboard"></i> Education</li>
-            <li onclick="loadPage('/Portfolio-881236/Projects.htm')"><i class="bi bi-folder"></i> Projects</li>
-            <li onclick="loadPage('/Portfolio-881236/aboutme.htm')"><i class="bi bi-person-lines-fill"></i> About Me</li>
-            <li onclick="loadPage('/Portfolio-881236/Resume.htm')"><i class="bi bi-file-earmark-person"></i> Resume</li>
-             <li onclick="loadPage('/Portfolio-881236/list.htm')"><i class="bi bi-list"></i> List Demo (Html)</li>
-
-
-            <li>
-                <a href="/Portfolio-881236/feedback.htm?title=Akshat%20Prasad%20Portfolio&description=Portfolio%20of%20Akshat%20Prasad%20—%20BCA%20Student%20at%20DPG%20Degree%20College%20(MDU%20Rohtak).&url=https://akshat-881236.github.io/Portfolio-881236/" style="text-decoration:none;color:inherit">
-                    <i class="bi bi-chat-dots"></i> Feedback
-                </a>
-            </li>
-
-            <li onclick="loadREADME()"><i class="bi bi-file-text"></i> README.md</li>
-            <li onclick="loadLicense()"><i class="bi bi-shield-lock"></i> LICENSE</li>
-            <li onclick="toggleTracker()"><i class="bi bi-activity"></i> Tracker</li>
-        </ul>
+<body>
+<header class="wrap head">
+  <div><h1>Project Gallery</h1><p id="count" aria-live="polite"></p></div>
+  <div class="tools">
+    <label class="search"><span class="sr">Search projects</span>
+      <input id="q" type="search" placeholder="Search projects" autocomplete="off" enterkeyhint="search"><kbd>/</kbd></label>
+    <div class="view" role="group" aria-label="Layout">
+      <button data-v="grid" aria-pressed="true">Grid</button><button data-v="list" aria-pressed="false">List</button>
     </div>
+  </div>
+</header>
+<div class="bar"><div class="chips wrap" id="chips" role="group" aria-label="Filter by category"></div></div>
+<main class="wrap"><ul id="grid" data-view="grid"></ul><noscript>Please turn on JavaScript to browse the gallery.</noscript></main>
 
-    <!-- MAIN -->
-    <div class="main" id="main">
-
-        <div class="header-box" id="headerBox">
-            <div id="menuHeaderSlot" class="menu-location"></div>
-
-            <div class="welcome-box">
-                <div id="greeting" style="font-weight:700">HELLO</div>
-                <small>I'M AKSHAT PRASAD — Welcome to my portfolio</small>
-            </div>
-
-            <div class="welcome-box" style="text-align:right">
-                <div style="font-size:13px;color:rgba(0,0,0,0.65)">
-                    <i class="bi bi-clock-history"></i> Live Time
-                </div>
-                <div id="timestamp" style="font-weight:600"></div>
-            </div>
-        </div>
-
-        <!-- Content Area -->
-        <div id="contentArea" style="margin-top:14px"></div>
-
-        <!-- README Viewer -->
-        <div id="readmeViewer" aria-live="polite"></div>
-
+<dialog id="dlg" aria-label="Project details">
+  <div class="m" id="m">
+    <button class="x" id="x" aria-label="Close">&times;</button>
+    <div class="m-top"><span id="m-ico"></span><div><span class="cat" id="m-cat"></span><h2 id="m-name"></h2></div></div>
+    <div class="m-body"><p id="m-desc"></p><ul class="tags" id="m-tags"></ul></div>
+    <div class="m-foot">
+      <button class="nav" id="prev" aria-label="Previous project">&larr;</button>
+      <span class="pos" id="pos"></span>
+      <button class="nav" id="next" aria-label="Next project">&rarr;</button>
+      <a class="live" id="live" target="_blank" rel="noopener">Open live project</a>
     </div>
-    <script src="https://anh-dashboard-881238.web.app/loader.js"></script>
-    <script>
-function toggleTracker(){
-  const box = document.getElementById("tracker-wrapper");
-  box.style.display = box.style.display === "block" ? "none" : "block";
-}
+  </div>
+</dialog>
+
+<script>
+(function () {
+  var A = "https://akshat-881236.github.io/", AK = A + "TrackerJS/Assets/AKNH/icon-192.png";
+  var P = [
+    {id:"sitemap-generator",n:"Sitemap Generator",c:"SEO",d:"Turn a list of URLs into a valid XML sitemap for Google Search Console. Works offline too.",t:["HTML","CSS","JavaScript","Offline"],u:A+"SitemapGeneratorXml/",i:A+"SitemapGeneratorXml/Assets/icon-128.png"},
+    {id:"url-inspector",n:"URL Inspector",c:"SEO",d:"Preview any page, read its source and check its SEO tags. Runs fully in your browser.",t:["SEO","Privacy-first","Frontend only"],u:A+"URL-Inspector-SEO-Analyst/",i:AK},
+    {id:"dpgnotes",n:"DPGNotes",c:"Education",d:"Notes, tutorials, exam papers and placement prep in a fast, mobile-first app.",t:["Firebase","SPA","Mobile-first"],u:"https://dpgnotes.web.app/",i:"https://dpgnotes.web.app/ANH.png"},
+    {id:"key-of-success",n:"Key of Success",c:"Education",d:"Academic records and performance tracking for students and institutions.",t:["Dashboard","Records"],u:A+"Key-of-Success/",i:A+"TrackerJS/Assets/KOSLogo.png"},
+    {id:"learning-club",n:"Learning Club",c:"Education",d:"Learning tools, PDF resources and open-web education projects in one place.",t:["PDF library","Resources"],u:A+"LearningClub-Key-of-Success-Learning-Point/",i:A+"LearningClub-Key-of-Success-Learning-Point/Assets/Icons/icon-144.png"},
+    {id:"dpg-stm-blog",n:"DPG STM Blog",c:"Education",d:"An unofficial student-made page with tools and resources for DPG School of Technology & Management.",t:["College","Student tools"],u:A+"DPGStudent-881238/",i:A+"DPGStudent-881238/dpganh.png"},
+    {id:"quizzone-ai",n:"Quizzone AI",c:"AI",d:"Quizzes with AI-made questions and instant feedback, built for learning that sticks.",t:["AI","Quiz","Learning"],u:A+"Quizzone/Home/QuizzoneAI.htm",i:A+"Quizzone/icons/icon-192.png"},
+    {id:"anh-ai-assistant",n:"ANH AI Assistant",c:"AI",d:"A simple chat assistant written in JavaScript and connected to a backend API.",t:["JavaScript","API","Chat"],u:A+"AkshatNetworkHub/ai/index.htm",i:AK},
+    {id:"validation-system",n:"ANH ValidationSystem",c:"Security",d:"Generates trusted identity metadata so static sites can verify links at runtime.",t:["Scripto","JSON","Anti-phishing"],u:"https://akshat-145609.github.io/ValidationSystem/",i:"https://akshat-145609.github.io/ValidationSystem/icon.png"},
+    {id:"network-search",n:"Network Search",c:"Tools",d:"One search box across every site in the network, powered by Google Custom Search.",t:["GCSE","Search"],u:A+"SearchEngine/",i:AK},
+    {id:"png-generator",n:"PNG and Base64 Icon Generator",c:"Tools",d:"Make 16 to 512 px PNG icons and Base64 strings for a PWA manifest. Nothing is uploaded.",t:["PWA","ZIP export","Base64"],u:A+"Quizzone/pngGenerator.htm"},
+    {id:"profile-dashboard",n:"Profile Dashboard",c:"Platform",d:"A personal dashboard with an education timeline, skills and project list.",t:["Dashboard","Timeline"],u:A+"LocalRepo/"},
+    {id:"network-hub",n:"Akshat Network Hub",c:"Platform",d:"The home base that links every project, tool and learning resource together.",t:["Hub","SEO","Responsive"],u:A+"AkshatNetworkHub/",i:AK}
+  ];
+  var $ = function (s) { return document.querySelector(s); };
+  var grid = $("#grid"), dlg = $("#dlg"), q = $("#q"), chipBox = $("#chips");
+  var cats = ["All"].concat(P.map(function (p) { return p.c; }).filter(function (c, i, a) { return a.indexOf(c) === i; }));
+  var cat = "All", term = "", list = P.slice(), cur = 0;
+  var calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); };
+  var ico = function (p, cl) { return p.i ? '<img class="' + cl + '" src="' + p.i + '" alt="" loading="lazy" decoding="async">' : '<span class="' + cl + ' ph" aria-hidden="true">' + esc(p.n[0]) + "</span>"; };
+  var slug = function (p) { return p.c.toLowerCase(); };
+
+  /* Chips */
+  chipBox.innerHTML = cats.map(function (c) {
+    var n = c === "All" ? P.length : P.filter(function (p) { return p.c === c; }).length;
+    return '<button class="chip" data-c="' + c + '" aria-pressed="' + (c === cat) + '">' + c + "<small>" + n + "</small></button>";
+  }).join("");
+  chipBox.addEventListener("click", function (e) {
+    var b = e.target.closest(".chip"); if (!b) return;
+    cat = b.dataset.c;
+    chipBox.querySelectorAll(".chip").forEach(function (x) { x.setAttribute("aria-pressed", x === b); });
+    b.scrollIntoView({ inline: "center", block: "nearest", behavior: calm ? "auto" : "smooth" });
+    render();
+  });
+
+  /* Gallery */
+  function render() {
+    var t = term.trim().toLowerCase();
+    list = P.filter(function (p) {
+      return (cat === "All" || p.c === cat) && (!t || (p.n + " " + p.d + " " + p.c + " " + p.t.join(" ")).toLowerCase().indexOf(t) > -1);
+    });
+    $("#count").textContent = list.length === P.length ? P.length + " live projects" : "Showing " + list.length + " of " + P.length;
+    grid.innerHTML = list.length ? list.map(function (p) {
+      return '<li class="card" data-cat="' + slug(p) + '" data-id="' + p.id + '">' +
+        '<button class="hit" aria-label="View details for ' + esc(p.n) + '"></button>' + ico(p, "ico") +
+        '<div class="txt"><span class="cat">' + p.c + "</span><h3>" + esc(p.n) + "</h3><p>" + esc(p.d) + "</p></div>" +
+        '<a class="go" href="' + p.u + '" target="_blank" rel="noopener" aria-label="Open ' + esc(p.n) + ' live">Open &nearr;</a></li>';
+    }).join("") : '<li class="empty">Nothing matches that search.<br><button id="clear">Clear filters</button></li>';
+    if (!calm && grid.animate) grid.animate([{ opacity: 0.2 }, { opacity: 1 }], { duration: 220 });
+  }
+  q.addEventListener("input", function () { term = q.value; render(); });
+  grid.addEventListener("click", function (e) {
+    if (e.target.id === "clear") { q.value = term = ""; cat = "All"; chipBox.querySelectorAll(".chip").forEach(function (x) { x.setAttribute("aria-pressed", x.dataset.c === "All"); }); render(); return; }
+    var c = e.target.closest(".card");
+    if (c && !e.target.closest(".go")) openP(c.dataset.id);
+  });
+  grid.addEventListener("pointermove", function (e) {          /* desktop spotlight */
+    if (e.pointerType !== "mouse") return;
+    var c = e.target.closest(".card"); if (!c) return;
+    var r = c.getBoundingClientRect();
+    c.style.setProperty("--mx", e.clientX - r.left + "px"); c.style.setProperty("--my", e.clientY - r.top + "px");
+  });
+  document.addEventListener("error", function (e) {            /* icon fallback */
+    var im = e.target; if (im.tagName !== "IMG" || !im.classList.contains("ico")) return;
+    var s = document.createElement("span"); s.className = im.className + " ph"; s.textContent = "•"; im.replaceWith(s);
+  }, true);
+
+  /* Layout toggle: 2-up tiles on phones, one-line rows in List */
+  document.querySelectorAll(".view button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      grid.dataset.view = b.dataset.v;
+      document.querySelectorAll(".view button").forEach(function (x) { x.setAttribute("aria-pressed", x === b); });
+    });
+  });
+
+  /* Detail dialog */
+  function fill(dir) {
+    var p = list[cur], m = $("#m");
+    m.dataset.cat = slug(p);
+    $("#m-ico").innerHTML = ico(p, "ico"); $("#m-cat").textContent = p.c; $("#m-name").textContent = p.n;
+    $("#m-desc").textContent = p.d;
+    $("#m-tags").innerHTML = p.t.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("");
+    $("#live").href = p.u; $("#live").setAttribute("aria-label", "Open " + p.n + " live");
+    $("#pos").textContent = cur + 1 + " / " + list.length;
+    history.replaceState(null, "", "#" + p.id);
+    if (dir && !calm && m.animate) m.animate([{ opacity: 0, transform: "translateX(" + dir * 28 + "px)" }, { opacity: 1, transform: "none" }], { duration: 220, easing: "ease-out" });
+  }
+  function openP(id) {
+    var i = list.findIndex(function (p) { return p.id === id; });
+    if (i < 0) { cat = "All"; term = q.value = ""; render(); i = list.findIndex(function (p) { return p.id === id; }); }
+    if (i < 0) return;
+    cur = i; fill(0); if (!dlg.open) dlg.showModal();
+  }
+  function step(d) { if (list.length < 2) return; cur = (cur + d + list.length) % list.length; fill(d); }
+  $("#next").onclick = function () { step(1); };
+  $("#prev").onclick = function () { step(-1); };
+  $("#x").onclick = function () { dlg.close(); };
+  dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener("close", function () { history.replaceState(null, "", location.pathname + location.search); });
+
+  /* Swipe between projects (phones and tablets) */
+  var sx = 0, sy = 0;
+  dlg.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  dlg.addEventListener("touchend", function (e) {
+    var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) > 60 && Math.abs(dy) < 40) step(dx < 0 ? 1 : -1);
+  }, { passive: true });
+
+  /* Keyboard (desktop) */
+  document.addEventListener("keydown", function (e) {
+    if (dlg.open) { if (e.key === "ArrowRight") step(1); if (e.key === "ArrowLeft") step(-1); return; }
+    if (e.key === "/" && document.activeElement !== q) { e.preventDefault(); q.focus(); }
+  });
+  window.addEventListener("hashchange", function () { var id = location.hash.slice(1); if (id && P.some(function (p) { return p.id === id; })) openP(id); });
+
+  /* Start: phones default to the compact list */
+  if (innerWidth <= 640) document.querySelector('.view button[data-v="list"]').click();
+  render();
+  if (location.hash) openP(location.hash.slice(1));
+})();
 </script>
-    <!-- SCRIPT -->
-    <script>
-        /* CONFIG */
-        const SITE_ROOT = "https://akshat-881236.github.io/Portfolio-881236/";
-        const ADMIN_PASSWORD = "admin123";
-
-        /* UPDATE META */
-        function updateMeta(title, description) {
-            document.title = title;
-
-            const metaDesc = document.querySelector('meta[name="description"]');
-            if (metaDesc) metaDesc.setAttribute("content", description);
-
-            const ogTitle = document.querySelector('meta[property="og:title"]');
-            if (ogTitle) ogTitle.setAttribute("content", title);
-
-            const ogDesc = document.querySelector('meta[property="og:description"]');
-            if (ogDesc) ogDesc.setAttribute("content", description);
-        }
-
-        /* DYNAMIC MENU BUTTON MOVEMENT */
-        const menuBtn = document.createElement("button");
-        menuBtn.className = "menu-btn";
-        menuBtn.innerHTML = '<i class="bi bi-list"></i> Menu';
-        menuBtn.addEventListener("click", toggleSidebar);
-
-        const headerMenuSlot = document.getElementById("menuHeaderSlot");
-        const sidebarTopSlot = document.getElementById("sidebarTopSlot");
-
-        headerMenuSlot.appendChild(menuBtn);
-
-        function toggleSidebar() {
-            document.body.classList.toggle("sidebar-open");
-
-            if (document.body.classList.contains("sidebar-open")) {
-                sidebarTopSlot.appendChild(menuBtn);
-            } else {
-                headerMenuSlot.appendChild(menuBtn);
-            }
-        }
-
-        /* auto-place on load */
-        if (document.body.classList.contains("sidebar-open")) {
-            sidebarTopSlot.appendChild(menuBtn);
-        } else {
-            headerMenuSlot.appendChild(menuBtn);
-        }
-
-        /* close sidebar after navigation */
-        document.querySelectorAll(".sidebar ul li").forEach(li => {
-            li.addEventListener("click", () => {
-                setTimeout(() => {
-                    if (document.body.classList.contains("sidebar-open")) {
-                        document.body.classList.remove("sidebar-open");
-                        headerMenuSlot.appendChild(menuBtn);
-                    }
-                }, 120);
-            });
-        });
-
-        /* CLOCK */
-        function updateClock() {
-            document.getElementById("timestamp").innerText = new Date().toLocaleString();
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        /* GREETING */
-        function updateGreeting() {
-            const hour = new Date().getHours();
-            let g = "HELLO";
-
-            if (hour < 12) g = "GOOD MORNING";
-            else if (hour < 16) g = "GOOD AFTERNOON";
-            else if (hour < 20) g = "GOOD EVENING";
-            else g = "GOOD NIGHT";
-
-            document.getElementById("greeting").innerText = g;
-        }
-        updateGreeting();
-
-
-        /* ADMIN PHOTO UPLOAD */
-        const profilePic = document.getElementById("profilePic");
-        const fileInput = document.getElementById("fileInput");
-
-        profilePic.addEventListener("click", () => {
-            const pwd = prompt("Enter Admin password:");
-            if (pwd === ADMIN_PASSWORD) {
-                document.body.classList.add("is-admin");
-                alert("Admin mode enabled.");
-            }
-        });
-
-        function triggerFile() {
-            fileInput.click();
-        }
-
-        fileInput.addEventListener("change", () => {
-            if (!document.body.classList.contains("is-admin")) {
-                alert("Admin only");
-                return;
-            }
-            const f = fileInput.files[0];
-            if (!f) return;
-
-            const reader = new FileReader();
-            reader.onload = e => profilePic.src = e.target.result;
-            reader.readAsDataURL(f);
-        });
-
-
-        /* AJAX PAGE LOADING */
-        const contentArea = document.getElementById("contentArea");
-        const readmeViewer = document.getElementById("readmeViewer");
-
-        function loadPage(path) {
-            readmeViewer.innerHTML = "";
-
-            fetch(path).then(r => {
-                if (!r.ok) throw new Error("not found");
-                return r.text();
-            }).then(html => {
-                contentArea.innerHTML = html;
-                updateMeta("Akshat — " + (path.split('/').pop()), "Portfolio content: " + path);
-
-                if (path.toLowerCase().includes("license")) {
-                    styleLicenseText();
-                }
-            }).catch(() => {
-                contentArea.innerHTML = "<p>Page Not Found</p>";
-            });
-        }
-
-        /* README LOADER */
-        function loadREADME() {
-            contentArea.innerHTML = "";
-
-            fetch(SITE_ROOT + "README.md")
-                .then(r => r.ok ? r.text() : Promise.reject("no"))
-                .then(md => {
-                    readmeViewer.innerHTML = mdToHtml(md);
-                    updateMeta("Akshat — README", "README content from portfolio repository");
-                })
-                .catch(() => {
-                    readmeViewer.innerHTML = "<p>README not found</p>";
-                });
-        }
-
-        /* BASIC MARKDOWN PARSER (UNCHANGED) */
-        function mdToHtml(md) {
-            return md
-                .replace(/### (.*?)(\n|$)/g, '<h3>$1</h3>')
-                .replace(/## (.*?)(\n|$)/g, '<h2>$1</h2>')
-                .replace(/# (.*?)(\n|$)/g, '<h1>$1</h1>')
-                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                .replace(/`(.*?)`/g, '<code>$1</code>')
-                .replace(/\n/g, '<br/>')
-                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
-        }
-
-
-        /* LICENSE LOADER */
-        /* ========================= SIMPLE LICENSE LOADER (SAME AS README) ========================= */
-
-function loadLicense() {
-    contentArea.innerHTML = "";
-    readmeViewer.innerHTML = "";
-
-    // Direct raw GitHub URL for auto-update
-    const licenseURL =
-      "https://raw.githubusercontent.com/akshat-881236/Portfolio-881236/main/LICENSE";
-
-    fetch(licenseURL)
-      .then(r => r.ok ? r.text() : Promise.reject("Not Found"))
-      .then(text => {
-          readmeViewer.innerHTML = mdToHtml(text);   // SAME LOGIC AS README
-          updateMeta("Akshat — LICENSE", "License preview from GitHub repository");
-      })
-      .catch(() => {
-          readmeViewer.innerHTML = "<p>LICENSE not found</p>";
-      });
-}
-
-
-        /* LICENSE PARSER (UNCHANGED) */
-        function licenseToHtml(txt) {
-            if (!txt) return "";
-
-            let safe = txt.replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;");
-
-            safe = safe
-                .replace(/^###### (.*)$/gm, "<h6>$1</h6>")
-                .replace(/^##### (.*)$/gm, "<h5>$1</h5>")
-                .replace(/^#### (.*)$/gm, "<h4>$1</h4>")
-                .replace(/^### (.*)$/gm, "<h3>$1</h3>")
-                .replace(/^## (.*)$/gm, "<h2>$1</h2>")
-                .replace(/^# (.*)$/gm, "<h1>$1</h1>")
-                .replace(/^---$/gm, "<hr>")
-                .replace(/^> (.*)$/gm,
-                    `<blockquote style="border-left:4px solid var(--accent);padding-left:10px;margin:8px 0;">$1</blockquote>`
-                )
-                .replace(/```([\s\S]*?)```/g,
-                    `<pre style="background:#222;color:#fff;padding:12px;border-radius:8px;overflow:auto;"><code>$1</code></pre>`
-                )
-                .replace(/\*\*\*(.*?)\*\*\*/g, "<strong><em>$1</em></strong>")
-                .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-                .replace(/\*(.*?)\*/g, "<em>$1</em>")
-                .replace(/`([^`]+)`/g,
-                    "<code style='background:#eee;padding:2px 4px;border-radius:4px;'>$1</code>")
-                .replace(/\[([^\]]+)\]\(([^)]+)\)/g,
-                    "<a href='$2' target='_blank' style='color:var(--accent)'>$1</a>"
-                )
-                .replace(/^\s*[-+*]\s+(.*)/gm, "<ul><li>$1</li></ul>")
-                .replace(/<\/ul>\s*<ul>/g, "")
-                .replace(/^\s*\d+\.\s+(.*)/gm, "<ol><li>$1</li></ol>")
-                .replace(/<\/ol>\s*<ol>/g, "")
-                .replace(/\b(MIT|Apache|GPL|BSD|License|Copyright|Warranty|Redistribution)\b/g,
-                    "<span style='font-weight:bold;color:var(--accent)'>$1</span>"
-                )
-                .replace(/\n{2,}/g, "</p><p>");
-
-            safe = "<p>" + safe + "</p>";
-            return safe.replace(/<p><\/p>/g, "");
-        }
-
-        /* STYLE LICENSE DIRECT TEXT (if needed) */
-        function styleLicenseText() {
-            const el = contentArea;
-            const txt = el.innerText || el.textContent || "";
-            if (txt) el.innerHTML = licenseToHtml(txt);
-        }
-
-        /* HOME CONTENT */
-function loadHomeContent() {
-  readmeViewer.innerHTML = "";
-
-  contentArea.innerHTML = `
-    <section class="dashboard">
-
-      <!-- PROFILE SECTION -->
-      <section class="dash-section profile-section">
-        <header class="section-header">
-          <h2>👤 Personal Information</h2>
-          <p class="section-subtitle">
-            Basic identity and contact-related information.
-          </p>
-        </header>
-
-        <div class="info-grid">
-          <div class="info-item">
-            <h4>Name</h4>
-            <p>Akshat Prasad</p>
-          </div>
-
-          <div class="info-item">
-            <h4>University Student ID</h4>
-            <p>881238</p>
-          </div>
-
-          <div class="info-item">
-            <h4>Address</h4>
-            <p>Kherki Daula , Gurugram</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- EDUCATION SECTION -->
-      <section class="dash-section education-section">
-        <header class="section-header">
-          <h2>🎓 Education</h2>
-          <p class="section-subtitle">
-            Academic background and performance overview.
-          </p>
-        </header>
-
-        <ul class="education-list">
-          <li>
-            <strong>Matriculation (CBSE):</strong>
-            <span>78.5%</span>
-          </li>
-          <li>
-            <strong>Intermediate (BSEH):</strong>
-            <span>74.4%</span>
-          </li>
-          <li>
-            <strong>BCA Semester 1:</strong>
-            <span>8.82 SGPA</span>
-          </li>
-          <li>
-            <strong>BCA Semester 2:</strong>
-            <span>9.00 SGPA</span>
-          </li>
-        </ul>
-      </section>
-
-      <!-- COURSE & UNIVERSITY -->
-      <section class="dash-section course-section">
-        <header class="section-header">
-          <h2>🏫 Course & University</h2>
-          <p class="section-subtitle">
-            Current academic program and institution details.
-          </p>
-        </header>
-
-        <div class="info-grid">
-          <div class="info-item">
-            <h4>Course</h4>
-            <p>BCA</p>
-          </div>
-
-          <div class="info-item">
-            <h4>College</h4>
-            <p>DPG Degree College</p>
-          </div>
-
-          <div class="info-item">
-            <h4>University</h4>
-            <p>Maharshi Dayanand University, Rohtak</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- PROJECTS SECTION -->
-      <section class="dash-section projects-section">
-        <header class="section-header">
-          <h2>🧩 Projects</h2>
-          <p class="section-subtitle">
-            Live academic and personal development projects.
-          </p>
-        </header>
-
-        <div class="projects-grid">
-
-          <div class="project-card">
-            <h3>Key of Success</h3>
-            <p>
-              Academic record and fee management portal with result dashboards.
-            </p>
-            <a class="project-btn" 
-               href="https://akshat-881236.github.io/Key-of-Success/" 
-               target="_blank">
-              Visit Project
-            </a>
-          </div>
-
-          <div class="project-card">
-            <h3>Akshat Project Hub</h3>
-            <p>
-              A centralized network of all the projects under the authority of Akshat Prasad.
-            </p>
-            <a class="project-btn" 
-               href="https://akshat-881236.github.io/sitemapjs/" 
-               target="_blank">
-              Visit Project
-            </a>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- SOCIAL LINKS -->
-      <section class="dash-section social-section">
-        <header class="section-header">
-          <h2>🔗 Social Links</h2>
-          <p class="section-subtitle">
-            Connect professionally and explore work.
-          </p>
-        </header>
-
-        <div class="social-links">
-          <a href="https://github.com/akshat-881236" target="_blank">
-            <i class="bi bi-github"></i> GitHub
-          </a>
-          <a href="https://www.linkedin.com/in/akshat-prasad-b53936379" target="_blank">
-            <i class="bi bi-linkedin"></i> LinkedIn
-          </a>
-          <a href="mailto:akshatpsd2005@gmail.com">
-            <i class="bi bi-envelope"></i> Email
-          </a>
-        </div>
-      </section>
-
-    </section>
-    <div id="tracker-wrapper" style="display:none">
-      <p>Your Activity Tracker Dashboard:</p>
-  <iframe
-    src="https://akshat-881236.github.io/TrackerJS/"
-    style="width:100%;height:100%;border:none"
-    loading="lazy"
-  ></iframe>
-</div>
-  `;
-
-  updateMeta(
-    "Akshat — Dashboard",
-    "Personal portfolio dashboard for Akshat Prasad"
-  );
-}
-
-loadHomeContent();
-
-        /* ADMIN SHORTCUT */
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
-                const pwd = prompt("Admin password (shortcut):");
-                if (pwd === ADMIN_PASSWORD) {
-                    document.body.classList.add("is-admin");
-                    alert("Admin enabled");
-                } else alert("Incorrect");
-            }
-        });
-    </script>
-
 </body>
 </html>
